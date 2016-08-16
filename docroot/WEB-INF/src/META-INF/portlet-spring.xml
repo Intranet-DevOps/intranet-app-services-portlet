@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<bean id="sg.com.para.intranet.services.service.EmployeeLocalService" class="sg.com.para.intranet.services.service.impl.EmployeeLocalServiceImpl" />
+	<bean id="sg.com.para.intranet.services.service.EmployeeService" class="sg.com.para.intranet.services.service.impl.EmployeeServiceImpl" />
+	<bean id="sg.com.para.intranet.services.service.persistence.EmployeePersistence" class="sg.com.para.intranet.services.service.persistence.EmployeePersistenceImpl" parent="basePersistence" />
+	<bean id="sg.com.para.intranet.services.service.ProjectLocalService" class="sg.com.para.intranet.services.service.impl.ProjectLocalServiceImpl" />
+	<bean id="sg.com.para.intranet.services.service.ProjectService" class="sg.com.para.intranet.services.service.impl.ProjectServiceImpl" />
+	<bean id="sg.com.para.intranet.services.service.persistence.ProjectPersistence" class="sg.com.para.intranet.services.service.persistence.ProjectPersistenceImpl" parent="basePersistence" />
+	<bean id="sg.com.para.intranet.services.service.TimesheetLocalService" class="sg.com.para.intranet.services.service.impl.TimesheetLocalServiceImpl" />
+	<bean id="sg.com.para.intranet.services.service.TimesheetService" class="sg.com.para.intranet.services.service.impl.TimesheetServiceImpl" />
+	<bean id="sg.com.para.intranet.services.service.persistence.TimesheetPersistence" class="sg.com.para.intranet.services.service.persistence.TimesheetPersistenceImpl" parent="basePersistence" />
+</beans>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_2_0.dtd">
+<service-builder package-path="sg.com.para.intranet.services">
+	<author>Fernando Karnagi</author>
+    <namespace>intranet</namespace>
+    <entity name="Employee" local-service="true" table="intranet_employee">
+        <column name="employeeId" type="int" primary="true"></column>
+        <column name="employeeScreenName" type="String"></column>
+        <column name="joinDate" type="Date"></column>
+        <column name="leaveDate" type="Date"></column>
+    </entity>
+    <entity name="Project" local-service="true" table="intranet_project">
+        <column name="projectId" type="int" primary="true"></column>
+        <column name="code" type="String"></column>
+        <column name="description" type="String"></column>
+    </entity>
+    <entity name="Timesheet" local-service="true">
+        <column name="timesheetId" type="int" primary="true"></column>
+        <column name="employeeId" type="int"></column>
+        <column name="logDate" type="Date"></column>
+        <column name="logType" type="String"></column>
+        <column name="hours" type="double"></column>
+        <column name="projectId" type="int"></column>
+    </entity>
+
+	
+</service-builder>

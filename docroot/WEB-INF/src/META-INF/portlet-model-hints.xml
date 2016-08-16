@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="sg.com.para.intranet.services.model.Employee">
+		<field name="employeeId" type="int" />
+		<field name="employeeScreenName" type="String" />
+		<field name="joinDate" type="Date" />
+		<field name="leaveDate" type="Date" />
+	</model>
+	<model name="sg.com.para.intranet.services.model.Project">
+		<field name="projectId" type="int" />
+		<field name="code" type="String" />
+		<field name="description" type="String" />
+	</model>
+	<model name="sg.com.para.intranet.services.model.Timesheet">
+		<field name="timesheetId" type="int" />
+		<field name="employeeId" type="int" />
+		<field name="logDate" type="Date" />
+		<field name="logType" type="String" />
+		<field name="hours" type="double" />
+		<field name="projectId" type="int" />
+	</model>
+</model-hints>

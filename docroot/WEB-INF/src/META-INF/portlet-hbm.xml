@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-lazy="false" auto-import="false">
+	<import class="sg.com.para.intranet.services.model.Employee" />
+	<import class="sg.com.para.intranet.services.model.Project" />
+	<import class="sg.com.para.intranet.services.model.Timesheet" />
+	<class name="sg.com.para.intranet.services.model.impl.EmployeeImpl" table="intranet_employee">
+		<cache usage="read-write" />
+		<id name="employeeId" type="int">
+			<generator class="assigned" />
+		</id>
+		<property name="employeeScreenName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="joinDate" type="org.hibernate.type.TimestampType" />
+		<property name="leaveDate" type="org.hibernate.type.TimestampType" />
+	</class>
+	<class name="sg.com.para.intranet.services.model.impl.ProjectImpl" table="intranet_project">
+		<cache usage="read-write" />
+		<id name="projectId" type="int">
+			<generator class="assigned" />
+		</id>
+		<property name="code" type="com.liferay.portal.dao.orm.hibernate.StringType" column="code_" />
+		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="sg.com.para.intranet.services.model.impl.TimesheetImpl" table="intranet_Timesheet">
+		<cache usage="read-write" />
+		<id name="timesheetId" type="int">
+			<generator class="assigned" />
+		</id>
+		<property name="employeeId" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="logDate" type="org.hibernate.type.TimestampType" />
+		<property name="logType" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="hours" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
+		<property name="projectId" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+	</class>
+</hibernate-mapping>
