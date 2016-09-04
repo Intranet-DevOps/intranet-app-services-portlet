@@ -42,8 +42,8 @@ public class TimesheetCacheModel implements CacheModel<Timesheet>,
 
 		sb.append("{timesheetId=");
 		sb.append(timesheetId);
-		sb.append(", employeeId=");
-		sb.append(employeeId);
+		sb.append(", employeeScreenName=");
+		sb.append(employeeScreenName);
 		sb.append(", logDate=");
 		sb.append(logDate);
 		sb.append(", regular=");
@@ -64,8 +64,8 @@ public class TimesheetCacheModel implements CacheModel<Timesheet>,
 		sb.append(remarks);
 		sb.append(", status=");
 		sb.append(status);
-		sb.append(", projectId=");
-		sb.append(projectId);
+		sb.append(", projectCode=");
+		sb.append(projectCode);
 		sb.append("}");
 
 		return sb.toString();
@@ -76,7 +76,13 @@ public class TimesheetCacheModel implements CacheModel<Timesheet>,
 		TimesheetImpl timesheetImpl = new TimesheetImpl();
 
 		timesheetImpl.setTimesheetId(timesheetId);
-		timesheetImpl.setEmployeeId(employeeId);
+
+		if (employeeScreenName == null) {
+			timesheetImpl.setEmployeeScreenName(StringPool.BLANK);
+		}
+		else {
+			timesheetImpl.setEmployeeScreenName(employeeScreenName);
+		}
 
 		if (logDate == Long.MIN_VALUE) {
 			timesheetImpl.setLogDate(null);
@@ -100,8 +106,19 @@ public class TimesheetCacheModel implements CacheModel<Timesheet>,
 			timesheetImpl.setRemarks(remarks);
 		}
 
-		timesheetImpl.setStatus(status);
-		timesheetImpl.setProjectId(projectId);
+		if (status == null) {
+			timesheetImpl.setStatus(StringPool.BLANK);
+		}
+		else {
+			timesheetImpl.setStatus(status);
+		}
+
+		if (projectCode == null) {
+			timesheetImpl.setProjectCode(StringPool.BLANK);
+		}
+		else {
+			timesheetImpl.setProjectCode(projectCode);
+		}
 
 		timesheetImpl.resetOriginalValues();
 
@@ -111,7 +128,7 @@ public class TimesheetCacheModel implements CacheModel<Timesheet>,
 	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		timesheetId = objectInput.readInt();
-		employeeId = objectInput.readInt();
+		employeeScreenName = objectInput.readUTF();
 		logDate = objectInput.readLong();
 		regular = objectInput.readDouble();
 		overtime = objectInput.readDouble();
@@ -121,15 +138,22 @@ public class TimesheetCacheModel implements CacheModel<Timesheet>,
 		unpaid = objectInput.readDouble();
 		other = objectInput.readDouble();
 		remarks = objectInput.readUTF();
-		status = objectInput.readDouble();
-		projectId = objectInput.readInt();
+		status = objectInput.readUTF();
+		projectCode = objectInput.readUTF();
 	}
 
 	@Override
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		objectOutput.writeInt(timesheetId);
-		objectOutput.writeInt(employeeId);
+
+		if (employeeScreenName == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(employeeScreenName);
+		}
+
 		objectOutput.writeLong(logDate);
 		objectOutput.writeDouble(regular);
 		objectOutput.writeDouble(overtime);
@@ -146,12 +170,23 @@ public class TimesheetCacheModel implements CacheModel<Timesheet>,
 			objectOutput.writeUTF(remarks);
 		}
 
-		objectOutput.writeDouble(status);
-		objectOutput.writeInt(projectId);
+		if (status == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(status);
+		}
+
+		if (projectCode == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(projectCode);
+		}
 	}
 
 	public int timesheetId;
-	public int employeeId;
+	public String employeeScreenName;
 	public long logDate;
 	public double regular;
 	public double overtime;
@@ -161,6 +196,6 @@ public class TimesheetCacheModel implements CacheModel<Timesheet>,
 	public double unpaid;
 	public double other;
 	public String remarks;
-	public double status;
-	public int projectId;
+	public String status;
+	public String projectCode;
 }

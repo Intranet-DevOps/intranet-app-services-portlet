@@ -74,7 +74,7 @@ public class EmployeeClp extends BaseModelImpl<Employee> implements Employee {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
 		attributes.put("employeeId", getEmployeeId());
-		attributes.put("employeeScreenName", getEmployeeScreenName());
+		attributes.put("screenName", getScreenName());
 		attributes.put("joinDate", getJoinDate());
 		attributes.put("leaveDate", getLeaveDate());
 
@@ -89,10 +89,10 @@ public class EmployeeClp extends BaseModelImpl<Employee> implements Employee {
 			setEmployeeId(employeeId);
 		}
 
-		String employeeScreenName = (String)attributes.get("employeeScreenName");
+		String screenName = (String)attributes.get("screenName");
 
-		if (employeeScreenName != null) {
-			setEmployeeScreenName(employeeScreenName);
+		if (screenName != null) {
+			setScreenName(screenName);
 		}
 
 		Date joinDate = (Date)attributes.get("joinDate");
@@ -132,22 +132,21 @@ public class EmployeeClp extends BaseModelImpl<Employee> implements Employee {
 	}
 
 	@Override
-	public String getEmployeeScreenName() {
-		return _employeeScreenName;
+	public String getScreenName() {
+		return _screenName;
 	}
 
 	@Override
-	public void setEmployeeScreenName(String employeeScreenName) {
-		_employeeScreenName = employeeScreenName;
+	public void setScreenName(String screenName) {
+		_screenName = screenName;
 
 		if (_employeeRemoteModel != null) {
 			try {
 				Class<?> clazz = _employeeRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setEmployeeScreenName",
-						String.class);
+				Method method = clazz.getMethod("setScreenName", String.class);
 
-				method.invoke(_employeeRemoteModel, employeeScreenName);
+				method.invoke(_employeeRemoteModel, screenName);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -271,7 +270,7 @@ public class EmployeeClp extends BaseModelImpl<Employee> implements Employee {
 		EmployeeClp clone = new EmployeeClp();
 
 		clone.setEmployeeId(getEmployeeId());
-		clone.setEmployeeScreenName(getEmployeeScreenName());
+		clone.setScreenName(getScreenName());
 		clone.setJoinDate(getJoinDate());
 		clone.setLeaveDate(getLeaveDate());
 
@@ -330,8 +329,8 @@ public class EmployeeClp extends BaseModelImpl<Employee> implements Employee {
 
 		sb.append("{employeeId=");
 		sb.append(getEmployeeId());
-		sb.append(", employeeScreenName=");
-		sb.append(getEmployeeScreenName());
+		sb.append(", screenName=");
+		sb.append(getScreenName());
 		sb.append(", joinDate=");
 		sb.append(getJoinDate());
 		sb.append(", leaveDate=");
@@ -354,8 +353,8 @@ public class EmployeeClp extends BaseModelImpl<Employee> implements Employee {
 		sb.append(getEmployeeId());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>employeeScreenName</column-name><column-value><![CDATA[");
-		sb.append(getEmployeeScreenName());
+			"<column><column-name>screenName</column-name><column-value><![CDATA[");
+		sb.append(getScreenName());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>joinDate</column-name><column-value><![CDATA[");
@@ -372,7 +371,7 @@ public class EmployeeClp extends BaseModelImpl<Employee> implements Employee {
 	}
 
 	private int _employeeId;
-	private String _employeeScreenName;
+	private String _screenName;
 	private Date _joinDate;
 	private Date _leaveDate;
 	private BaseModel<?> _employeeRemoteModel;

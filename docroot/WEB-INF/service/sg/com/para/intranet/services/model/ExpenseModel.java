@@ -74,18 +74,19 @@ public interface ExpenseModel extends BaseModel<Expense> {
 	public void setExpenseId(int expenseId);
 
 	/**
-	 * Returns the employee ID of this expense.
+	 * Returns the employee screen name of this expense.
 	 *
-	 * @return the employee ID of this expense
+	 * @return the employee screen name of this expense
 	 */
-	public int getEmployeeId();
+	@AutoEscape
+	public String getEmployeeScreenName();
 
 	/**
-	 * Sets the employee ID of this expense.
+	 * Sets the employee screen name of this expense.
 	 *
-	 * @param employeeId the employee ID of this expense
+	 * @param employeeScreenName the employee screen name of this expense
 	 */
-	public void setEmployeeId(int employeeId);
+	public void setEmployeeScreenName(String employeeScreenName);
 
 	/**
 	 * Returns the expense date of this expense.
@@ -130,18 +131,19 @@ public interface ExpenseModel extends BaseModel<Expense> {
 	public void setAmount(double amount);
 
 	/**
-	 * Returns the project ID of this expense.
+	 * Returns the project code of this expense.
 	 *
-	 * @return the project ID of this expense
+	 * @return the project code of this expense
 	 */
-	public int getProjectId();
+	@AutoEscape
+	public String getProjectCode();
 
 	/**
-	 * Sets the project ID of this expense.
+	 * Sets the project code of this expense.
 	 *
-	 * @param projectId the project ID of this expense
+	 * @param projectCode the project code of this expense
 	 */
-	public void setProjectId(int projectId);
+	public void setProjectCode(String projectCode);
 
 	/**
 	 * Returns the category of this expense.
@@ -157,6 +159,21 @@ public interface ExpenseModel extends BaseModel<Expense> {
 	 * @param category the category of this expense
 	 */
 	public void setCategory(String category);
+
+	/**
+	 * Returns the status of this expense.
+	 *
+	 * @return the status of this expense
+	 */
+	@AutoEscape
+	public String getStatus();
+
+	/**
+	 * Sets the status of this expense.
+	 *
+	 * @param status the status of this expense
+	 */
+	public void setStatus(String status);
 
 	/**
 	 * Returns the remarks of this expense.

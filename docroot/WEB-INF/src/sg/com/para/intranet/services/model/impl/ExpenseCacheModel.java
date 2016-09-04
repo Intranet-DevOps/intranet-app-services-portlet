@@ -37,22 +37,24 @@ import java.util.Date;
 public class ExpenseCacheModel implements CacheModel<Expense>, Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(17);
+		StringBundler sb = new StringBundler(19);
 
 		sb.append("{expenseId=");
 		sb.append(expenseId);
-		sb.append(", employeeId=");
-		sb.append(employeeId);
+		sb.append(", employeeScreenName=");
+		sb.append(employeeScreenName);
 		sb.append(", expenseDate=");
 		sb.append(expenseDate);
 		sb.append(", submissionDate=");
 		sb.append(submissionDate);
 		sb.append(", amount=");
 		sb.append(amount);
-		sb.append(", projectId=");
-		sb.append(projectId);
+		sb.append(", projectCode=");
+		sb.append(projectCode);
 		sb.append(", category=");
 		sb.append(category);
+		sb.append(", status=");
+		sb.append(status);
 		sb.append(", remarks=");
 		sb.append(remarks);
 		sb.append("}");
@@ -65,7 +67,13 @@ public class ExpenseCacheModel implements CacheModel<Expense>, Externalizable {
 		ExpenseImpl expenseImpl = new ExpenseImpl();
 
 		expenseImpl.setExpenseId(expenseId);
-		expenseImpl.setEmployeeId(employeeId);
+
+		if (employeeScreenName == null) {
+			expenseImpl.setEmployeeScreenName(StringPool.BLANK);
+		}
+		else {
+			expenseImpl.setEmployeeScreenName(employeeScreenName);
+		}
 
 		if (expenseDate == Long.MIN_VALUE) {
 			expenseImpl.setExpenseDate(null);
@@ -82,13 +90,26 @@ public class ExpenseCacheModel implements CacheModel<Expense>, Externalizable {
 		}
 
 		expenseImpl.setAmount(amount);
-		expenseImpl.setProjectId(projectId);
+
+		if (projectCode == null) {
+			expenseImpl.setProjectCode(StringPool.BLANK);
+		}
+		else {
+			expenseImpl.setProjectCode(projectCode);
+		}
 
 		if (category == null) {
 			expenseImpl.setCategory(StringPool.BLANK);
 		}
 		else {
 			expenseImpl.setCategory(category);
+		}
+
+		if (status == null) {
+			expenseImpl.setStatus(StringPool.BLANK);
+		}
+		else {
+			expenseImpl.setStatus(status);
 		}
 
 		if (remarks == null) {
@@ -106,12 +127,13 @@ public class ExpenseCacheModel implements CacheModel<Expense>, Externalizable {
 	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		expenseId = objectInput.readInt();
-		employeeId = objectInput.readInt();
+		employeeScreenName = objectInput.readUTF();
 		expenseDate = objectInput.readLong();
 		submissionDate = objectInput.readLong();
 		amount = objectInput.readDouble();
-		projectId = objectInput.readInt();
+		projectCode = objectInput.readUTF();
 		category = objectInput.readUTF();
+		status = objectInput.readUTF();
 		remarks = objectInput.readUTF();
 	}
 
@@ -119,17 +141,37 @@ public class ExpenseCacheModel implements CacheModel<Expense>, Externalizable {
 	public void writeExternal(ObjectOutput objectOutput)
 		throws IOException {
 		objectOutput.writeInt(expenseId);
-		objectOutput.writeInt(employeeId);
+
+		if (employeeScreenName == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(employeeScreenName);
+		}
+
 		objectOutput.writeLong(expenseDate);
 		objectOutput.writeLong(submissionDate);
 		objectOutput.writeDouble(amount);
-		objectOutput.writeInt(projectId);
+
+		if (projectCode == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(projectCode);
+		}
 
 		if (category == null) {
 			objectOutput.writeUTF(StringPool.BLANK);
 		}
 		else {
 			objectOutput.writeUTF(category);
+		}
+
+		if (status == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(status);
 		}
 
 		if (remarks == null) {
@@ -141,11 +183,12 @@ public class ExpenseCacheModel implements CacheModel<Expense>, Externalizable {
 	}
 
 	public int expenseId;
-	public int employeeId;
+	public String employeeScreenName;
 	public long expenseDate;
 	public long submissionDate;
 	public double amount;
-	public int projectId;
+	public String projectCode;
 	public String category;
+	public String status;
 	public String remarks;
 }

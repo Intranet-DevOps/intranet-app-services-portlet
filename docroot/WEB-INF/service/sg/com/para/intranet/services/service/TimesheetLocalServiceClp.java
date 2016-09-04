@@ -113,6 +113,12 @@ public class TimesheetLocalServiceClp implements TimesheetLocalService {
 		_methodName17 = "setBeanIdentifier";
 
 		_methodParameterTypes17 = new String[] { "java.lang.String" };
+
+		_methodName19 = "findTimesheetsByUser";
+
+		_methodParameterTypes19 = new String[] {
+				"java.util.Date", "java.util.Date", "java.lang.String"
+			};
 	}
 
 	@Override
@@ -463,7 +469,8 @@ public class TimesheetLocalServiceClp implements TimesheetLocalService {
 	public sg.com.para.intranet.services.model.Timesheet getTimesheet(
 		int timesheetId)
 		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+			com.liferay.portal.kernel.exception.SystemException,
+			java.lang.Exception {
 		Object returnObj = null;
 
 		try {
@@ -479,6 +486,10 @@ public class TimesheetLocalServiceClp implements TimesheetLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
 				throw (com.liferay.portal.kernel.exception.SystemException)t;
+			}
+
+			if (t instanceof java.lang.Exception) {
+				throw (java.lang.Exception)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -665,6 +676,42 @@ public class TimesheetLocalServiceClp implements TimesheetLocalService {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
+	public java.util.List<sg.com.para.intranet.services.model.Timesheet> findTimesheetsByUser(
+		java.util.Date startDate, java.util.Date endDate,
+		java.lang.String userId) throws java.lang.Exception {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName19,
+					_methodParameterTypes19,
+					new Object[] {
+						ClpSerializer.translateInput(startDate),
+						
+					ClpSerializer.translateInput(endDate),
+						
+					ClpSerializer.translateInput(userId)
+					});
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof java.lang.Exception) {
+				throw (java.lang.Exception)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<sg.com.para.intranet.services.model.Timesheet>)ClpSerializer.translateOutput(returnObj);
+	}
+
 	private InvokableLocalService _invokableLocalService;
 	private String _methodName0;
 	private String[] _methodParameterTypes0;
@@ -702,4 +749,6 @@ public class TimesheetLocalServiceClp implements TimesheetLocalService {
 	private String[] _methodParameterTypes16;
 	private String _methodName17;
 	private String[] _methodParameterTypes17;
+	private String _methodName19;
+	private String[] _methodParameterTypes19;
 }

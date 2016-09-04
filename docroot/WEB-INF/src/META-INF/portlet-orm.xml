@@ -10,7 +10,7 @@
 	<mapped-superclass class="sg.com.para.intranet.services.model.impl.EmployeeModelImpl">
 		<attributes>
 			<id name="employeeId" />
-			<basic name="employeeScreenName" />
+			<basic name="screenName" />
 			<basic name="joinDate">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
@@ -25,7 +25,7 @@
 	<mapped-superclass class="sg.com.para.intranet.services.model.impl.ExpenseModelImpl">
 		<attributes>
 			<id name="expenseId" />
-			<basic name="employeeId" />
+			<basic name="employeeScreenName" />
 			<basic name="expenseDate">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
@@ -33,8 +33,9 @@
 				<temporal>TIMESTAMP</temporal>
 			</basic>
 			<basic name="amount" />
-			<basic name="projectId" />
+			<basic name="projectCode" />
 			<basic name="category" />
+			<basic name="status" />
 			<basic name="remarks" />
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
@@ -56,7 +57,7 @@
 	<mapped-superclass class="sg.com.para.intranet.services.model.impl.TimesheetModelImpl">
 		<attributes>
 			<id name="timesheetId" />
-			<basic name="employeeId" />
+			<basic name="employeeScreenName" />
 			<basic name="logDate">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
@@ -69,7 +70,7 @@
 			<basic name="other" />
 			<basic name="remarks" />
 			<basic name="status" />
-			<basic name="projectId" />
+			<basic name="projectCode" />
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />

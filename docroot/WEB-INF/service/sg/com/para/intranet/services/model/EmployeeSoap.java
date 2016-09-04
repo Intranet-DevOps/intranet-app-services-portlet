@@ -32,7 +32,7 @@ public class EmployeeSoap implements Serializable {
 		EmployeeSoap soapModel = new EmployeeSoap();
 
 		soapModel.setEmployeeId(model.getEmployeeId());
-		soapModel.setEmployeeScreenName(model.getEmployeeScreenName());
+		soapModel.setScreenName(model.getScreenName());
 		soapModel.setJoinDate(model.getJoinDate());
 		soapModel.setLeaveDate(model.getLeaveDate());
 
@@ -95,12 +95,12 @@ public class EmployeeSoap implements Serializable {
 		_employeeId = employeeId;
 	}
 
-	public String getEmployeeScreenName() {
-		return _employeeScreenName;
+	public String getScreenName() {
+		return _screenName;
 	}
 
-	public void setEmployeeScreenName(String employeeScreenName) {
-		_employeeScreenName = employeeScreenName;
+	public void setScreenName(String screenName) {
+		_screenName = screenName;
 	}
 
 	public Date getJoinDate() {
@@ -120,7 +120,7 @@ public class EmployeeSoap implements Serializable {
 	}
 
 	private int _employeeId;
-	private String _employeeScreenName;
+	private String _screenName;
 	private Date _joinDate;
 	private Date _leaveDate;
 }

@@ -32,7 +32,7 @@ public class TimesheetSoap implements Serializable {
 		TimesheetSoap soapModel = new TimesheetSoap();
 
 		soapModel.setTimesheetId(model.getTimesheetId());
-		soapModel.setEmployeeId(model.getEmployeeId());
+		soapModel.setEmployeeScreenName(model.getEmployeeScreenName());
 		soapModel.setLogDate(model.getLogDate());
 		soapModel.setRegular(model.getRegular());
 		soapModel.setOvertime(model.getOvertime());
@@ -43,7 +43,7 @@ public class TimesheetSoap implements Serializable {
 		soapModel.setOther(model.getOther());
 		soapModel.setRemarks(model.getRemarks());
 		soapModel.setStatus(model.getStatus());
-		soapModel.setProjectId(model.getProjectId());
+		soapModel.setProjectCode(model.getProjectCode());
 
 		return soapModel;
 	}
@@ -104,12 +104,12 @@ public class TimesheetSoap implements Serializable {
 		_timesheetId = timesheetId;
 	}
 
-	public int getEmployeeId() {
-		return _employeeId;
+	public String getEmployeeScreenName() {
+		return _employeeScreenName;
 	}
 
-	public void setEmployeeId(int employeeId) {
-		_employeeId = employeeId;
+	public void setEmployeeScreenName(String employeeScreenName) {
+		_employeeScreenName = employeeScreenName;
 	}
 
 	public Date getLogDate() {
@@ -184,24 +184,24 @@ public class TimesheetSoap implements Serializable {
 		_remarks = remarks;
 	}
 
-	public double getStatus() {
+	public String getStatus() {
 		return _status;
 	}
 
-	public void setStatus(double status) {
+	public void setStatus(String status) {
 		_status = status;
 	}
 
-	public int getProjectId() {
-		return _projectId;
+	public String getProjectCode() {
+		return _projectCode;
 	}
 
-	public void setProjectId(int projectId) {
-		_projectId = projectId;
+	public void setProjectCode(String projectCode) {
+		_projectCode = projectCode;
 	}
 
 	private int _timesheetId;
-	private int _employeeId;
+	private String _employeeScreenName;
 	private Date _logDate;
 	private double _regular;
 	private double _overtime;
@@ -211,6 +211,6 @@ public class TimesheetSoap implements Serializable {
 	private double _unpaid;
 	private double _other;
 	private String _remarks;
-	private double _status;
-	private int _projectId;
+	private String _status;
+	private String _projectCode;
 }

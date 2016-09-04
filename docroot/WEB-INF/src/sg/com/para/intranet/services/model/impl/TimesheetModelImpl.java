@@ -61,7 +61,7 @@ public class TimesheetModelImpl extends BaseModelImpl<Timesheet>
 	public static final String TABLE_NAME = "intranet_timesheet";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "timesheetId", Types.INTEGER },
-			{ "employeeId", Types.INTEGER },
+			{ "employeeScreenName", Types.VARCHAR },
 			{ "logDate", Types.TIMESTAMP },
 			{ "regular", Types.DOUBLE },
 			{ "overtime", Types.DOUBLE },
@@ -71,10 +71,10 @@ public class TimesheetModelImpl extends BaseModelImpl<Timesheet>
 			{ "unpaid", Types.DOUBLE },
 			{ "other", Types.DOUBLE },
 			{ "remarks", Types.VARCHAR },
-			{ "status", Types.DOUBLE },
-			{ "projectId", Types.INTEGER }
+			{ "status", Types.VARCHAR },
+			{ "projectCode", Types.VARCHAR }
 		};
-	public static final String TABLE_SQL_CREATE = "create table intranet_timesheet (timesheetId INTEGER not null primary key,employeeId INTEGER,logDate DATE null,regular DOUBLE,overtime DOUBLE,sick DOUBLE,vacation DOUBLE,holiday DOUBLE,unpaid DOUBLE,other DOUBLE,remarks VARCHAR(75) null,status DOUBLE,projectId INTEGER)";
+	public static final String TABLE_SQL_CREATE = "create table intranet_timesheet (timesheetId INTEGER not null primary key,employeeScreenName VARCHAR(75) null,logDate DATE null,regular DOUBLE,overtime DOUBLE,sick DOUBLE,vacation DOUBLE,holiday DOUBLE,unpaid DOUBLE,other DOUBLE,remarks VARCHAR(75) null,status VARCHAR(75) null,projectCode VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table intranet_timesheet";
 	public static final String ORDER_BY_JPQL = " ORDER BY timesheet.timesheetId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY intranet_timesheet.timesheetId ASC";
@@ -103,7 +103,7 @@ public class TimesheetModelImpl extends BaseModelImpl<Timesheet>
 		Timesheet model = new TimesheetImpl();
 
 		model.setTimesheetId(soapModel.getTimesheetId());
-		model.setEmployeeId(soapModel.getEmployeeId());
+		model.setEmployeeScreenName(soapModel.getEmployeeScreenName());
 		model.setLogDate(soapModel.getLogDate());
 		model.setRegular(soapModel.getRegular());
 		model.setOvertime(soapModel.getOvertime());
@@ -114,7 +114,7 @@ public class TimesheetModelImpl extends BaseModelImpl<Timesheet>
 		model.setOther(soapModel.getOther());
 		model.setRemarks(soapModel.getRemarks());
 		model.setStatus(soapModel.getStatus());
-		model.setProjectId(soapModel.getProjectId());
+		model.setProjectCode(soapModel.getProjectCode());
 
 		return model;
 	}
@@ -180,7 +180,7 @@ public class TimesheetModelImpl extends BaseModelImpl<Timesheet>
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
 		attributes.put("timesheetId", getTimesheetId());
-		attributes.put("employeeId", getEmployeeId());
+		attributes.put("employeeScreenName", getEmployeeScreenName());
 		attributes.put("logDate", getLogDate());
 		attributes.put("regular", getRegular());
 		attributes.put("overtime", getOvertime());
@@ -191,7 +191,7 @@ public class TimesheetModelImpl extends BaseModelImpl<Timesheet>
 		attributes.put("other", getOther());
 		attributes.put("remarks", getRemarks());
 		attributes.put("status", getStatus());
-		attributes.put("projectId", getProjectId());
+		attributes.put("projectCode", getProjectCode());
 
 		return attributes;
 	}
@@ -204,10 +204,10 @@ public class TimesheetModelImpl extends BaseModelImpl<Timesheet>
 			setTimesheetId(timesheetId);
 		}
 
-		Integer employeeId = (Integer)attributes.get("employeeId");
+		String employeeScreenName = (String)attributes.get("employeeScreenName");
 
-		if (employeeId != null) {
-			setEmployeeId(employeeId);
+		if (employeeScreenName != null) {
+			setEmployeeScreenName(employeeScreenName);
 		}
 
 		Date logDate = (Date)attributes.get("logDate");
@@ -264,16 +264,16 @@ public class TimesheetModelImpl extends BaseModelImpl<Timesheet>
 			setRemarks(remarks);
 		}
 
-		Double status = (Double)attributes.get("status");
+		String status = (String)attributes.get("status");
 
 		if (status != null) {
 			setStatus(status);
 		}
 
-		Integer projectId = (Integer)attributes.get("projectId");
+		String projectCode = (String)attributes.get("projectCode");
 
-		if (projectId != null) {
-			setProjectId(projectId);
+		if (projectCode != null) {
+			setProjectCode(projectCode);
 		}
 	}
 
@@ -290,13 +290,18 @@ public class TimesheetModelImpl extends BaseModelImpl<Timesheet>
 
 	@JSON
 	@Override
-	public int getEmployeeId() {
-		return _employeeId;
+	public String getEmployeeScreenName() {
+		if (_employeeScreenName == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _employeeScreenName;
+		}
 	}
 
 	@Override
-	public void setEmployeeId(int employeeId) {
-		_employeeId = employeeId;
+	public void setEmployeeScreenName(String employeeScreenName) {
+		_employeeScreenName = employeeScreenName;
 	}
 
 	@JSON
@@ -405,24 +410,34 @@ public class TimesheetModelImpl extends BaseModelImpl<Timesheet>
 
 	@JSON
 	@Override
-	public double getStatus() {
-		return _status;
+	public String getStatus() {
+		if (_status == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _status;
+		}
 	}
 
 	@Override
-	public void setStatus(double status) {
+	public void setStatus(String status) {
 		_status = status;
 	}
 
 	@JSON
 	@Override
-	public int getProjectId() {
-		return _projectId;
+	public String getProjectCode() {
+		if (_projectCode == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _projectCode;
+		}
 	}
 
 	@Override
-	public void setProjectId(int projectId) {
-		_projectId = projectId;
+	public void setProjectCode(String projectCode) {
+		_projectCode = projectCode;
 	}
 
 	@Override
@@ -440,7 +455,7 @@ public class TimesheetModelImpl extends BaseModelImpl<Timesheet>
 		TimesheetImpl timesheetImpl = new TimesheetImpl();
 
 		timesheetImpl.setTimesheetId(getTimesheetId());
-		timesheetImpl.setEmployeeId(getEmployeeId());
+		timesheetImpl.setEmployeeScreenName(getEmployeeScreenName());
 		timesheetImpl.setLogDate(getLogDate());
 		timesheetImpl.setRegular(getRegular());
 		timesheetImpl.setOvertime(getOvertime());
@@ -451,7 +466,7 @@ public class TimesheetModelImpl extends BaseModelImpl<Timesheet>
 		timesheetImpl.setOther(getOther());
 		timesheetImpl.setRemarks(getRemarks());
 		timesheetImpl.setStatus(getStatus());
-		timesheetImpl.setProjectId(getProjectId());
+		timesheetImpl.setProjectCode(getProjectCode());
 
 		timesheetImpl.resetOriginalValues();
 
@@ -510,7 +525,13 @@ public class TimesheetModelImpl extends BaseModelImpl<Timesheet>
 
 		timesheetCacheModel.timesheetId = getTimesheetId();
 
-		timesheetCacheModel.employeeId = getEmployeeId();
+		timesheetCacheModel.employeeScreenName = getEmployeeScreenName();
+
+		String employeeScreenName = timesheetCacheModel.employeeScreenName;
+
+		if ((employeeScreenName != null) && (employeeScreenName.length() == 0)) {
+			timesheetCacheModel.employeeScreenName = null;
+		}
 
 		Date logDate = getLogDate();
 
@@ -545,7 +566,19 @@ public class TimesheetModelImpl extends BaseModelImpl<Timesheet>
 
 		timesheetCacheModel.status = getStatus();
 
-		timesheetCacheModel.projectId = getProjectId();
+		String status = timesheetCacheModel.status;
+
+		if ((status != null) && (status.length() == 0)) {
+			timesheetCacheModel.status = null;
+		}
+
+		timesheetCacheModel.projectCode = getProjectCode();
+
+		String projectCode = timesheetCacheModel.projectCode;
+
+		if ((projectCode != null) && (projectCode.length() == 0)) {
+			timesheetCacheModel.projectCode = null;
+		}
 
 		return timesheetCacheModel;
 	}
@@ -556,8 +589,8 @@ public class TimesheetModelImpl extends BaseModelImpl<Timesheet>
 
 		sb.append("{timesheetId=");
 		sb.append(getTimesheetId());
-		sb.append(", employeeId=");
-		sb.append(getEmployeeId());
+		sb.append(", employeeScreenName=");
+		sb.append(getEmployeeScreenName());
 		sb.append(", logDate=");
 		sb.append(getLogDate());
 		sb.append(", regular=");
@@ -578,8 +611,8 @@ public class TimesheetModelImpl extends BaseModelImpl<Timesheet>
 		sb.append(getRemarks());
 		sb.append(", status=");
 		sb.append(getStatus());
-		sb.append(", projectId=");
-		sb.append(getProjectId());
+		sb.append(", projectCode=");
+		sb.append(getProjectCode());
 		sb.append("}");
 
 		return sb.toString();
@@ -598,8 +631,8 @@ public class TimesheetModelImpl extends BaseModelImpl<Timesheet>
 		sb.append(getTimesheetId());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>employeeId</column-name><column-value><![CDATA[");
-		sb.append(getEmployeeId());
+			"<column><column-name>employeeScreenName</column-name><column-value><![CDATA[");
+		sb.append(getEmployeeScreenName());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>logDate</column-name><column-value><![CDATA[");
@@ -642,8 +675,8 @@ public class TimesheetModelImpl extends BaseModelImpl<Timesheet>
 		sb.append(getStatus());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>projectId</column-name><column-value><![CDATA[");
-		sb.append(getProjectId());
+			"<column><column-name>projectCode</column-name><column-value><![CDATA[");
+		sb.append(getProjectCode());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -656,7 +689,7 @@ public class TimesheetModelImpl extends BaseModelImpl<Timesheet>
 			Timesheet.class
 		};
 	private int _timesheetId;
-	private int _employeeId;
+	private String _employeeScreenName;
 	private Date _logDate;
 	private double _regular;
 	private double _overtime;
@@ -666,7 +699,7 @@ public class TimesheetModelImpl extends BaseModelImpl<Timesheet>
 	private double _unpaid;
 	private double _other;
 	private String _remarks;
-	private double _status;
-	private int _projectId;
+	private String _status;
+	private String _projectCode;
 	private Timesheet _escapedModel;
 }

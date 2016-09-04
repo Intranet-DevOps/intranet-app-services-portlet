@@ -50,7 +50,7 @@ public class TimesheetWrapper implements Timesheet, ModelWrapper<Timesheet> {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
 		attributes.put("timesheetId", getTimesheetId());
-		attributes.put("employeeId", getEmployeeId());
+		attributes.put("employeeScreenName", getEmployeeScreenName());
 		attributes.put("logDate", getLogDate());
 		attributes.put("regular", getRegular());
 		attributes.put("overtime", getOvertime());
@@ -61,7 +61,7 @@ public class TimesheetWrapper implements Timesheet, ModelWrapper<Timesheet> {
 		attributes.put("other", getOther());
 		attributes.put("remarks", getRemarks());
 		attributes.put("status", getStatus());
-		attributes.put("projectId", getProjectId());
+		attributes.put("projectCode", getProjectCode());
 
 		return attributes;
 	}
@@ -74,10 +74,10 @@ public class TimesheetWrapper implements Timesheet, ModelWrapper<Timesheet> {
 			setTimesheetId(timesheetId);
 		}
 
-		Integer employeeId = (Integer)attributes.get("employeeId");
+		String employeeScreenName = (String)attributes.get("employeeScreenName");
 
-		if (employeeId != null) {
-			setEmployeeId(employeeId);
+		if (employeeScreenName != null) {
+			setEmployeeScreenName(employeeScreenName);
 		}
 
 		Date logDate = (Date)attributes.get("logDate");
@@ -134,16 +134,16 @@ public class TimesheetWrapper implements Timesheet, ModelWrapper<Timesheet> {
 			setRemarks(remarks);
 		}
 
-		Double status = (Double)attributes.get("status");
+		String status = (String)attributes.get("status");
 
 		if (status != null) {
 			setStatus(status);
 		}
 
-		Integer projectId = (Integer)attributes.get("projectId");
+		String projectCode = (String)attributes.get("projectCode");
 
-		if (projectId != null) {
-			setProjectId(projectId);
+		if (projectCode != null) {
+			setProjectCode(projectCode);
 		}
 	}
 
@@ -188,23 +188,23 @@ public class TimesheetWrapper implements Timesheet, ModelWrapper<Timesheet> {
 	}
 
 	/**
-	* Returns the employee ID of this timesheet.
+	* Returns the employee screen name of this timesheet.
 	*
-	* @return the employee ID of this timesheet
+	* @return the employee screen name of this timesheet
 	*/
 	@Override
-	public int getEmployeeId() {
-		return _timesheet.getEmployeeId();
+	public java.lang.String getEmployeeScreenName() {
+		return _timesheet.getEmployeeScreenName();
 	}
 
 	/**
-	* Sets the employee ID of this timesheet.
+	* Sets the employee screen name of this timesheet.
 	*
-	* @param employeeId the employee ID of this timesheet
+	* @param employeeScreenName the employee screen name of this timesheet
 	*/
 	@Override
-	public void setEmployeeId(int employeeId) {
-		_timesheet.setEmployeeId(employeeId);
+	public void setEmployeeScreenName(java.lang.String employeeScreenName) {
+		_timesheet.setEmployeeScreenName(employeeScreenName);
 	}
 
 	/**
@@ -393,7 +393,7 @@ public class TimesheetWrapper implements Timesheet, ModelWrapper<Timesheet> {
 	* @return the status of this timesheet
 	*/
 	@Override
-	public double getStatus() {
+	public java.lang.String getStatus() {
 		return _timesheet.getStatus();
 	}
 
@@ -403,28 +403,28 @@ public class TimesheetWrapper implements Timesheet, ModelWrapper<Timesheet> {
 	* @param status the status of this timesheet
 	*/
 	@Override
-	public void setStatus(double status) {
+	public void setStatus(java.lang.String status) {
 		_timesheet.setStatus(status);
 	}
 
 	/**
-	* Returns the project ID of this timesheet.
+	* Returns the project code of this timesheet.
 	*
-	* @return the project ID of this timesheet
+	* @return the project code of this timesheet
 	*/
 	@Override
-	public int getProjectId() {
-		return _timesheet.getProjectId();
+	public java.lang.String getProjectCode() {
+		return _timesheet.getProjectCode();
 	}
 
 	/**
-	* Sets the project ID of this timesheet.
+	* Sets the project code of this timesheet.
 	*
-	* @param projectId the project ID of this timesheet
+	* @param projectCode the project code of this timesheet
 	*/
 	@Override
-	public void setProjectId(int projectId) {
-		_timesheet.setProjectId(projectId);
+	public void setProjectCode(java.lang.String projectCode) {
+		_timesheet.setProjectCode(projectCode);
 	}
 
 	@Override

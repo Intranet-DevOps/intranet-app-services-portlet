@@ -74,19 +74,19 @@ public interface EmployeeModel extends BaseModel<Employee> {
 	public void setEmployeeId(int employeeId);
 
 	/**
-	 * Returns the employee screen name of this employee.
+	 * Returns the screen name of this employee.
 	 *
-	 * @return the employee screen name of this employee
+	 * @return the screen name of this employee
 	 */
 	@AutoEscape
-	public String getEmployeeScreenName();
+	public String getScreenName();
 
 	/**
-	 * Sets the employee screen name of this employee.
+	 * Sets the screen name of this employee.
 	 *
-	 * @param employeeScreenName the employee screen name of this employee
+	 * @param screenName the screen name of this employee
 	 */
-	public void setEmployeeScreenName(String employeeScreenName);
+	public void setScreenName(String screenName);
 
 	/**
 	 * Returns the join date of this employee.

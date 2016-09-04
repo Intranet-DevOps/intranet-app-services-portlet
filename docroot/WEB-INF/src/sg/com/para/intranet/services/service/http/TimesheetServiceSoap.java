@@ -14,6 +14,13 @@
 
 package sg.com.para.intranet.services.service.http;
 
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+
+import sg.com.para.intranet.services.service.TimesheetServiceUtil;
+
+import java.rmi.RemoteException;
+
 /**
  * Provides the SOAP utility for the
  * {@link sg.com.para.intranet.services.service.TimesheetServiceUtil} service utility. The
@@ -55,4 +62,75 @@ package sg.com.para.intranet.services.service.http;
  * @generated
  */
 public class TimesheetServiceSoap {
+	public static sg.com.para.intranet.services.model.TimesheetSoap getTimesheet(
+		int timesheetId) throws RemoteException {
+		try {
+			sg.com.para.intranet.services.model.Timesheet returnValue = TimesheetServiceUtil.getTimesheet(timesheetId);
+
+			return sg.com.para.intranet.services.model.TimesheetSoap.toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static sg.com.para.intranet.services.model.TimesheetSoap[] findTimesheetsByUser(
+		java.util.Date startDate, java.util.Date endDate,
+		java.lang.String userId) throws RemoteException {
+		try {
+			java.util.List<sg.com.para.intranet.services.model.Timesheet> returnValue =
+				TimesheetServiceUtil.findTimesheetsByUser(startDate, endDate,
+					userId);
+
+			return sg.com.para.intranet.services.model.TimesheetSoap.toSoapModels(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static sg.com.para.intranet.services.model.TimesheetSoap createTimeSheet(
+		java.lang.String employeeScreenName, double regular, double overtime,
+		double sick, double vacation, double holiday, double unpaid,
+		double other, java.lang.String remarks, java.lang.String status,
+		java.lang.String projectCode) throws RemoteException {
+		try {
+			sg.com.para.intranet.services.model.Timesheet returnValue = TimesheetServiceUtil.createTimeSheet(employeeScreenName,
+					regular, overtime, sick, vacation, holiday, unpaid, other,
+					remarks, status, projectCode);
+
+			return sg.com.para.intranet.services.model.TimesheetSoap.toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static sg.com.para.intranet.services.model.TimesheetSoap updateTimeSheet(
+		int timesheetId, java.lang.String employeeScreenName, double regular,
+		double overtime, double sick, double vacation, double holiday,
+		double unpaid, double other, java.lang.String remarks,
+		java.lang.String status, java.lang.String projectCode)
+		throws RemoteException {
+		try {
+			sg.com.para.intranet.services.model.Timesheet returnValue = TimesheetServiceUtil.updateTimeSheet(timesheetId,
+					employeeScreenName, regular, overtime, sick, vacation,
+					holiday, unpaid, other, remarks, status, projectCode);
+
+			return sg.com.para.intranet.services.model.TimesheetSoap.toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	private static Log _log = LogFactoryUtil.getLog(TimesheetServiceSoap.class);
 }

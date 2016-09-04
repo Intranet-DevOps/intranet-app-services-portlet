@@ -11,7 +11,7 @@
 		<id name="employeeId" type="int">
 			<generator class="assigned" />
 		</id>
-		<property name="employeeScreenName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="screenName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="joinDate" type="org.hibernate.type.TimestampType" />
 		<property name="leaveDate" type="org.hibernate.type.TimestampType" />
 	</class>
@@ -20,12 +20,13 @@
 		<id name="expenseId" type="int">
 			<generator class="assigned" />
 		</id>
-		<property name="employeeId" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="employeeScreenName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="expenseDate" type="org.hibernate.type.TimestampType" />
 		<property name="submissionDate" type="org.hibernate.type.TimestampType" />
 		<property name="amount" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
-		<property name="projectId" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="projectCode" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="category" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="status" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="remarks" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
 	<class name="sg.com.para.intranet.services.model.impl.ProjectImpl" table="intranet_project">
@@ -41,7 +42,7 @@
 		<id name="timesheetId" type="int">
 			<generator class="assigned" />
 		</id>
-		<property name="employeeId" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="employeeScreenName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="logDate" type="org.hibernate.type.TimestampType" />
 		<property name="regular" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
 		<property name="overtime" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
@@ -51,7 +52,7 @@
 		<property name="unpaid" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
 		<property name="other" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
 		<property name="remarks" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="status" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
-		<property name="projectId" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="status" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="projectCode" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
 </hibernate-mapping>

@@ -32,12 +32,13 @@ public class ExpenseSoap implements Serializable {
 		ExpenseSoap soapModel = new ExpenseSoap();
 
 		soapModel.setExpenseId(model.getExpenseId());
-		soapModel.setEmployeeId(model.getEmployeeId());
+		soapModel.setEmployeeScreenName(model.getEmployeeScreenName());
 		soapModel.setExpenseDate(model.getExpenseDate());
 		soapModel.setSubmissionDate(model.getSubmissionDate());
 		soapModel.setAmount(model.getAmount());
-		soapModel.setProjectId(model.getProjectId());
+		soapModel.setProjectCode(model.getProjectCode());
 		soapModel.setCategory(model.getCategory());
+		soapModel.setStatus(model.getStatus());
 		soapModel.setRemarks(model.getRemarks());
 
 		return soapModel;
@@ -99,12 +100,12 @@ public class ExpenseSoap implements Serializable {
 		_expenseId = expenseId;
 	}
 
-	public int getEmployeeId() {
-		return _employeeId;
+	public String getEmployeeScreenName() {
+		return _employeeScreenName;
 	}
 
-	public void setEmployeeId(int employeeId) {
-		_employeeId = employeeId;
+	public void setEmployeeScreenName(String employeeScreenName) {
+		_employeeScreenName = employeeScreenName;
 	}
 
 	public Date getExpenseDate() {
@@ -131,12 +132,12 @@ public class ExpenseSoap implements Serializable {
 		_amount = amount;
 	}
 
-	public int getProjectId() {
-		return _projectId;
+	public String getProjectCode() {
+		return _projectCode;
 	}
 
-	public void setProjectId(int projectId) {
-		_projectId = projectId;
+	public void setProjectCode(String projectCode) {
+		_projectCode = projectCode;
 	}
 
 	public String getCategory() {
@@ -145,6 +146,14 @@ public class ExpenseSoap implements Serializable {
 
 	public void setCategory(String category) {
 		_category = category;
+	}
+
+	public String getStatus() {
+		return _status;
+	}
+
+	public void setStatus(String status) {
+		_status = status;
 	}
 
 	public String getRemarks() {
@@ -156,11 +165,12 @@ public class ExpenseSoap implements Serializable {
 	}
 
 	private int _expenseId;
-	private int _employeeId;
+	private String _employeeScreenName;
 	private Date _expenseDate;
 	private Date _submissionDate;
 	private double _amount;
-	private int _projectId;
+	private String _projectCode;
 	private String _category;
+	private String _status;
 	private String _remarks;
 }

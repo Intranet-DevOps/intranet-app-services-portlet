@@ -50,7 +50,7 @@ public class EmployeeWrapper implements Employee, ModelWrapper<Employee> {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
 		attributes.put("employeeId", getEmployeeId());
-		attributes.put("employeeScreenName", getEmployeeScreenName());
+		attributes.put("screenName", getScreenName());
 		attributes.put("joinDate", getJoinDate());
 		attributes.put("leaveDate", getLeaveDate());
 
@@ -65,10 +65,10 @@ public class EmployeeWrapper implements Employee, ModelWrapper<Employee> {
 			setEmployeeId(employeeId);
 		}
 
-		String employeeScreenName = (String)attributes.get("employeeScreenName");
+		String screenName = (String)attributes.get("screenName");
 
-		if (employeeScreenName != null) {
-			setEmployeeScreenName(employeeScreenName);
+		if (screenName != null) {
+			setScreenName(screenName);
 		}
 
 		Date joinDate = (Date)attributes.get("joinDate");
@@ -125,23 +125,23 @@ public class EmployeeWrapper implements Employee, ModelWrapper<Employee> {
 	}
 
 	/**
-	* Returns the employee screen name of this employee.
+	* Returns the screen name of this employee.
 	*
-	* @return the employee screen name of this employee
+	* @return the screen name of this employee
 	*/
 	@Override
-	public java.lang.String getEmployeeScreenName() {
-		return _employee.getEmployeeScreenName();
+	public java.lang.String getScreenName() {
+		return _employee.getScreenName();
 	}
 
 	/**
-	* Sets the employee screen name of this employee.
+	* Sets the screen name of this employee.
 	*
-	* @param employeeScreenName the employee screen name of this employee
+	* @param screenName the screen name of this employee
 	*/
 	@Override
-	public void setEmployeeScreenName(java.lang.String employeeScreenName) {
-		_employee.setEmployeeScreenName(employeeScreenName);
+	public void setScreenName(java.lang.String screenName) {
+		_employee.setScreenName(screenName);
 	}
 
 	/**

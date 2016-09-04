@@ -196,12 +196,14 @@ public class TimesheetLocalServiceWrapper implements TimesheetLocalService,
 	* @return the timesheet
 	* @throws PortalException if a timesheet with the primary key could not be found
 	* @throws SystemException if a system exception occurred
+	* @throws java.lang.Exception
 	*/
 	@Override
 	public sg.com.para.intranet.services.model.Timesheet getTimesheet(
 		int timesheetId)
 		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+			com.liferay.portal.kernel.exception.SystemException,
+			java.lang.Exception {
 		return _timesheetLocalService.getTimesheet(timesheetId);
 	}
 
@@ -284,6 +286,14 @@ public class TimesheetLocalServiceWrapper implements TimesheetLocalService,
 		throws java.lang.Throwable {
 		return _timesheetLocalService.invokeMethod(name, parameterTypes,
 			arguments);
+	}
+
+	@Override
+	public java.util.List<sg.com.para.intranet.services.model.Timesheet> findTimesheetsByUser(
+		java.util.Date startDate, java.util.Date endDate,
+		java.lang.String userId) throws java.lang.Exception {
+		return _timesheetLocalService.findTimesheetsByUser(startDate, endDate,
+			userId);
 	}
 
 	/**

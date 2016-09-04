@@ -31,6 +31,32 @@ public class TimesheetServiceClp implements TimesheetService {
 		_methodName1 = "setBeanIdentifier";
 
 		_methodParameterTypes1 = new String[] { "java.lang.String" };
+
+		_methodName3 = "getTimesheet";
+
+		_methodParameterTypes3 = new String[] { "int" };
+
+		_methodName4 = "findTimesheetsByUser";
+
+		_methodParameterTypes4 = new String[] {
+				"java.util.Date", "java.util.Date", "java.lang.String"
+			};
+
+		_methodName5 = "createTimeSheet";
+
+		_methodParameterTypes5 = new String[] {
+				"java.lang.String", "double", "double", "double", "double",
+				"double", "double", "double", "java.lang.String",
+				"java.lang.String", "java.lang.String"
+			};
+
+		_methodName6 = "updateTimeSheet";
+
+		_methodParameterTypes6 = new String[] {
+				"int", "java.lang.String", "double", "double", "double",
+				"double", "double", "double", "double", "java.lang.String",
+				"java.lang.String", "java.lang.String"
+			};
 	}
 
 	@Override
@@ -83,9 +109,192 @@ public class TimesheetServiceClp implements TimesheetService {
 		throw new UnsupportedOperationException();
 	}
 
+	@Override
+	public sg.com.para.intranet.services.model.Timesheet getTimesheet(
+		int timesheetId) throws java.lang.Exception {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableService.invokeMethod(_methodName3,
+					_methodParameterTypes3, new Object[] { timesheetId });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof java.lang.Exception) {
+				throw (java.lang.Exception)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (sg.com.para.intranet.services.model.Timesheet)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public java.util.List<sg.com.para.intranet.services.model.Timesheet> findTimesheetsByUser(
+		java.util.Date startDate, java.util.Date endDate,
+		java.lang.String userId) throws java.lang.Exception {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableService.invokeMethod(_methodName4,
+					_methodParameterTypes4,
+					new Object[] {
+						ClpSerializer.translateInput(startDate),
+						
+					ClpSerializer.translateInput(endDate),
+						
+					ClpSerializer.translateInput(userId)
+					});
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof java.lang.Exception) {
+				throw (java.lang.Exception)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (java.util.List<sg.com.para.intranet.services.model.Timesheet>)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public sg.com.para.intranet.services.model.Timesheet createTimeSheet(
+		java.lang.String employeeScreenName, double regular, double overtime,
+		double sick, double vacation, double holiday, double unpaid,
+		double other, java.lang.String remarks, java.lang.String status,
+		java.lang.String projectCode) throws java.lang.Exception {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableService.invokeMethod(_methodName5,
+					_methodParameterTypes5,
+					new Object[] {
+						ClpSerializer.translateInput(employeeScreenName),
+						
+					regular,
+						
+					overtime,
+						
+					sick,
+						
+					vacation,
+						
+					holiday,
+						
+					unpaid,
+						
+					other,
+						
+					ClpSerializer.translateInput(remarks),
+						
+					ClpSerializer.translateInput(status),
+						
+					ClpSerializer.translateInput(projectCode)
+					});
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof java.lang.Exception) {
+				throw (java.lang.Exception)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (sg.com.para.intranet.services.model.Timesheet)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public sg.com.para.intranet.services.model.Timesheet updateTimeSheet(
+		int timesheetId, java.lang.String employeeScreenName, double regular,
+		double overtime, double sick, double vacation, double holiday,
+		double unpaid, double other, java.lang.String remarks,
+		java.lang.String status, java.lang.String projectCode)
+		throws java.lang.Exception {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableService.invokeMethod(_methodName6,
+					_methodParameterTypes6,
+					new Object[] {
+						timesheetId,
+						
+					ClpSerializer.translateInput(employeeScreenName),
+						
+					regular,
+						
+					overtime,
+						
+					sick,
+						
+					vacation,
+						
+					holiday,
+						
+					unpaid,
+						
+					other,
+						
+					ClpSerializer.translateInput(remarks),
+						
+					ClpSerializer.translateInput(status),
+						
+					ClpSerializer.translateInput(projectCode)
+					});
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof java.lang.Exception) {
+				throw (java.lang.Exception)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (sg.com.para.intranet.services.model.Timesheet)ClpSerializer.translateOutput(returnObj);
+	}
+
 	private InvokableService _invokableService;
 	private String _methodName0;
 	private String[] _methodParameterTypes0;
 	private String _methodName1;
 	private String[] _methodParameterTypes1;
+	private String _methodName3;
+	private String[] _methodParameterTypes3;
+	private String _methodName4;
+	private String[] _methodParameterTypes4;
+	private String _methodName5;
+	private String[] _methodParameterTypes5;
+	private String _methodName6;
+	private String[] _methodParameterTypes6;
 }

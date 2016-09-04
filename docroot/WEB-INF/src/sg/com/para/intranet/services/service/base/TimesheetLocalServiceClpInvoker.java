@@ -113,6 +113,16 @@ public class TimesheetLocalServiceClpInvoker {
 		_methodName53 = "setBeanIdentifier";
 
 		_methodParameterTypes53 = new String[] { "java.lang.String" };
+
+		_methodName58 = "getTimesheet";
+
+		_methodParameterTypes58 = new String[] { "int" };
+
+		_methodName59 = "findTimesheetsByUser";
+
+		_methodParameterTypes59 = new String[] {
+				"java.util.Date", "java.util.Date", "java.lang.String"
+			};
 	}
 
 	public Object invokeMethod(String name, String[] parameterTypes,
@@ -216,6 +226,17 @@ public class TimesheetLocalServiceClpInvoker {
 			return null;
 		}
 
+		if (_methodName58.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes58, parameterTypes)) {
+			return TimesheetLocalServiceUtil.getTimesheet(((Integer)arguments[0]).intValue());
+		}
+
+		if (_methodName59.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes59, parameterTypes)) {
+			return TimesheetLocalServiceUtil.findTimesheetsByUser((java.util.Date)arguments[0],
+				(java.util.Date)arguments[1], (java.lang.String)arguments[2]);
+		}
+
 		throw new UnsupportedOperationException();
 	}
 
@@ -255,4 +276,8 @@ public class TimesheetLocalServiceClpInvoker {
 	private String[] _methodParameterTypes52;
 	private String _methodName53;
 	private String[] _methodParameterTypes53;
+	private String _methodName58;
+	private String[] _methodParameterTypes58;
+	private String _methodName59;
+	private String[] _methodParameterTypes59;
 }

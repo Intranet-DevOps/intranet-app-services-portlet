@@ -18,6 +18,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.jsonwebservice.JSONWebService;
 import com.liferay.portal.kernel.transaction.Isolation;
+import com.liferay.portal.kernel.transaction.Propagation;
 import com.liferay.portal.kernel.transaction.Transactional;
 import com.liferay.portal.security.ac.AccessControlled;
 import com.liferay.portal.service.BaseService;
@@ -63,4 +64,25 @@ public interface TimesheetService extends BaseService, InvokableService {
 	public java.lang.Object invokeMethod(java.lang.String name,
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public sg.com.para.intranet.services.model.Timesheet getTimesheet(
+		int timesheetId) throws java.lang.Exception;
+
+	public java.util.List<sg.com.para.intranet.services.model.Timesheet> findTimesheetsByUser(
+		java.util.Date startDate, java.util.Date endDate,
+		java.lang.String userId) throws java.lang.Exception;
+
+	public sg.com.para.intranet.services.model.Timesheet createTimeSheet(
+		java.lang.String employeeScreenName, double regular, double overtime,
+		double sick, double vacation, double holiday, double unpaid,
+		double other, java.lang.String remarks, java.lang.String status,
+		java.lang.String projectCode) throws java.lang.Exception;
+
+	public sg.com.para.intranet.services.model.Timesheet updateTimeSheet(
+		int timesheetId, java.lang.String employeeScreenName, double regular,
+		double overtime, double sick, double vacation, double holiday,
+		double unpaid, double other, java.lang.String remarks,
+		java.lang.String status, java.lang.String projectCode)
+		throws java.lang.Exception;
 }

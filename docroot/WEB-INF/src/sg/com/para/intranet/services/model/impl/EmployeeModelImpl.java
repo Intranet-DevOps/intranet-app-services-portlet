@@ -61,11 +61,11 @@ public class EmployeeModelImpl extends BaseModelImpl<Employee>
 	public static final String TABLE_NAME = "intranet_employee";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "employeeId", Types.INTEGER },
-			{ "employeeScreenName", Types.VARCHAR },
+			{ "screenName", Types.VARCHAR },
 			{ "joinDate", Types.TIMESTAMP },
 			{ "leaveDate", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table intranet_employee (employeeId INTEGER not null primary key,employeeScreenName VARCHAR(75) null,joinDate DATE null,leaveDate DATE null)";
+	public static final String TABLE_SQL_CREATE = "create table intranet_employee (employeeId INTEGER not null primary key,screenName VARCHAR(75) null,joinDate DATE null,leaveDate DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table intranet_employee";
 	public static final String ORDER_BY_JPQL = " ORDER BY employee.employeeId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY intranet_employee.employeeId ASC";
@@ -94,7 +94,7 @@ public class EmployeeModelImpl extends BaseModelImpl<Employee>
 		Employee model = new EmployeeImpl();
 
 		model.setEmployeeId(soapModel.getEmployeeId());
-		model.setEmployeeScreenName(soapModel.getEmployeeScreenName());
+		model.setScreenName(soapModel.getScreenName());
 		model.setJoinDate(soapModel.getJoinDate());
 		model.setLeaveDate(soapModel.getLeaveDate());
 
@@ -162,7 +162,7 @@ public class EmployeeModelImpl extends BaseModelImpl<Employee>
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
 		attributes.put("employeeId", getEmployeeId());
-		attributes.put("employeeScreenName", getEmployeeScreenName());
+		attributes.put("screenName", getScreenName());
 		attributes.put("joinDate", getJoinDate());
 		attributes.put("leaveDate", getLeaveDate());
 
@@ -177,10 +177,10 @@ public class EmployeeModelImpl extends BaseModelImpl<Employee>
 			setEmployeeId(employeeId);
 		}
 
-		String employeeScreenName = (String)attributes.get("employeeScreenName");
+		String screenName = (String)attributes.get("screenName");
 
-		if (employeeScreenName != null) {
-			setEmployeeScreenName(employeeScreenName);
+		if (screenName != null) {
+			setScreenName(screenName);
 		}
 
 		Date joinDate = (Date)attributes.get("joinDate");
@@ -209,18 +209,18 @@ public class EmployeeModelImpl extends BaseModelImpl<Employee>
 
 	@JSON
 	@Override
-	public String getEmployeeScreenName() {
-		if (_employeeScreenName == null) {
+	public String getScreenName() {
+		if (_screenName == null) {
 			return StringPool.BLANK;
 		}
 		else {
-			return _employeeScreenName;
+			return _screenName;
 		}
 	}
 
 	@Override
-	public void setEmployeeScreenName(String employeeScreenName) {
-		_employeeScreenName = employeeScreenName;
+	public void setScreenName(String screenName) {
+		_screenName = screenName;
 	}
 
 	@JSON
@@ -260,7 +260,7 @@ public class EmployeeModelImpl extends BaseModelImpl<Employee>
 		EmployeeImpl employeeImpl = new EmployeeImpl();
 
 		employeeImpl.setEmployeeId(getEmployeeId());
-		employeeImpl.setEmployeeScreenName(getEmployeeScreenName());
+		employeeImpl.setScreenName(getScreenName());
 		employeeImpl.setJoinDate(getJoinDate());
 		employeeImpl.setLeaveDate(getLeaveDate());
 
@@ -321,12 +321,12 @@ public class EmployeeModelImpl extends BaseModelImpl<Employee>
 
 		employeeCacheModel.employeeId = getEmployeeId();
 
-		employeeCacheModel.employeeScreenName = getEmployeeScreenName();
+		employeeCacheModel.screenName = getScreenName();
 
-		String employeeScreenName = employeeCacheModel.employeeScreenName;
+		String screenName = employeeCacheModel.screenName;
 
-		if ((employeeScreenName != null) && (employeeScreenName.length() == 0)) {
-			employeeCacheModel.employeeScreenName = null;
+		if ((screenName != null) && (screenName.length() == 0)) {
+			employeeCacheModel.screenName = null;
 		}
 
 		Date joinDate = getJoinDate();
@@ -356,8 +356,8 @@ public class EmployeeModelImpl extends BaseModelImpl<Employee>
 
 		sb.append("{employeeId=");
 		sb.append(getEmployeeId());
-		sb.append(", employeeScreenName=");
-		sb.append(getEmployeeScreenName());
+		sb.append(", screenName=");
+		sb.append(getScreenName());
 		sb.append(", joinDate=");
 		sb.append(getJoinDate());
 		sb.append(", leaveDate=");
@@ -380,8 +380,8 @@ public class EmployeeModelImpl extends BaseModelImpl<Employee>
 		sb.append(getEmployeeId());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>employeeScreenName</column-name><column-value><![CDATA[");
-		sb.append(getEmployeeScreenName());
+			"<column><column-name>screenName</column-name><column-value><![CDATA[");
+		sb.append(getScreenName());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>joinDate</column-name><column-value><![CDATA[");
@@ -402,7 +402,7 @@ public class EmployeeModelImpl extends BaseModelImpl<Employee>
 			Employee.class
 		};
 	private int _employeeId;
-	private String _employeeScreenName;
+	private String _screenName;
 	private Date _joinDate;
 	private Date _leaveDate;
 	private Employee _escapedModel;

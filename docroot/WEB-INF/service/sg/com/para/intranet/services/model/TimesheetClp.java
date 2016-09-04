@@ -74,7 +74,7 @@ public class TimesheetClp extends BaseModelImpl<Timesheet> implements Timesheet 
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
 		attributes.put("timesheetId", getTimesheetId());
-		attributes.put("employeeId", getEmployeeId());
+		attributes.put("employeeScreenName", getEmployeeScreenName());
 		attributes.put("logDate", getLogDate());
 		attributes.put("regular", getRegular());
 		attributes.put("overtime", getOvertime());
@@ -85,7 +85,7 @@ public class TimesheetClp extends BaseModelImpl<Timesheet> implements Timesheet 
 		attributes.put("other", getOther());
 		attributes.put("remarks", getRemarks());
 		attributes.put("status", getStatus());
-		attributes.put("projectId", getProjectId());
+		attributes.put("projectCode", getProjectCode());
 
 		return attributes;
 	}
@@ -98,10 +98,10 @@ public class TimesheetClp extends BaseModelImpl<Timesheet> implements Timesheet 
 			setTimesheetId(timesheetId);
 		}
 
-		Integer employeeId = (Integer)attributes.get("employeeId");
+		String employeeScreenName = (String)attributes.get("employeeScreenName");
 
-		if (employeeId != null) {
-			setEmployeeId(employeeId);
+		if (employeeScreenName != null) {
+			setEmployeeScreenName(employeeScreenName);
 		}
 
 		Date logDate = (Date)attributes.get("logDate");
@@ -158,16 +158,16 @@ public class TimesheetClp extends BaseModelImpl<Timesheet> implements Timesheet 
 			setRemarks(remarks);
 		}
 
-		Double status = (Double)attributes.get("status");
+		String status = (String)attributes.get("status");
 
 		if (status != null) {
 			setStatus(status);
 		}
 
-		Integer projectId = (Integer)attributes.get("projectId");
+		String projectCode = (String)attributes.get("projectCode");
 
-		if (projectId != null) {
-			setProjectId(projectId);
+		if (projectCode != null) {
+			setProjectCode(projectCode);
 		}
 	}
 
@@ -195,21 +195,22 @@ public class TimesheetClp extends BaseModelImpl<Timesheet> implements Timesheet 
 	}
 
 	@Override
-	public int getEmployeeId() {
-		return _employeeId;
+	public String getEmployeeScreenName() {
+		return _employeeScreenName;
 	}
 
 	@Override
-	public void setEmployeeId(int employeeId) {
-		_employeeId = employeeId;
+	public void setEmployeeScreenName(String employeeScreenName) {
+		_employeeScreenName = employeeScreenName;
 
 		if (_timesheetRemoteModel != null) {
 			try {
 				Class<?> clazz = _timesheetRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setEmployeeId", int.class);
+				Method method = clazz.getMethod("setEmployeeScreenName",
+						String.class);
 
-				method.invoke(_timesheetRemoteModel, employeeId);
+				method.invoke(_timesheetRemoteModel, employeeScreenName);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -425,19 +426,19 @@ public class TimesheetClp extends BaseModelImpl<Timesheet> implements Timesheet 
 	}
 
 	@Override
-	public double getStatus() {
+	public String getStatus() {
 		return _status;
 	}
 
 	@Override
-	public void setStatus(double status) {
+	public void setStatus(String status) {
 		_status = status;
 
 		if (_timesheetRemoteModel != null) {
 			try {
 				Class<?> clazz = _timesheetRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setStatus", double.class);
+				Method method = clazz.getMethod("setStatus", String.class);
 
 				method.invoke(_timesheetRemoteModel, status);
 			}
@@ -448,21 +449,21 @@ public class TimesheetClp extends BaseModelImpl<Timesheet> implements Timesheet 
 	}
 
 	@Override
-	public int getProjectId() {
-		return _projectId;
+	public String getProjectCode() {
+		return _projectCode;
 	}
 
 	@Override
-	public void setProjectId(int projectId) {
-		_projectId = projectId;
+	public void setProjectCode(String projectCode) {
+		_projectCode = projectCode;
 
 		if (_timesheetRemoteModel != null) {
 			try {
 				Class<?> clazz = _timesheetRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setProjectId", int.class);
+				Method method = clazz.getMethod("setProjectCode", String.class);
 
-				method.invoke(_timesheetRemoteModel, projectId);
+				method.invoke(_timesheetRemoteModel, projectCode);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -540,7 +541,7 @@ public class TimesheetClp extends BaseModelImpl<Timesheet> implements Timesheet 
 		TimesheetClp clone = new TimesheetClp();
 
 		clone.setTimesheetId(getTimesheetId());
-		clone.setEmployeeId(getEmployeeId());
+		clone.setEmployeeScreenName(getEmployeeScreenName());
 		clone.setLogDate(getLogDate());
 		clone.setRegular(getRegular());
 		clone.setOvertime(getOvertime());
@@ -551,7 +552,7 @@ public class TimesheetClp extends BaseModelImpl<Timesheet> implements Timesheet 
 		clone.setOther(getOther());
 		clone.setRemarks(getRemarks());
 		clone.setStatus(getStatus());
-		clone.setProjectId(getProjectId());
+		clone.setProjectCode(getProjectCode());
 
 		return clone;
 	}
@@ -608,8 +609,8 @@ public class TimesheetClp extends BaseModelImpl<Timesheet> implements Timesheet 
 
 		sb.append("{timesheetId=");
 		sb.append(getTimesheetId());
-		sb.append(", employeeId=");
-		sb.append(getEmployeeId());
+		sb.append(", employeeScreenName=");
+		sb.append(getEmployeeScreenName());
 		sb.append(", logDate=");
 		sb.append(getLogDate());
 		sb.append(", regular=");
@@ -630,8 +631,8 @@ public class TimesheetClp extends BaseModelImpl<Timesheet> implements Timesheet 
 		sb.append(getRemarks());
 		sb.append(", status=");
 		sb.append(getStatus());
-		sb.append(", projectId=");
-		sb.append(getProjectId());
+		sb.append(", projectCode=");
+		sb.append(getProjectCode());
 		sb.append("}");
 
 		return sb.toString();
@@ -650,8 +651,8 @@ public class TimesheetClp extends BaseModelImpl<Timesheet> implements Timesheet 
 		sb.append(getTimesheetId());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>employeeId</column-name><column-value><![CDATA[");
-		sb.append(getEmployeeId());
+			"<column><column-name>employeeScreenName</column-name><column-value><![CDATA[");
+		sb.append(getEmployeeScreenName());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>logDate</column-name><column-value><![CDATA[");
@@ -694,8 +695,8 @@ public class TimesheetClp extends BaseModelImpl<Timesheet> implements Timesheet 
 		sb.append(getStatus());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>projectId</column-name><column-value><![CDATA[");
-		sb.append(getProjectId());
+			"<column><column-name>projectCode</column-name><column-value><![CDATA[");
+		sb.append(getProjectCode());
 		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
@@ -704,7 +705,7 @@ public class TimesheetClp extends BaseModelImpl<Timesheet> implements Timesheet 
 	}
 
 	private int _timesheetId;
-	private int _employeeId;
+	private String _employeeScreenName;
 	private Date _logDate;
 	private double _regular;
 	private double _overtime;
@@ -714,8 +715,8 @@ public class TimesheetClp extends BaseModelImpl<Timesheet> implements Timesheet 
 	private double _unpaid;
 	private double _other;
 	private String _remarks;
-	private double _status;
-	private int _projectId;
+	private String _status;
+	private String _projectCode;
 	private BaseModel<?> _timesheetRemoteModel;
 	private Class<?> _clpSerializerClass = sg.com.para.intranet.services.service.ClpSerializer.class;
 }

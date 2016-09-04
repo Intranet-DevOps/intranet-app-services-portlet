@@ -320,7 +320,7 @@ public class TimesheetPersistenceImpl extends BasePersistenceImpl<Timesheet>
 		timesheetImpl.setPrimaryKey(timesheet.getPrimaryKey());
 
 		timesheetImpl.setTimesheetId(timesheet.getTimesheetId());
-		timesheetImpl.setEmployeeId(timesheet.getEmployeeId());
+		timesheetImpl.setEmployeeScreenName(timesheet.getEmployeeScreenName());
 		timesheetImpl.setLogDate(timesheet.getLogDate());
 		timesheetImpl.setRegular(timesheet.getRegular());
 		timesheetImpl.setOvertime(timesheet.getOvertime());
@@ -331,7 +331,7 @@ public class TimesheetPersistenceImpl extends BasePersistenceImpl<Timesheet>
 		timesheetImpl.setOther(timesheet.getOther());
 		timesheetImpl.setRemarks(timesheet.getRemarks());
 		timesheetImpl.setStatus(timesheet.getStatus());
-		timesheetImpl.setProjectId(timesheet.getProjectId());
+		timesheetImpl.setProjectCode(timesheet.getProjectCode());
 
 		return timesheetImpl;
 	}

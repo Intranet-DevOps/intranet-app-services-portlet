@@ -225,10 +225,11 @@ public abstract class TimesheetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	 * @return the timesheet
 	 * @throws PortalException if a timesheet with the primary key could not be found
 	 * @throws SystemException if a system exception occurred
+	 * @throws java.lang.Exception
 	 */
 	@Override
 	public Timesheet getTimesheet(int timesheetId)
-		throws PortalException, SystemException {
+		throws PortalException, SystemException, java.lang.Exception {
 		return timesheetPersistence.findByPrimaryKey(timesheetId);
 	}
 

@@ -194,11 +194,13 @@ public class TimesheetLocalServiceUtil {
 	* @return the timesheet
 	* @throws PortalException if a timesheet with the primary key could not be found
 	* @throws SystemException if a system exception occurred
+	* @throws java.lang.Exception
 	*/
 	public static sg.com.para.intranet.services.model.Timesheet getTimesheet(
 		int timesheetId)
 		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException {
+			com.liferay.portal.kernel.exception.SystemException,
+			java.lang.Exception {
 		return getService().getTimesheet(timesheetId);
 	}
 
@@ -273,6 +275,12 @@ public class TimesheetLocalServiceUtil {
 		java.lang.String[] parameterTypes, java.lang.Object[] arguments)
 		throws java.lang.Throwable {
 		return getService().invokeMethod(name, parameterTypes, arguments);
+	}
+
+	public static java.util.List<sg.com.para.intranet.services.model.Timesheet> findTimesheetsByUser(
+		java.util.Date startDate, java.util.Date endDate,
+		java.lang.String userId) throws java.lang.Exception {
+		return getService().findTimesheetsByUser(startDate, endDate, userId);
 	}
 
 	public static void clearService() {

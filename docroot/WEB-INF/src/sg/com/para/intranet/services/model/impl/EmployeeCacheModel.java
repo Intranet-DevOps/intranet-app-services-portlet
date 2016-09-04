@@ -41,8 +41,8 @@ public class EmployeeCacheModel implements CacheModel<Employee>, Externalizable 
 
 		sb.append("{employeeId=");
 		sb.append(employeeId);
-		sb.append(", employeeScreenName=");
-		sb.append(employeeScreenName);
+		sb.append(", screenName=");
+		sb.append(screenName);
 		sb.append(", joinDate=");
 		sb.append(joinDate);
 		sb.append(", leaveDate=");
@@ -58,11 +58,11 @@ public class EmployeeCacheModel implements CacheModel<Employee>, Externalizable 
 
 		employeeImpl.setEmployeeId(employeeId);
 
-		if (employeeScreenName == null) {
-			employeeImpl.setEmployeeScreenName(StringPool.BLANK);
+		if (screenName == null) {
+			employeeImpl.setScreenName(StringPool.BLANK);
 		}
 		else {
-			employeeImpl.setEmployeeScreenName(employeeScreenName);
+			employeeImpl.setScreenName(screenName);
 		}
 
 		if (joinDate == Long.MIN_VALUE) {
@@ -87,7 +87,7 @@ public class EmployeeCacheModel implements CacheModel<Employee>, Externalizable 
 	@Override
 	public void readExternal(ObjectInput objectInput) throws IOException {
 		employeeId = objectInput.readInt();
-		employeeScreenName = objectInput.readUTF();
+		screenName = objectInput.readUTF();
 		joinDate = objectInput.readLong();
 		leaveDate = objectInput.readLong();
 	}
@@ -97,11 +97,11 @@ public class EmployeeCacheModel implements CacheModel<Employee>, Externalizable 
 		throws IOException {
 		objectOutput.writeInt(employeeId);
 
-		if (employeeScreenName == null) {
+		if (screenName == null) {
 			objectOutput.writeUTF(StringPool.BLANK);
 		}
 		else {
-			objectOutput.writeUTF(employeeScreenName);
+			objectOutput.writeUTF(screenName);
 		}
 
 		objectOutput.writeLong(joinDate);
@@ -109,7 +109,7 @@ public class EmployeeCacheModel implements CacheModel<Employee>, Externalizable 
 	}
 
 	public int employeeId;
-	public String employeeScreenName;
+	public String screenName;
 	public long joinDate;
 	public long leaveDate;
 }

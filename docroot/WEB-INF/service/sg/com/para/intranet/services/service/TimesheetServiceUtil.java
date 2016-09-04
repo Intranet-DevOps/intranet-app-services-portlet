@@ -63,6 +63,39 @@ public class TimesheetServiceUtil {
 		return getService().invokeMethod(name, parameterTypes, arguments);
 	}
 
+	public static sg.com.para.intranet.services.model.Timesheet getTimesheet(
+		int timesheetId) throws java.lang.Exception {
+		return getService().getTimesheet(timesheetId);
+	}
+
+	public static java.util.List<sg.com.para.intranet.services.model.Timesheet> findTimesheetsByUser(
+		java.util.Date startDate, java.util.Date endDate,
+		java.lang.String userId) throws java.lang.Exception {
+		return getService().findTimesheetsByUser(startDate, endDate, userId);
+	}
+
+	public static sg.com.para.intranet.services.model.Timesheet createTimeSheet(
+		java.lang.String employeeScreenName, double regular, double overtime,
+		double sick, double vacation, double holiday, double unpaid,
+		double other, java.lang.String remarks, java.lang.String status,
+		java.lang.String projectCode) throws java.lang.Exception {
+		return getService()
+				   .createTimeSheet(employeeScreenName, regular, overtime,
+			sick, vacation, holiday, unpaid, other, remarks, status, projectCode);
+	}
+
+	public static sg.com.para.intranet.services.model.Timesheet updateTimeSheet(
+		int timesheetId, java.lang.String employeeScreenName, double regular,
+		double overtime, double sick, double vacation, double holiday,
+		double unpaid, double other, java.lang.String remarks,
+		java.lang.String status, java.lang.String projectCode)
+		throws java.lang.Exception {
+		return getService()
+				   .updateTimeSheet(timesheetId, employeeScreenName, regular,
+			overtime, sick, vacation, holiday, unpaid, other, remarks, status,
+			projectCode);
+	}
+
 	public static void clearService() {
 		_service = null;
 	}

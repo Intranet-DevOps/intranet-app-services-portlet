@@ -74,18 +74,19 @@ public interface TimesheetModel extends BaseModel<Timesheet> {
 	public void setTimesheetId(int timesheetId);
 
 	/**
-	 * Returns the employee ID of this timesheet.
+	 * Returns the employee screen name of this timesheet.
 	 *
-	 * @return the employee ID of this timesheet
+	 * @return the employee screen name of this timesheet
 	 */
-	public int getEmployeeId();
+	@AutoEscape
+	public String getEmployeeScreenName();
 
 	/**
-	 * Sets the employee ID of this timesheet.
+	 * Sets the employee screen name of this timesheet.
 	 *
-	 * @param employeeId the employee ID of this timesheet
+	 * @param employeeScreenName the employee screen name of this timesheet
 	 */
-	public void setEmployeeId(int employeeId);
+	public void setEmployeeScreenName(String employeeScreenName);
 
 	/**
 	 * Returns the log date of this timesheet.
@@ -219,28 +220,30 @@ public interface TimesheetModel extends BaseModel<Timesheet> {
 	 *
 	 * @return the status of this timesheet
 	 */
-	public double getStatus();
+	@AutoEscape
+	public String getStatus();
 
 	/**
 	 * Sets the status of this timesheet.
 	 *
 	 * @param status the status of this timesheet
 	 */
-	public void setStatus(double status);
+	public void setStatus(String status);
 
 	/**
-	 * Returns the project ID of this timesheet.
+	 * Returns the project code of this timesheet.
 	 *
-	 * @return the project ID of this timesheet
+	 * @return the project code of this timesheet
 	 */
-	public int getProjectId();
+	@AutoEscape
+	public String getProjectCode();
 
 	/**
-	 * Sets the project ID of this timesheet.
+	 * Sets the project code of this timesheet.
 	 *
-	 * @param projectId the project ID of this timesheet
+	 * @param projectCode the project code of this timesheet
 	 */
-	public void setProjectId(int projectId);
+	public void setProjectCode(String projectCode);
 
 	@Override
 	public boolean isNew();

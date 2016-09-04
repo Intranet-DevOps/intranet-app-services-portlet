@@ -319,7 +319,7 @@ public class EmployeePersistenceImpl extends BasePersistenceImpl<Employee>
 		employeeImpl.setPrimaryKey(employee.getPrimaryKey());
 
 		employeeImpl.setEmployeeId(employee.getEmployeeId());
-		employeeImpl.setEmployeeScreenName(employee.getEmployeeScreenName());
+		employeeImpl.setScreenName(employee.getScreenName());
 		employeeImpl.setJoinDate(employee.getJoinDate());
 		employeeImpl.setLeaveDate(employee.getLeaveDate());
 

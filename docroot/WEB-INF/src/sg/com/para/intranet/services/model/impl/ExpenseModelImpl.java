@@ -61,15 +61,16 @@ public class ExpenseModelImpl extends BaseModelImpl<Expense>
 	public static final String TABLE_NAME = "intranet_expense";
 	public static final Object[][] TABLE_COLUMNS = {
 			{ "expenseId", Types.INTEGER },
-			{ "employeeId", Types.INTEGER },
+			{ "employeeScreenName", Types.VARCHAR },
 			{ "expenseDate", Types.TIMESTAMP },
 			{ "submissionDate", Types.TIMESTAMP },
 			{ "amount", Types.DOUBLE },
-			{ "projectId", Types.INTEGER },
+			{ "projectCode", Types.VARCHAR },
 			{ "category", Types.VARCHAR },
+			{ "status", Types.VARCHAR },
 			{ "remarks", Types.VARCHAR }
 		};
-	public static final String TABLE_SQL_CREATE = "create table intranet_expense (expenseId INTEGER not null primary key,employeeId INTEGER,expenseDate DATE null,submissionDate DATE null,amount DOUBLE,projectId INTEGER,category VARCHAR(75) null,remarks VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table intranet_expense (expenseId INTEGER not null primary key,employeeScreenName VARCHAR(75) null,expenseDate DATE null,submissionDate DATE null,amount DOUBLE,projectCode VARCHAR(75) null,category VARCHAR(75) null,status VARCHAR(75) null,remarks VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table intranet_expense";
 	public static final String ORDER_BY_JPQL = " ORDER BY expense.expenseId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY intranet_expense.expenseId ASC";
@@ -98,12 +99,13 @@ public class ExpenseModelImpl extends BaseModelImpl<Expense>
 		Expense model = new ExpenseImpl();
 
 		model.setExpenseId(soapModel.getExpenseId());
-		model.setEmployeeId(soapModel.getEmployeeId());
+		model.setEmployeeScreenName(soapModel.getEmployeeScreenName());
 		model.setExpenseDate(soapModel.getExpenseDate());
 		model.setSubmissionDate(soapModel.getSubmissionDate());
 		model.setAmount(soapModel.getAmount());
-		model.setProjectId(soapModel.getProjectId());
+		model.setProjectCode(soapModel.getProjectCode());
 		model.setCategory(soapModel.getCategory());
+		model.setStatus(soapModel.getStatus());
 		model.setRemarks(soapModel.getRemarks());
 
 		return model;
@@ -170,12 +172,13 @@ public class ExpenseModelImpl extends BaseModelImpl<Expense>
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
 		attributes.put("expenseId", getExpenseId());
-		attributes.put("employeeId", getEmployeeId());
+		attributes.put("employeeScreenName", getEmployeeScreenName());
 		attributes.put("expenseDate", getExpenseDate());
 		attributes.put("submissionDate", getSubmissionDate());
 		attributes.put("amount", getAmount());
-		attributes.put("projectId", getProjectId());
+		attributes.put("projectCode", getProjectCode());
 		attributes.put("category", getCategory());
+		attributes.put("status", getStatus());
 		attributes.put("remarks", getRemarks());
 
 		return attributes;
@@ -189,10 +192,10 @@ public class ExpenseModelImpl extends BaseModelImpl<Expense>
 			setExpenseId(expenseId);
 		}
 
-		Integer employeeId = (Integer)attributes.get("employeeId");
+		String employeeScreenName = (String)attributes.get("employeeScreenName");
 
-		if (employeeId != null) {
-			setEmployeeId(employeeId);
+		if (employeeScreenName != null) {
+			setEmployeeScreenName(employeeScreenName);
 		}
 
 		Date expenseDate = (Date)attributes.get("expenseDate");
@@ -213,16 +216,22 @@ public class ExpenseModelImpl extends BaseModelImpl<Expense>
 			setAmount(amount);
 		}
 
-		Integer projectId = (Integer)attributes.get("projectId");
+		String projectCode = (String)attributes.get("projectCode");
 
-		if (projectId != null) {
-			setProjectId(projectId);
+		if (projectCode != null) {
+			setProjectCode(projectCode);
 		}
 
 		String category = (String)attributes.get("category");
 
 		if (category != null) {
 			setCategory(category);
+		}
+
+		String status = (String)attributes.get("status");
+
+		if (status != null) {
+			setStatus(status);
 		}
 
 		String remarks = (String)attributes.get("remarks");
@@ -245,13 +254,18 @@ public class ExpenseModelImpl extends BaseModelImpl<Expense>
 
 	@JSON
 	@Override
-	public int getEmployeeId() {
-		return _employeeId;
+	public String getEmployeeScreenName() {
+		if (_employeeScreenName == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _employeeScreenName;
+		}
 	}
 
 	@Override
-	public void setEmployeeId(int employeeId) {
-		_employeeId = employeeId;
+	public void setEmployeeScreenName(String employeeScreenName) {
+		_employeeScreenName = employeeScreenName;
 	}
 
 	@JSON
@@ -289,13 +303,18 @@ public class ExpenseModelImpl extends BaseModelImpl<Expense>
 
 	@JSON
 	@Override
-	public int getProjectId() {
-		return _projectId;
+	public String getProjectCode() {
+		if (_projectCode == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _projectCode;
+		}
 	}
 
 	@Override
-	public void setProjectId(int projectId) {
-		_projectId = projectId;
+	public void setProjectCode(String projectCode) {
+		_projectCode = projectCode;
 	}
 
 	@JSON
@@ -312,6 +331,22 @@ public class ExpenseModelImpl extends BaseModelImpl<Expense>
 	@Override
 	public void setCategory(String category) {
 		_category = category;
+	}
+
+	@JSON
+	@Override
+	public String getStatus() {
+		if (_status == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _status;
+		}
+	}
+
+	@Override
+	public void setStatus(String status) {
+		_status = status;
 	}
 
 	@JSON
@@ -345,12 +380,13 @@ public class ExpenseModelImpl extends BaseModelImpl<Expense>
 		ExpenseImpl expenseImpl = new ExpenseImpl();
 
 		expenseImpl.setExpenseId(getExpenseId());
-		expenseImpl.setEmployeeId(getEmployeeId());
+		expenseImpl.setEmployeeScreenName(getEmployeeScreenName());
 		expenseImpl.setExpenseDate(getExpenseDate());
 		expenseImpl.setSubmissionDate(getSubmissionDate());
 		expenseImpl.setAmount(getAmount());
-		expenseImpl.setProjectId(getProjectId());
+		expenseImpl.setProjectCode(getProjectCode());
 		expenseImpl.setCategory(getCategory());
+		expenseImpl.setStatus(getStatus());
 		expenseImpl.setRemarks(getRemarks());
 
 		expenseImpl.resetOriginalValues();
@@ -410,7 +446,13 @@ public class ExpenseModelImpl extends BaseModelImpl<Expense>
 
 		expenseCacheModel.expenseId = getExpenseId();
 
-		expenseCacheModel.employeeId = getEmployeeId();
+		expenseCacheModel.employeeScreenName = getEmployeeScreenName();
+
+		String employeeScreenName = expenseCacheModel.employeeScreenName;
+
+		if ((employeeScreenName != null) && (employeeScreenName.length() == 0)) {
+			expenseCacheModel.employeeScreenName = null;
+		}
 
 		Date expenseDate = getExpenseDate();
 
@@ -432,7 +474,13 @@ public class ExpenseModelImpl extends BaseModelImpl<Expense>
 
 		expenseCacheModel.amount = getAmount();
 
-		expenseCacheModel.projectId = getProjectId();
+		expenseCacheModel.projectCode = getProjectCode();
+
+		String projectCode = expenseCacheModel.projectCode;
+
+		if ((projectCode != null) && (projectCode.length() == 0)) {
+			expenseCacheModel.projectCode = null;
+		}
 
 		expenseCacheModel.category = getCategory();
 
@@ -440,6 +488,14 @@ public class ExpenseModelImpl extends BaseModelImpl<Expense>
 
 		if ((category != null) && (category.length() == 0)) {
 			expenseCacheModel.category = null;
+		}
+
+		expenseCacheModel.status = getStatus();
+
+		String status = expenseCacheModel.status;
+
+		if ((status != null) && (status.length() == 0)) {
+			expenseCacheModel.status = null;
 		}
 
 		expenseCacheModel.remarks = getRemarks();
@@ -455,22 +511,24 @@ public class ExpenseModelImpl extends BaseModelImpl<Expense>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(17);
+		StringBundler sb = new StringBundler(19);
 
 		sb.append("{expenseId=");
 		sb.append(getExpenseId());
-		sb.append(", employeeId=");
-		sb.append(getEmployeeId());
+		sb.append(", employeeScreenName=");
+		sb.append(getEmployeeScreenName());
 		sb.append(", expenseDate=");
 		sb.append(getExpenseDate());
 		sb.append(", submissionDate=");
 		sb.append(getSubmissionDate());
 		sb.append(", amount=");
 		sb.append(getAmount());
-		sb.append(", projectId=");
-		sb.append(getProjectId());
+		sb.append(", projectCode=");
+		sb.append(getProjectCode());
 		sb.append(", category=");
 		sb.append(getCategory());
+		sb.append(", status=");
+		sb.append(getStatus());
 		sb.append(", remarks=");
 		sb.append(getRemarks());
 		sb.append("}");
@@ -480,7 +538,7 @@ public class ExpenseModelImpl extends BaseModelImpl<Expense>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(28);
+		StringBundler sb = new StringBundler(31);
 
 		sb.append("<model><model-name>");
 		sb.append("sg.com.para.intranet.services.model.Expense");
@@ -491,8 +549,8 @@ public class ExpenseModelImpl extends BaseModelImpl<Expense>
 		sb.append(getExpenseId());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>employeeId</column-name><column-value><![CDATA[");
-		sb.append(getEmployeeId());
+			"<column><column-name>employeeScreenName</column-name><column-value><![CDATA[");
+		sb.append(getEmployeeScreenName());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>expenseDate</column-name><column-value><![CDATA[");
@@ -507,12 +565,16 @@ public class ExpenseModelImpl extends BaseModelImpl<Expense>
 		sb.append(getAmount());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>projectId</column-name><column-value><![CDATA[");
-		sb.append(getProjectId());
+			"<column><column-name>projectCode</column-name><column-value><![CDATA[");
+		sb.append(getProjectCode());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>category</column-name><column-value><![CDATA[");
 		sb.append(getCategory());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>status</column-name><column-value><![CDATA[");
+		sb.append(getStatus());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>remarks</column-name><column-value><![CDATA[");
@@ -529,12 +591,13 @@ public class ExpenseModelImpl extends BaseModelImpl<Expense>
 			Expense.class
 		};
 	private int _expenseId;
-	private int _employeeId;
+	private String _employeeScreenName;
 	private Date _expenseDate;
 	private Date _submissionDate;
 	private double _amount;
-	private int _projectId;
+	private String _projectCode;
 	private String _category;
+	private String _status;
 	private String _remarks;
 	private Expense _escapedModel;
 }

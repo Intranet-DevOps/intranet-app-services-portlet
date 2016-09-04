@@ -50,12 +50,13 @@ public class ExpenseWrapper implements Expense, ModelWrapper<Expense> {
 		Map<String, Object> attributes = new HashMap<String, Object>();
 
 		attributes.put("expenseId", getExpenseId());
-		attributes.put("employeeId", getEmployeeId());
+		attributes.put("employeeScreenName", getEmployeeScreenName());
 		attributes.put("expenseDate", getExpenseDate());
 		attributes.put("submissionDate", getSubmissionDate());
 		attributes.put("amount", getAmount());
-		attributes.put("projectId", getProjectId());
+		attributes.put("projectCode", getProjectCode());
 		attributes.put("category", getCategory());
+		attributes.put("status", getStatus());
 		attributes.put("remarks", getRemarks());
 
 		return attributes;
@@ -69,10 +70,10 @@ public class ExpenseWrapper implements Expense, ModelWrapper<Expense> {
 			setExpenseId(expenseId);
 		}
 
-		Integer employeeId = (Integer)attributes.get("employeeId");
+		String employeeScreenName = (String)attributes.get("employeeScreenName");
 
-		if (employeeId != null) {
-			setEmployeeId(employeeId);
+		if (employeeScreenName != null) {
+			setEmployeeScreenName(employeeScreenName);
 		}
 
 		Date expenseDate = (Date)attributes.get("expenseDate");
@@ -93,16 +94,22 @@ public class ExpenseWrapper implements Expense, ModelWrapper<Expense> {
 			setAmount(amount);
 		}
 
-		Integer projectId = (Integer)attributes.get("projectId");
+		String projectCode = (String)attributes.get("projectCode");
 
-		if (projectId != null) {
-			setProjectId(projectId);
+		if (projectCode != null) {
+			setProjectCode(projectCode);
 		}
 
 		String category = (String)attributes.get("category");
 
 		if (category != null) {
 			setCategory(category);
+		}
+
+		String status = (String)attributes.get("status");
+
+		if (status != null) {
+			setStatus(status);
 		}
 
 		String remarks = (String)attributes.get("remarks");
@@ -153,23 +160,23 @@ public class ExpenseWrapper implements Expense, ModelWrapper<Expense> {
 	}
 
 	/**
-	* Returns the employee ID of this expense.
+	* Returns the employee screen name of this expense.
 	*
-	* @return the employee ID of this expense
+	* @return the employee screen name of this expense
 	*/
 	@Override
-	public int getEmployeeId() {
-		return _expense.getEmployeeId();
+	public java.lang.String getEmployeeScreenName() {
+		return _expense.getEmployeeScreenName();
 	}
 
 	/**
-	* Sets the employee ID of this expense.
+	* Sets the employee screen name of this expense.
 	*
-	* @param employeeId the employee ID of this expense
+	* @param employeeScreenName the employee screen name of this expense
 	*/
 	@Override
-	public void setEmployeeId(int employeeId) {
-		_expense.setEmployeeId(employeeId);
+	public void setEmployeeScreenName(java.lang.String employeeScreenName) {
+		_expense.setEmployeeScreenName(employeeScreenName);
 	}
 
 	/**
@@ -233,23 +240,23 @@ public class ExpenseWrapper implements Expense, ModelWrapper<Expense> {
 	}
 
 	/**
-	* Returns the project ID of this expense.
+	* Returns the project code of this expense.
 	*
-	* @return the project ID of this expense
+	* @return the project code of this expense
 	*/
 	@Override
-	public int getProjectId() {
-		return _expense.getProjectId();
+	public java.lang.String getProjectCode() {
+		return _expense.getProjectCode();
 	}
 
 	/**
-	* Sets the project ID of this expense.
+	* Sets the project code of this expense.
 	*
-	* @param projectId the project ID of this expense
+	* @param projectCode the project code of this expense
 	*/
 	@Override
-	public void setProjectId(int projectId) {
-		_expense.setProjectId(projectId);
+	public void setProjectCode(java.lang.String projectCode) {
+		_expense.setProjectCode(projectCode);
 	}
 
 	/**
@@ -270,6 +277,26 @@ public class ExpenseWrapper implements Expense, ModelWrapper<Expense> {
 	@Override
 	public void setCategory(java.lang.String category) {
 		_expense.setCategory(category);
+	}
+
+	/**
+	* Returns the status of this expense.
+	*
+	* @return the status of this expense
+	*/
+	@Override
+	public java.lang.String getStatus() {
+		return _expense.getStatus();
+	}
+
+	/**
+	* Sets the status of this expense.
+	*
+	* @param status the status of this expense
+	*/
+	@Override
+	public void setStatus(java.lang.String status) {
+		_expense.setStatus(status);
 	}
 
 	/**
