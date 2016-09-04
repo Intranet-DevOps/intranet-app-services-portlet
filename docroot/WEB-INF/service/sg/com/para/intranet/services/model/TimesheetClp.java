@@ -76,8 +76,15 @@ public class TimesheetClp extends BaseModelImpl<Timesheet> implements Timesheet 
 		attributes.put("timesheetId", getTimesheetId());
 		attributes.put("employeeId", getEmployeeId());
 		attributes.put("logDate", getLogDate());
-		attributes.put("logType", getLogType());
-		attributes.put("hours", getHours());
+		attributes.put("regular", getRegular());
+		attributes.put("overtime", getOvertime());
+		attributes.put("sick", getSick());
+		attributes.put("vacation", getVacation());
+		attributes.put("holiday", getHoliday());
+		attributes.put("unpaid", getUnpaid());
+		attributes.put("other", getOther());
+		attributes.put("remarks", getRemarks());
+		attributes.put("status", getStatus());
 		attributes.put("projectId", getProjectId());
 
 		return attributes;
@@ -103,16 +110,58 @@ public class TimesheetClp extends BaseModelImpl<Timesheet> implements Timesheet 
 			setLogDate(logDate);
 		}
 
-		String logType = (String)attributes.get("logType");
+		Double regular = (Double)attributes.get("regular");
 
-		if (logType != null) {
-			setLogType(logType);
+		if (regular != null) {
+			setRegular(regular);
 		}
 
-		Double hours = (Double)attributes.get("hours");
+		Double overtime = (Double)attributes.get("overtime");
 
-		if (hours != null) {
-			setHours(hours);
+		if (overtime != null) {
+			setOvertime(overtime);
+		}
+
+		Double sick = (Double)attributes.get("sick");
+
+		if (sick != null) {
+			setSick(sick);
+		}
+
+		Double vacation = (Double)attributes.get("vacation");
+
+		if (vacation != null) {
+			setVacation(vacation);
+		}
+
+		Double holiday = (Double)attributes.get("holiday");
+
+		if (holiday != null) {
+			setHoliday(holiday);
+		}
+
+		Double unpaid = (Double)attributes.get("unpaid");
+
+		if (unpaid != null) {
+			setUnpaid(unpaid);
+		}
+
+		Double other = (Double)attributes.get("other");
+
+		if (other != null) {
+			setOther(other);
+		}
+
+		String remarks = (String)attributes.get("remarks");
+
+		if (remarks != null) {
+			setRemarks(remarks);
+		}
+
+		Double status = (Double)attributes.get("status");
+
+		if (status != null) {
+			setStatus(status);
 		}
 
 		Integer projectId = (Integer)attributes.get("projectId");
@@ -192,21 +241,21 @@ public class TimesheetClp extends BaseModelImpl<Timesheet> implements Timesheet 
 	}
 
 	@Override
-	public String getLogType() {
-		return _logType;
+	public double getRegular() {
+		return _regular;
 	}
 
 	@Override
-	public void setLogType(String logType) {
-		_logType = logType;
+	public void setRegular(double regular) {
+		_regular = regular;
 
 		if (_timesheetRemoteModel != null) {
 			try {
 				Class<?> clazz = _timesheetRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setLogType", String.class);
+				Method method = clazz.getMethod("setRegular", double.class);
 
-				method.invoke(_timesheetRemoteModel, logType);
+				method.invoke(_timesheetRemoteModel, regular);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -215,21 +264,182 @@ public class TimesheetClp extends BaseModelImpl<Timesheet> implements Timesheet 
 	}
 
 	@Override
-	public double getHours() {
-		return _hours;
+	public double getOvertime() {
+		return _overtime;
 	}
 
 	@Override
-	public void setHours(double hours) {
-		_hours = hours;
+	public void setOvertime(double overtime) {
+		_overtime = overtime;
 
 		if (_timesheetRemoteModel != null) {
 			try {
 				Class<?> clazz = _timesheetRemoteModel.getClass();
 
-				Method method = clazz.getMethod("setHours", double.class);
+				Method method = clazz.getMethod("setOvertime", double.class);
 
-				method.invoke(_timesheetRemoteModel, hours);
+				method.invoke(_timesheetRemoteModel, overtime);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public double getSick() {
+		return _sick;
+	}
+
+	@Override
+	public void setSick(double sick) {
+		_sick = sick;
+
+		if (_timesheetRemoteModel != null) {
+			try {
+				Class<?> clazz = _timesheetRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setSick", double.class);
+
+				method.invoke(_timesheetRemoteModel, sick);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public double getVacation() {
+		return _vacation;
+	}
+
+	@Override
+	public void setVacation(double vacation) {
+		_vacation = vacation;
+
+		if (_timesheetRemoteModel != null) {
+			try {
+				Class<?> clazz = _timesheetRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setVacation", double.class);
+
+				method.invoke(_timesheetRemoteModel, vacation);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public double getHoliday() {
+		return _holiday;
+	}
+
+	@Override
+	public void setHoliday(double holiday) {
+		_holiday = holiday;
+
+		if (_timesheetRemoteModel != null) {
+			try {
+				Class<?> clazz = _timesheetRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setHoliday", double.class);
+
+				method.invoke(_timesheetRemoteModel, holiday);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public double getUnpaid() {
+		return _unpaid;
+	}
+
+	@Override
+	public void setUnpaid(double unpaid) {
+		_unpaid = unpaid;
+
+		if (_timesheetRemoteModel != null) {
+			try {
+				Class<?> clazz = _timesheetRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setUnpaid", double.class);
+
+				method.invoke(_timesheetRemoteModel, unpaid);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public double getOther() {
+		return _other;
+	}
+
+	@Override
+	public void setOther(double other) {
+		_other = other;
+
+		if (_timesheetRemoteModel != null) {
+			try {
+				Class<?> clazz = _timesheetRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setOther", double.class);
+
+				method.invoke(_timesheetRemoteModel, other);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public String getRemarks() {
+		return _remarks;
+	}
+
+	@Override
+	public void setRemarks(String remarks) {
+		_remarks = remarks;
+
+		if (_timesheetRemoteModel != null) {
+			try {
+				Class<?> clazz = _timesheetRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setRemarks", String.class);
+
+				method.invoke(_timesheetRemoteModel, remarks);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public double getStatus() {
+		return _status;
+	}
+
+	@Override
+	public void setStatus(double status) {
+		_status = status;
+
+		if (_timesheetRemoteModel != null) {
+			try {
+				Class<?> clazz = _timesheetRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setStatus", double.class);
+
+				method.invoke(_timesheetRemoteModel, status);
 			}
 			catch (Exception e) {
 				throw new UnsupportedOperationException(e);
@@ -332,8 +542,15 @@ public class TimesheetClp extends BaseModelImpl<Timesheet> implements Timesheet 
 		clone.setTimesheetId(getTimesheetId());
 		clone.setEmployeeId(getEmployeeId());
 		clone.setLogDate(getLogDate());
-		clone.setLogType(getLogType());
-		clone.setHours(getHours());
+		clone.setRegular(getRegular());
+		clone.setOvertime(getOvertime());
+		clone.setSick(getSick());
+		clone.setVacation(getVacation());
+		clone.setHoliday(getHoliday());
+		clone.setUnpaid(getUnpaid());
+		clone.setOther(getOther());
+		clone.setRemarks(getRemarks());
+		clone.setStatus(getStatus());
 		clone.setProjectId(getProjectId());
 
 		return clone;
@@ -387,7 +604,7 @@ public class TimesheetClp extends BaseModelImpl<Timesheet> implements Timesheet 
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(13);
+		StringBundler sb = new StringBundler(27);
 
 		sb.append("{timesheetId=");
 		sb.append(getTimesheetId());
@@ -395,10 +612,24 @@ public class TimesheetClp extends BaseModelImpl<Timesheet> implements Timesheet 
 		sb.append(getEmployeeId());
 		sb.append(", logDate=");
 		sb.append(getLogDate());
-		sb.append(", logType=");
-		sb.append(getLogType());
-		sb.append(", hours=");
-		sb.append(getHours());
+		sb.append(", regular=");
+		sb.append(getRegular());
+		sb.append(", overtime=");
+		sb.append(getOvertime());
+		sb.append(", sick=");
+		sb.append(getSick());
+		sb.append(", vacation=");
+		sb.append(getVacation());
+		sb.append(", holiday=");
+		sb.append(getHoliday());
+		sb.append(", unpaid=");
+		sb.append(getUnpaid());
+		sb.append(", other=");
+		sb.append(getOther());
+		sb.append(", remarks=");
+		sb.append(getRemarks());
+		sb.append(", status=");
+		sb.append(getStatus());
 		sb.append(", projectId=");
 		sb.append(getProjectId());
 		sb.append("}");
@@ -408,7 +639,7 @@ public class TimesheetClp extends BaseModelImpl<Timesheet> implements Timesheet 
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(22);
+		StringBundler sb = new StringBundler(43);
 
 		sb.append("<model><model-name>");
 		sb.append("sg.com.para.intranet.services.model.Timesheet");
@@ -427,12 +658,40 @@ public class TimesheetClp extends BaseModelImpl<Timesheet> implements Timesheet 
 		sb.append(getLogDate());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>logType</column-name><column-value><![CDATA[");
-		sb.append(getLogType());
+			"<column><column-name>regular</column-name><column-value><![CDATA[");
+		sb.append(getRegular());
 		sb.append("]]></column-value></column>");
 		sb.append(
-			"<column><column-name>hours</column-name><column-value><![CDATA[");
-		sb.append(getHours());
+			"<column><column-name>overtime</column-name><column-value><![CDATA[");
+		sb.append(getOvertime());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>sick</column-name><column-value><![CDATA[");
+		sb.append(getSick());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>vacation</column-name><column-value><![CDATA[");
+		sb.append(getVacation());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>holiday</column-name><column-value><![CDATA[");
+		sb.append(getHoliday());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>unpaid</column-name><column-value><![CDATA[");
+		sb.append(getUnpaid());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>other</column-name><column-value><![CDATA[");
+		sb.append(getOther());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>remarks</column-name><column-value><![CDATA[");
+		sb.append(getRemarks());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>status</column-name><column-value><![CDATA[");
+		sb.append(getStatus());
 		sb.append("]]></column-value></column>");
 		sb.append(
 			"<column><column-name>projectId</column-name><column-value><![CDATA[");
@@ -447,8 +706,15 @@ public class TimesheetClp extends BaseModelImpl<Timesheet> implements Timesheet 
 	private int _timesheetId;
 	private int _employeeId;
 	private Date _logDate;
-	private String _logType;
-	private double _hours;
+	private double _regular;
+	private double _overtime;
+	private double _sick;
+	private double _vacation;
+	private double _holiday;
+	private double _unpaid;
+	private double _other;
+	private String _remarks;
+	private double _status;
 	private int _projectId;
 	private BaseModel<?> _timesheetRemoteModel;
 	private Class<?> _clpSerializerClass = sg.com.para.intranet.services.service.ClpSerializer.class;

@@ -4,6 +4,9 @@
 	<bean id="sg.com.para.intranet.services.service.EmployeeLocalService" class="sg.com.para.intranet.services.service.impl.EmployeeLocalServiceImpl" />
 	<bean id="sg.com.para.intranet.services.service.EmployeeService" class="sg.com.para.intranet.services.service.impl.EmployeeServiceImpl" />
 	<bean id="sg.com.para.intranet.services.service.persistence.EmployeePersistence" class="sg.com.para.intranet.services.service.persistence.EmployeePersistenceImpl" parent="basePersistence" />
+	<bean id="sg.com.para.intranet.services.service.ExpenseLocalService" class="sg.com.para.intranet.services.service.impl.ExpenseLocalServiceImpl" />
+	<bean id="sg.com.para.intranet.services.service.ExpenseService" class="sg.com.para.intranet.services.service.impl.ExpenseServiceImpl" />
+	<bean id="sg.com.para.intranet.services.service.persistence.ExpensePersistence" class="sg.com.para.intranet.services.service.persistence.ExpensePersistenceImpl" parent="basePersistence" />
 	<bean id="sg.com.para.intranet.services.service.ProjectLocalService" class="sg.com.para.intranet.services.service.impl.ProjectLocalServiceImpl" />
 	<bean id="sg.com.para.intranet.services.service.ProjectService" class="sg.com.para.intranet.services.service.impl.ProjectServiceImpl" />
 	<bean id="sg.com.para.intranet.services.service.persistence.ProjectPersistence" class="sg.com.para.intranet.services.service.persistence.ProjectPersistenceImpl" parent="basePersistence" />

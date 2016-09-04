@@ -22,6 +22,25 @@
 			<transient name="primaryKeyObj" />
 		</attributes>
 	</mapped-superclass>
+	<mapped-superclass class="sg.com.para.intranet.services.model.impl.ExpenseModelImpl">
+		<attributes>
+			<id name="expenseId" />
+			<basic name="employeeId" />
+			<basic name="expenseDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="submissionDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="amount" />
+			<basic name="projectId" />
+			<basic name="category" />
+			<basic name="remarks" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
 	<mapped-superclass class="sg.com.para.intranet.services.model.impl.ProjectModelImpl">
 		<attributes>
 			<id name="projectId" />
@@ -41,8 +60,15 @@
 			<basic name="logDate">
 				<temporal>TIMESTAMP</temporal>
 			</basic>
-			<basic name="logType" />
-			<basic name="hours" />
+			<basic name="regular" />
+			<basic name="overtime" />
+			<basic name="sick" />
+			<basic name="vacation" />
+			<basic name="holiday" />
+			<basic name="unpaid" />
+			<basic name="other" />
+			<basic name="remarks" />
+			<basic name="status" />
 			<basic name="projectId" />
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
@@ -53,12 +79,16 @@
 		<table name="intranet_employee" />
 		<attributes />
 	</entity>
+	<entity class="sg.com.para.intranet.services.model.impl.ExpenseImpl" name="Expense">
+		<table name="intranet_expense" />
+		<attributes />
+	</entity>
 	<entity class="sg.com.para.intranet.services.model.impl.ProjectImpl" name="Project">
 		<table name="intranet_project" />
 		<attributes />
 	</entity>
 	<entity class="sg.com.para.intranet.services.model.impl.TimesheetImpl" name="Timesheet">
-		<table name="intranet_Timesheet" />
+		<table name="intranet_timesheet" />
 		<attributes />
 	</entity>
 </entity-mappings>

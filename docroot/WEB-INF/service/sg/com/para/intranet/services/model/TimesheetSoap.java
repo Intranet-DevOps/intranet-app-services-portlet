@@ -34,8 +34,15 @@ public class TimesheetSoap implements Serializable {
 		soapModel.setTimesheetId(model.getTimesheetId());
 		soapModel.setEmployeeId(model.getEmployeeId());
 		soapModel.setLogDate(model.getLogDate());
-		soapModel.setLogType(model.getLogType());
-		soapModel.setHours(model.getHours());
+		soapModel.setRegular(model.getRegular());
+		soapModel.setOvertime(model.getOvertime());
+		soapModel.setSick(model.getSick());
+		soapModel.setVacation(model.getVacation());
+		soapModel.setHoliday(model.getHoliday());
+		soapModel.setUnpaid(model.getUnpaid());
+		soapModel.setOther(model.getOther());
+		soapModel.setRemarks(model.getRemarks());
+		soapModel.setStatus(model.getStatus());
 		soapModel.setProjectId(model.getProjectId());
 
 		return soapModel;
@@ -113,20 +120,76 @@ public class TimesheetSoap implements Serializable {
 		_logDate = logDate;
 	}
 
-	public String getLogType() {
-		return _logType;
+	public double getRegular() {
+		return _regular;
 	}
 
-	public void setLogType(String logType) {
-		_logType = logType;
+	public void setRegular(double regular) {
+		_regular = regular;
 	}
 
-	public double getHours() {
-		return _hours;
+	public double getOvertime() {
+		return _overtime;
 	}
 
-	public void setHours(double hours) {
-		_hours = hours;
+	public void setOvertime(double overtime) {
+		_overtime = overtime;
+	}
+
+	public double getSick() {
+		return _sick;
+	}
+
+	public void setSick(double sick) {
+		_sick = sick;
+	}
+
+	public double getVacation() {
+		return _vacation;
+	}
+
+	public void setVacation(double vacation) {
+		_vacation = vacation;
+	}
+
+	public double getHoliday() {
+		return _holiday;
+	}
+
+	public void setHoliday(double holiday) {
+		_holiday = holiday;
+	}
+
+	public double getUnpaid() {
+		return _unpaid;
+	}
+
+	public void setUnpaid(double unpaid) {
+		_unpaid = unpaid;
+	}
+
+	public double getOther() {
+		return _other;
+	}
+
+	public void setOther(double other) {
+		_other = other;
+	}
+
+	public String getRemarks() {
+		return _remarks;
+	}
+
+	public void setRemarks(String remarks) {
+		_remarks = remarks;
+	}
+
+	public double getStatus() {
+		return _status;
+	}
+
+	public void setStatus(double status) {
+		_status = status;
 	}
 
 	public int getProjectId() {
@@ -140,7 +203,14 @@ public class TimesheetSoap implements Serializable {
 	private int _timesheetId;
 	private int _employeeId;
 	private Date _logDate;
-	private String _logType;
-	private double _hours;
+	private double _regular;
+	private double _overtime;
+	private double _sick;
+	private double _vacation;
+	private double _holiday;
+	private double _unpaid;
+	private double _other;
+	private String _remarks;
+	private double _status;
 	private int _projectId;
 }

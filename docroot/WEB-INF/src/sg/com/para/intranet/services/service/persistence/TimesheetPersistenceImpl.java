@@ -322,8 +322,15 @@ public class TimesheetPersistenceImpl extends BasePersistenceImpl<Timesheet>
 		timesheetImpl.setTimesheetId(timesheet.getTimesheetId());
 		timesheetImpl.setEmployeeId(timesheet.getEmployeeId());
 		timesheetImpl.setLogDate(timesheet.getLogDate());
-		timesheetImpl.setLogType(timesheet.getLogType());
-		timesheetImpl.setHours(timesheet.getHours());
+		timesheetImpl.setRegular(timesheet.getRegular());
+		timesheetImpl.setOvertime(timesheet.getOvertime());
+		timesheetImpl.setSick(timesheet.getSick());
+		timesheetImpl.setVacation(timesheet.getVacation());
+		timesheetImpl.setHoliday(timesheet.getHoliday());
+		timesheetImpl.setUnpaid(timesheet.getUnpaid());
+		timesheetImpl.setOther(timesheet.getOther());
+		timesheetImpl.setRemarks(timesheet.getRemarks());
+		timesheetImpl.setStatus(timesheet.getStatus());
 		timesheetImpl.setProjectId(timesheet.getProjectId());
 
 		return timesheetImpl;

@@ -38,7 +38,7 @@ public class TimesheetCacheModel implements CacheModel<Timesheet>,
 	Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(13);
+		StringBundler sb = new StringBundler(27);
 
 		sb.append("{timesheetId=");
 		sb.append(timesheetId);
@@ -46,10 +46,24 @@ public class TimesheetCacheModel implements CacheModel<Timesheet>,
 		sb.append(employeeId);
 		sb.append(", logDate=");
 		sb.append(logDate);
-		sb.append(", logType=");
-		sb.append(logType);
-		sb.append(", hours=");
-		sb.append(hours);
+		sb.append(", regular=");
+		sb.append(regular);
+		sb.append(", overtime=");
+		sb.append(overtime);
+		sb.append(", sick=");
+		sb.append(sick);
+		sb.append(", vacation=");
+		sb.append(vacation);
+		sb.append(", holiday=");
+		sb.append(holiday);
+		sb.append(", unpaid=");
+		sb.append(unpaid);
+		sb.append(", other=");
+		sb.append(other);
+		sb.append(", remarks=");
+		sb.append(remarks);
+		sb.append(", status=");
+		sb.append(status);
 		sb.append(", projectId=");
 		sb.append(projectId);
 		sb.append("}");
@@ -71,14 +85,22 @@ public class TimesheetCacheModel implements CacheModel<Timesheet>,
 			timesheetImpl.setLogDate(new Date(logDate));
 		}
 
-		if (logType == null) {
-			timesheetImpl.setLogType(StringPool.BLANK);
+		timesheetImpl.setRegular(regular);
+		timesheetImpl.setOvertime(overtime);
+		timesheetImpl.setSick(sick);
+		timesheetImpl.setVacation(vacation);
+		timesheetImpl.setHoliday(holiday);
+		timesheetImpl.setUnpaid(unpaid);
+		timesheetImpl.setOther(other);
+
+		if (remarks == null) {
+			timesheetImpl.setRemarks(StringPool.BLANK);
 		}
 		else {
-			timesheetImpl.setLogType(logType);
+			timesheetImpl.setRemarks(remarks);
 		}
 
-		timesheetImpl.setHours(hours);
+		timesheetImpl.setStatus(status);
 		timesheetImpl.setProjectId(projectId);
 
 		timesheetImpl.resetOriginalValues();
@@ -91,8 +113,15 @@ public class TimesheetCacheModel implements CacheModel<Timesheet>,
 		timesheetId = objectInput.readInt();
 		employeeId = objectInput.readInt();
 		logDate = objectInput.readLong();
-		logType = objectInput.readUTF();
-		hours = objectInput.readDouble();
+		regular = objectInput.readDouble();
+		overtime = objectInput.readDouble();
+		sick = objectInput.readDouble();
+		vacation = objectInput.readDouble();
+		holiday = objectInput.readDouble();
+		unpaid = objectInput.readDouble();
+		other = objectInput.readDouble();
+		remarks = objectInput.readUTF();
+		status = objectInput.readDouble();
 		projectId = objectInput.readInt();
 	}
 
@@ -102,22 +131,36 @@ public class TimesheetCacheModel implements CacheModel<Timesheet>,
 		objectOutput.writeInt(timesheetId);
 		objectOutput.writeInt(employeeId);
 		objectOutput.writeLong(logDate);
+		objectOutput.writeDouble(regular);
+		objectOutput.writeDouble(overtime);
+		objectOutput.writeDouble(sick);
+		objectOutput.writeDouble(vacation);
+		objectOutput.writeDouble(holiday);
+		objectOutput.writeDouble(unpaid);
+		objectOutput.writeDouble(other);
 
-		if (logType == null) {
+		if (remarks == null) {
 			objectOutput.writeUTF(StringPool.BLANK);
 		}
 		else {
-			objectOutput.writeUTF(logType);
+			objectOutput.writeUTF(remarks);
 		}
 
-		objectOutput.writeDouble(hours);
+		objectOutput.writeDouble(status);
 		objectOutput.writeInt(projectId);
 	}
 
 	public int timesheetId;
 	public int employeeId;
 	public long logDate;
-	public String logType;
-	public double hours;
+	public double regular;
+	public double overtime;
+	public double sick;
+	public double vacation;
+	public double holiday;
+	public double unpaid;
+	public double other;
+	public String remarks;
+	public double status;
 	public int projectId;
 }

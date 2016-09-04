@@ -3,6 +3,7 @@
 
 <hibernate-mapping default-lazy="false" auto-import="false">
 	<import class="sg.com.para.intranet.services.model.Employee" />
+	<import class="sg.com.para.intranet.services.model.Expense" />
 	<import class="sg.com.para.intranet.services.model.Project" />
 	<import class="sg.com.para.intranet.services.model.Timesheet" />
 	<class name="sg.com.para.intranet.services.model.impl.EmployeeImpl" table="intranet_employee">
@@ -14,6 +15,19 @@
 		<property name="joinDate" type="org.hibernate.type.TimestampType" />
 		<property name="leaveDate" type="org.hibernate.type.TimestampType" />
 	</class>
+	<class name="sg.com.para.intranet.services.model.impl.ExpenseImpl" table="intranet_expense">
+		<cache usage="read-write" />
+		<id name="expenseId" type="int">
+			<generator class="assigned" />
+		</id>
+		<property name="employeeId" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="expenseDate" type="org.hibernate.type.TimestampType" />
+		<property name="submissionDate" type="org.hibernate.type.TimestampType" />
+		<property name="amount" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
+		<property name="projectId" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="category" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="remarks" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
 	<class name="sg.com.para.intranet.services.model.impl.ProjectImpl" table="intranet_project">
 		<cache usage="read-write" />
 		<id name="projectId" type="int">
@@ -22,15 +36,22 @@
 		<property name="code" type="com.liferay.portal.dao.orm.hibernate.StringType" column="code_" />
 		<property name="description" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
-	<class name="sg.com.para.intranet.services.model.impl.TimesheetImpl" table="intranet_Timesheet">
+	<class name="sg.com.para.intranet.services.model.impl.TimesheetImpl" table="intranet_timesheet">
 		<cache usage="read-write" />
 		<id name="timesheetId" type="int">
 			<generator class="assigned" />
 		</id>
 		<property name="employeeId" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 		<property name="logDate" type="org.hibernate.type.TimestampType" />
-		<property name="logType" type="com.liferay.portal.dao.orm.hibernate.StringType" />
-		<property name="hours" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
+		<property name="regular" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
+		<property name="overtime" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
+		<property name="sick" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
+		<property name="vacation" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
+		<property name="holiday" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
+		<property name="unpaid" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
+		<property name="other" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
+		<property name="remarks" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="status" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
 		<property name="projectId" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
 	</class>
 </hibernate-mapping>

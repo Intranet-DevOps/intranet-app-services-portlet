@@ -7,6 +7,16 @@
 		<field name="joinDate" type="Date" />
 		<field name="leaveDate" type="Date" />
 	</model>
+	<model name="sg.com.para.intranet.services.model.Expense">
+		<field name="expenseId" type="int" />
+		<field name="employeeId" type="int" />
+		<field name="expenseDate" type="Date" />
+		<field name="submissionDate" type="Date" />
+		<field name="amount" type="double" />
+		<field name="projectId" type="int" />
+		<field name="category" type="String" />
+		<field name="remarks" type="String" />
+	</model>
 	<model name="sg.com.para.intranet.services.model.Project">
 		<field name="projectId" type="int" />
 		<field name="code" type="String" />
@@ -16,8 +26,15 @@
 		<field name="timesheetId" type="int" />
 		<field name="employeeId" type="int" />
 		<field name="logDate" type="Date" />
-		<field name="logType" type="String" />
-		<field name="hours" type="double" />
+		<field name="regular" type="double" />
+		<field name="overtime" type="double" />
+		<field name="sick" type="double" />
+		<field name="vacation" type="double" />
+		<field name="holiday" type="double" />
+		<field name="unpaid" type="double" />
+		<field name="other" type="double" />
+		<field name="remarks" type="String" />
+		<field name="status" type="double" />
 		<field name="projectId" type="int" />
 	</model>
 </model-hints>

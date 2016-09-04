@@ -20,6 +20,8 @@ import com.liferay.portal.kernel.messaging.Message;
 import sg.com.para.intranet.services.service.ClpSerializer;
 import sg.com.para.intranet.services.service.EmployeeLocalServiceUtil;
 import sg.com.para.intranet.services.service.EmployeeServiceUtil;
+import sg.com.para.intranet.services.service.ExpenseLocalServiceUtil;
+import sg.com.para.intranet.services.service.ExpenseServiceUtil;
 import sg.com.para.intranet.services.service.ProjectLocalServiceUtil;
 import sg.com.para.intranet.services.service.ProjectServiceUtil;
 import sg.com.para.intranet.services.service.TimesheetLocalServiceUtil;
@@ -43,6 +45,9 @@ public class ClpMessageListener extends BaseMessageListener {
 			EmployeeLocalServiceUtil.clearService();
 
 			EmployeeServiceUtil.clearService();
+			ExpenseLocalServiceUtil.clearService();
+
+			ExpenseServiceUtil.clearService();
 			ProjectLocalServiceUtil.clearService();
 
 			ProjectServiceUtil.clearService();

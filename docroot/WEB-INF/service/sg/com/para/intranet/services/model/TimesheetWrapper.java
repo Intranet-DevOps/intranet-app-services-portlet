@@ -52,8 +52,15 @@ public class TimesheetWrapper implements Timesheet, ModelWrapper<Timesheet> {
 		attributes.put("timesheetId", getTimesheetId());
 		attributes.put("employeeId", getEmployeeId());
 		attributes.put("logDate", getLogDate());
-		attributes.put("logType", getLogType());
-		attributes.put("hours", getHours());
+		attributes.put("regular", getRegular());
+		attributes.put("overtime", getOvertime());
+		attributes.put("sick", getSick());
+		attributes.put("vacation", getVacation());
+		attributes.put("holiday", getHoliday());
+		attributes.put("unpaid", getUnpaid());
+		attributes.put("other", getOther());
+		attributes.put("remarks", getRemarks());
+		attributes.put("status", getStatus());
 		attributes.put("projectId", getProjectId());
 
 		return attributes;
@@ -79,16 +86,58 @@ public class TimesheetWrapper implements Timesheet, ModelWrapper<Timesheet> {
 			setLogDate(logDate);
 		}
 
-		String logType = (String)attributes.get("logType");
+		Double regular = (Double)attributes.get("regular");
 
-		if (logType != null) {
-			setLogType(logType);
+		if (regular != null) {
+			setRegular(regular);
 		}
 
-		Double hours = (Double)attributes.get("hours");
+		Double overtime = (Double)attributes.get("overtime");
 
-		if (hours != null) {
-			setHours(hours);
+		if (overtime != null) {
+			setOvertime(overtime);
+		}
+
+		Double sick = (Double)attributes.get("sick");
+
+		if (sick != null) {
+			setSick(sick);
+		}
+
+		Double vacation = (Double)attributes.get("vacation");
+
+		if (vacation != null) {
+			setVacation(vacation);
+		}
+
+		Double holiday = (Double)attributes.get("holiday");
+
+		if (holiday != null) {
+			setHoliday(holiday);
+		}
+
+		Double unpaid = (Double)attributes.get("unpaid");
+
+		if (unpaid != null) {
+			setUnpaid(unpaid);
+		}
+
+		Double other = (Double)attributes.get("other");
+
+		if (other != null) {
+			setOther(other);
+		}
+
+		String remarks = (String)attributes.get("remarks");
+
+		if (remarks != null) {
+			setRemarks(remarks);
+		}
+
+		Double status = (Double)attributes.get("status");
+
+		if (status != null) {
+			setStatus(status);
 		}
 
 		Integer projectId = (Integer)attributes.get("projectId");
@@ -179,43 +228,183 @@ public class TimesheetWrapper implements Timesheet, ModelWrapper<Timesheet> {
 	}
 
 	/**
-	* Returns the log type of this timesheet.
+	* Returns the regular of this timesheet.
 	*
-	* @return the log type of this timesheet
+	* @return the regular of this timesheet
 	*/
 	@Override
-	public java.lang.String getLogType() {
-		return _timesheet.getLogType();
+	public double getRegular() {
+		return _timesheet.getRegular();
 	}
 
 	/**
-	* Sets the log type of this timesheet.
+	* Sets the regular of this timesheet.
 	*
-	* @param logType the log type of this timesheet
+	* @param regular the regular of this timesheet
 	*/
 	@Override
-	public void setLogType(java.lang.String logType) {
-		_timesheet.setLogType(logType);
+	public void setRegular(double regular) {
+		_timesheet.setRegular(regular);
 	}
 
 	/**
-	* Returns the hours of this timesheet.
+	* Returns the overtime of this timesheet.
 	*
-	* @return the hours of this timesheet
+	* @return the overtime of this timesheet
 	*/
 	@Override
-	public double getHours() {
-		return _timesheet.getHours();
+	public double getOvertime() {
+		return _timesheet.getOvertime();
 	}
 
 	/**
-	* Sets the hours of this timesheet.
+	* Sets the overtime of this timesheet.
 	*
-	* @param hours the hours of this timesheet
+	* @param overtime the overtime of this timesheet
 	*/
 	@Override
-	public void setHours(double hours) {
-		_timesheet.setHours(hours);
+	public void setOvertime(double overtime) {
+		_timesheet.setOvertime(overtime);
+	}
+
+	/**
+	* Returns the sick of this timesheet.
+	*
+	* @return the sick of this timesheet
+	*/
+	@Override
+	public double getSick() {
+		return _timesheet.getSick();
+	}
+
+	/**
+	* Sets the sick of this timesheet.
+	*
+	* @param sick the sick of this timesheet
+	*/
+	@Override
+	public void setSick(double sick) {
+		_timesheet.setSick(sick);
+	}
+
+	/**
+	* Returns the vacation of this timesheet.
+	*
+	* @return the vacation of this timesheet
+	*/
+	@Override
+	public double getVacation() {
+		return _timesheet.getVacation();
+	}
+
+	/**
+	* Sets the vacation of this timesheet.
+	*
+	* @param vacation the vacation of this timesheet
+	*/
+	@Override
+	public void setVacation(double vacation) {
+		_timesheet.setVacation(vacation);
+	}
+
+	/**
+	* Returns the holiday of this timesheet.
+	*
+	* @return the holiday of this timesheet
+	*/
+	@Override
+	public double getHoliday() {
+		return _timesheet.getHoliday();
+	}
+
+	/**
+	* Sets the holiday of this timesheet.
+	*
+	* @param holiday the holiday of this timesheet
+	*/
+	@Override
+	public void setHoliday(double holiday) {
+		_timesheet.setHoliday(holiday);
+	}
+
+	/**
+	* Returns the unpaid of this timesheet.
+	*
+	* @return the unpaid of this timesheet
+	*/
+	@Override
+	public double getUnpaid() {
+		return _timesheet.getUnpaid();
+	}
+
+	/**
+	* Sets the unpaid of this timesheet.
+	*
+	* @param unpaid the unpaid of this timesheet
+	*/
+	@Override
+	public void setUnpaid(double unpaid) {
+		_timesheet.setUnpaid(unpaid);
+	}
+
+	/**
+	* Returns the other of this timesheet.
+	*
+	* @return the other of this timesheet
+	*/
+	@Override
+	public double getOther() {
+		return _timesheet.getOther();
+	}
+
+	/**
+	* Sets the other of this timesheet.
+	*
+	* @param other the other of this timesheet
+	*/
+	@Override
+	public void setOther(double other) {
+		_timesheet.setOther(other);
+	}
+
+	/**
+	* Returns the remarks of this timesheet.
+	*
+	* @return the remarks of this timesheet
+	*/
+	@Override
+	public java.lang.String getRemarks() {
+		return _timesheet.getRemarks();
+	}
+
+	/**
+	* Sets the remarks of this timesheet.
+	*
+	* @param remarks the remarks of this timesheet
+	*/
+	@Override
+	public void setRemarks(java.lang.String remarks) {
+		_timesheet.setRemarks(remarks);
+	}
+
+	/**
+	* Returns the status of this timesheet.
+	*
+	* @return the status of this timesheet
+	*/
+	@Override
+	public double getStatus() {
+		return _timesheet.getStatus();
+	}
+
+	/**
+	* Sets the status of this timesheet.
+	*
+	* @param status the status of this timesheet
+	*/
+	@Override
+	public void setStatus(double status) {
+		_timesheet.setStatus(status);
 	}
 
 	/**

@@ -17,7 +17,7 @@ package sg.com.para.intranet.services.model;
 import com.liferay.portal.model.PersistedModel;
 
 /**
- * The extended model interface for the Timesheet service. Represents a row in the &quot;intranet_Timesheet&quot; database table, with each column mapped to a property of this class.
+ * The extended model interface for the Timesheet service. Represents a row in the &quot;intranet_timesheet&quot; database table, with each column mapped to a property of this class.
  *
  * @author Fernando Karnagi
  * @see TimesheetModel

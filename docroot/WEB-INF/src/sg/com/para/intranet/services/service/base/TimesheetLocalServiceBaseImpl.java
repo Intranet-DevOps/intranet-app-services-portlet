@@ -34,6 +34,7 @@ import com.liferay.portal.service.persistence.UserPersistence;
 import sg.com.para.intranet.services.model.Timesheet;
 import sg.com.para.intranet.services.service.TimesheetLocalService;
 import sg.com.para.intranet.services.service.persistence.EmployeePersistence;
+import sg.com.para.intranet.services.service.persistence.ExpensePersistence;
 import sg.com.para.intranet.services.service.persistence.ProjectPersistence;
 import sg.com.para.intranet.services.service.persistence.TimesheetPersistence;
 
@@ -337,6 +338,62 @@ public abstract class TimesheetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	/**
+	 * Returns the expense local service.
+	 *
+	 * @return the expense local service
+	 */
+	public sg.com.para.intranet.services.service.ExpenseLocalService getExpenseLocalService() {
+		return expenseLocalService;
+	}
+
+	/**
+	 * Sets the expense local service.
+	 *
+	 * @param expenseLocalService the expense local service
+	 */
+	public void setExpenseLocalService(
+		sg.com.para.intranet.services.service.ExpenseLocalService expenseLocalService) {
+		this.expenseLocalService = expenseLocalService;
+	}
+
+	/**
+	 * Returns the expense remote service.
+	 *
+	 * @return the expense remote service
+	 */
+	public sg.com.para.intranet.services.service.ExpenseService getExpenseService() {
+		return expenseService;
+	}
+
+	/**
+	 * Sets the expense remote service.
+	 *
+	 * @param expenseService the expense remote service
+	 */
+	public void setExpenseService(
+		sg.com.para.intranet.services.service.ExpenseService expenseService) {
+		this.expenseService = expenseService;
+	}
+
+	/**
+	 * Returns the expense persistence.
+	 *
+	 * @return the expense persistence
+	 */
+	public ExpensePersistence getExpensePersistence() {
+		return expensePersistence;
+	}
+
+	/**
+	 * Sets the expense persistence.
+	 *
+	 * @param expensePersistence the expense persistence
+	 */
+	public void setExpensePersistence(ExpensePersistence expensePersistence) {
+		this.expensePersistence = expensePersistence;
+	}
+
+	/**
 	 * Returns the project local service.
 	 *
 	 * @return the project local service
@@ -631,6 +688,12 @@ public abstract class TimesheetLocalServiceBaseImpl extends BaseLocalServiceImpl
 	protected sg.com.para.intranet.services.service.EmployeeService employeeService;
 	@BeanReference(type = EmployeePersistence.class)
 	protected EmployeePersistence employeePersistence;
+	@BeanReference(type = sg.com.para.intranet.services.service.ExpenseLocalService.class)
+	protected sg.com.para.intranet.services.service.ExpenseLocalService expenseLocalService;
+	@BeanReference(type = sg.com.para.intranet.services.service.ExpenseService.class)
+	protected sg.com.para.intranet.services.service.ExpenseService expenseService;
+	@BeanReference(type = ExpensePersistence.class)
+	protected ExpensePersistence expensePersistence;
 	@BeanReference(type = sg.com.para.intranet.services.service.ProjectLocalService.class)
 	protected sg.com.para.intranet.services.service.ProjectLocalService projectLocalService;
 	@BeanReference(type = sg.com.para.intranet.services.service.ProjectService.class)

@@ -14,13 +14,30 @@
         <column name="code" type="String"></column>
         <column name="description" type="String"></column>
     </entity>
-    <entity name="Timesheet" local-service="true">
+    <entity name="Timesheet" local-service="true" table="intranet_timesheet">
         <column name="timesheetId" type="int" primary="true"></column>
         <column name="employeeId" type="int"></column>
         <column name="logDate" type="Date"></column>
-        <column name="logType" type="String"></column>
-        <column name="hours" type="double"></column>
+        <column name="regular" type="double"></column> 
+        <column name="overtime" type="double"></column>
+        <column name="sick" type="double"></column>
+        <column name="vacation" type="double"></column>
+        <column name="holiday" type="double"></column>
+        <column name="unpaid" type="double"></column>
+        <column name="other" type="double"></column>
+        <column name="remarks" type="String"></column>
+        <column name="status" type="double"></column>
         <column name="projectId" type="int"></column>
+    </entity>
+    <entity name="Expense" local-service="true" table="intranet_expense">
+    	<column name="expenseId" type="int" primary="true"></column>
+        <column name="employeeId" type="int"></column>
+        <column name="expenseDate" type="Date"></column>
+        <column name="submissionDate" type="Date"></column>
+        <column name="amount" type="double"></column>
+    	<column name="projectId" type="int"></column>
+    	<column name="category" type="String"></column>
+    	<column name="remarks" type="String"></column>
     </entity>
 
 	
