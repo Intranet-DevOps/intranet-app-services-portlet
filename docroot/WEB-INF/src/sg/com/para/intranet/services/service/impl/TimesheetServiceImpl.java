@@ -17,11 +17,10 @@ package sg.com.para.intranet.services.service.impl;
 import java.util.Date;
 import java.util.List;
 
-import com.liferay.counter.service.CounterLocalServiceUtil;
-import com.liferay.portal.kernel.util.StringUtil;
-
 import sg.com.para.intranet.services.model.Timesheet;
 import sg.com.para.intranet.services.service.base.TimesheetServiceBaseImpl;
+
+import com.liferay.counter.service.CounterLocalServiceUtil;
 
 /**
  * The implementation of the timesheet remote service.
@@ -76,12 +75,12 @@ public class TimesheetServiceImpl extends TimesheetServiceBaseImpl {
 		timesheet.setProjectCode(projectCode);
 
 		timesheetLocalService.updateTimesheet(timesheet);
-		
+
 		return timesheet;
 	}
 
-	public Timesheet updateTimeSheet(int timesheetId, String employeeScreenName, double regular, double overtime, double sick,
-			double vacation, double holiday, double unpaid, double other, String remarks, String status,
+	public Timesheet updateTimeSheet(int timesheetId, String employeeScreenName, double regular, double overtime,
+			double sick, double vacation, double holiday, double unpaid, double other, String remarks, String status,
 			String projectCode) throws Exception {
 		Timesheet timesheet = timesheetLocalService.fetchTimesheet(timesheetId);
 		timesheet.setEmployeeScreenName(employeeScreenName);
@@ -97,7 +96,7 @@ public class TimesheetServiceImpl extends TimesheetServiceBaseImpl {
 		timesheet.setProjectCode(projectCode);
 
 		timesheet = timesheetLocalService.updateTimesheet(timesheet);
-		
+
 		return timesheet;
 	}
 

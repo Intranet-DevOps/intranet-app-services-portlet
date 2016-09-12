@@ -14,11 +14,14 @@
 
 package sg.com.para.intranet.services.service.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import sg.com.para.intranet.services.model.Timesheet;
+import sg.com.para.intranet.services.model.impl.TimesheetImpl;
 import sg.com.para.intranet.services.service.base.TimesheetLocalServiceBaseImpl;
+import sg.com.para.intranet.services.util.DateUtils;
 
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
@@ -57,12 +60,36 @@ public class TimesheetLocalServiceImpl extends TimesheetLocalServiceBaseImpl {
 		return timesheetPersistence.findByPrimaryKey(timesheetId);
 	}
 
+	private Timesheet isTimesheetPresent(Date date, List<Timesheet> timesheets) {
+		for (Timesheet timesheet : timesheets) {
+			if (DateUtils.isSameDate(date, timesheet.getLogDate())) {
+				return timesheet;
+			}
+		}
+		return null;
+	}
+
 	public List<Timesheet> findTimesheetsByUser(Date startDate, Date endDate, String userId) throws Exception {
 		DynamicQuery dynaQuery = DynamicQueryFactoryUtil.forClass(Timesheet.class)
 				.add(PropertyFactoryUtil.forName("employeeScreenName").eq(userId))
 				.addOrder(OrderFactoryUtil.asc("logDate"));
-		List<Timesheet> ret = timesheetPersistence.findWithDynamicQuery(dynaQuery);
-		
-		return ret; 
+		List<Timesheet> timesheets = timesheetPersistence.findWithDynamicQuery(dynaQuery);
+		List<Timesheet> timesheetsRet = new ArrayList<Timesheet>();
+		int currentTime = (int) new Date().getTime();
+		while (startDate.before(endDate)) {
+			Timesheet existingTimesheet = isTimesheetPresent(startDate, timesheets);
+			if (existingTimesheet == null) {
+				currentTime++;
+				existingTimesheet = new TimesheetImpl();
+				existingTimesheet.setTimesheetId(currentTime);
+				existingTimesheet.setEmployeeScreenName(userId);
+				existingTimesheet.setLogDate(startDate);
+			}
+
+			timesheetsRet.add(existingTimesheet);
+			startDate = DateUtils.increaseDay(startDate, 1);
+		}
+
+		return timesheetsRet;
 	}
 }
