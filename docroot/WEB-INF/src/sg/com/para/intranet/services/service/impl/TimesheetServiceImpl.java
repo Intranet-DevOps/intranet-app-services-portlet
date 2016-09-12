@@ -21,6 +21,8 @@ import sg.com.para.intranet.services.model.Timesheet;
 import sg.com.para.intranet.services.service.base.TimesheetServiceBaseImpl;
 
 import com.liferay.counter.service.CounterLocalServiceUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 
 /**
  * The implementation of the timesheet remote service.
@@ -41,6 +43,9 @@ import com.liferay.counter.service.CounterLocalServiceUtil;
  * @see sg.com.para.intranet.services.service.TimesheetServiceUtil
  */
 public class TimesheetServiceImpl extends TimesheetServiceBaseImpl {
+
+	private static Log _log = LogFactoryUtil.getLog(TimesheetServiceImpl.class);
+
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 * 
@@ -49,21 +54,26 @@ public class TimesheetServiceImpl extends TimesheetServiceBaseImpl {
 	 * timesheet remote service.
 	 */
 
-	public Timesheet getTimesheet(int timesheetId) throws Exception {
-		return timesheetLocalService.getTimesheet(timesheetId);
+	public Timesheet getTimesheet(int timesheetId, String actor) throws Exception {
+		_log.info("getTimesheet [timesheetId: " + timesheetId + "]");
+		return timesheetLocalService.getTimesheet(timesheetId, actor);
 	}
 
-	public List<Timesheet> findTimesheetsByUser(Date startDate, Date endDate, String userId) throws Exception {
-		return timesheetLocalService.findTimesheetsByUser(startDate, endDate, userId);
+	public List<Timesheet> findTimesheetsByUser(Date startDate, Date endDate, String userId, String actor)
+			throws Exception {
+		_log.info("findTimesheetsByUser [startDate: " + startDate + ", endDate: " + endDate + ", userId: " + userId
+				+ "]");
+		return timesheetLocalService.findTimesheetsByUser(startDate, endDate, userId, actor);
 	}
 
 	public Timesheet createTimeSheet(String employeeScreenName, double regular, double overtime, double sick,
 			double vacation, double holiday, double unpaid, double other, String remarks, String status,
-			String projectCode) throws Exception {
+			String projectCode, String actor) throws Exception {
 		Timesheet timesheet = timesheetLocalService.createTimesheet((int) CounterLocalServiceUtil
 				.increment(Timesheet.class.toString()));
 		timesheet.setEmployeeScreenName(employeeScreenName);
 		timesheet.setRegular(regular);
+		timesheet.setLogDate(new Date());
 		timesheet.setOvertime(overtime);
 		timesheet.setSick(sick);
 		timesheet.setVacation(vacation);
@@ -81,7 +91,11 @@ public class TimesheetServiceImpl extends TimesheetServiceBaseImpl {
 
 	public Timesheet updateTimeSheet(int timesheetId, String employeeScreenName, double regular, double overtime,
 			double sick, double vacation, double holiday, double unpaid, double other, String remarks, String status,
-			String projectCode) throws Exception {
+			String projectCode, String actor) throws Exception {
+		_log.info("updateTimeSheet [timesheetId: " + timesheetId + ", employeeScreenName: " + employeeScreenName
+				+ ", regular " + regular + ", overtime: " + overtime + ", sick: " + sick + ", vacation: " + vacation
+				+ ", unpaid: " + unpaid + ", other: " + other + ", remarks: " + remarks + ", status: " + status
+				+ ", projectCode: " + projectCode + "]");
 		Timesheet timesheet = timesheetLocalService.fetchTimesheet(timesheetId);
 		timesheet.setEmployeeScreenName(employeeScreenName);
 		timesheet.setRegular(regular);
@@ -100,4 +114,31 @@ public class TimesheetServiceImpl extends TimesheetServiceBaseImpl {
 		return timesheet;
 	}
 
+	public void approveTimeSheet(int timesheetId, String actor) throws Exception {
+		_log.info("approveTimeSheet [timesheetId: " + timesheetId + ", by approver: " + actor + "]");
+		Timesheet timesheet = timesheetLocalService.fetchTimesheet(timesheetId);
+		timesheet.setStatus("APPROVED");
+		timesheetLocalService.updateTimesheet(timesheet);
+	}
+
+	public void rejectTimeSheet(int timesheetId, String comment, String actor) throws Exception {
+		_log.info("approveTimeSheet [timesheetId: " + timesheetId + ", by approver: " + actor + ", comment: " + comment
+				+ "]");
+		Timesheet timesheet = timesheetLocalService.fetchTimesheet(timesheetId);
+		timesheet.setStatus("REJECTED");
+		timesheetLocalService.updateTimesheet(timesheet);
+	}
+
+	public void submitMonth(int year, int month, String userId, String actor) throws Exception {
+		_log.info("submitMonth [year: " + year + ", month: " + month + ", userId: " + userId + "]");
+	}
+
+	public void rejectMonth(int year, int month, String comment, String actor) throws Exception {
+		_log.info("rejectMonth [year: " + year + ", month: " + month + ", by approver: " + actor + ", comment: "
+				+ comment + "]");
+	}
+
+	public void c(int year, int month, String userId, String actor) throws Exception {
+		_log.info("comment [year: " + year + ", month: " + month + ", by approver: " + actor + "]");
+	}
 }

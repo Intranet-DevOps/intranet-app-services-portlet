@@ -114,10 +114,15 @@ public class TimesheetLocalServiceClp implements TimesheetLocalService {
 
 		_methodParameterTypes17 = new String[] { "java.lang.String" };
 
-		_methodName19 = "findTimesheetsByUser";
+		_methodName19 = "getTimesheet";
 
-		_methodParameterTypes19 = new String[] {
-				"java.util.Date", "java.util.Date", "java.lang.String"
+		_methodParameterTypes19 = new String[] { "int", "java.lang.String" };
+
+		_methodName20 = "findTimesheetsByUser";
+
+		_methodParameterTypes20 = new String[] {
+				"java.util.Date", "java.util.Date", "java.lang.String",
+				"java.lang.String"
 			};
 	}
 
@@ -469,8 +474,7 @@ public class TimesheetLocalServiceClp implements TimesheetLocalService {
 	public sg.com.para.intranet.services.model.Timesheet getTimesheet(
 		int timesheetId)
 		throws com.liferay.portal.kernel.exception.PortalException,
-			com.liferay.portal.kernel.exception.SystemException,
-			java.lang.Exception {
+			com.liferay.portal.kernel.exception.SystemException {
 		Object returnObj = null;
 
 		try {
@@ -486,10 +490,6 @@ public class TimesheetLocalServiceClp implements TimesheetLocalService {
 
 			if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
 				throw (com.liferay.portal.kernel.exception.SystemException)t;
-			}
-
-			if (t instanceof java.lang.Exception) {
-				throw (java.lang.Exception)t;
 			}
 
 			if (t instanceof RuntimeException) {
@@ -677,20 +677,56 @@ public class TimesheetLocalServiceClp implements TimesheetLocalService {
 	}
 
 	@Override
-	public java.util.List<sg.com.para.intranet.services.model.Timesheet> findTimesheetsByUser(
-		java.util.Date startDate, java.util.Date endDate,
-		java.lang.String userId) throws java.lang.Exception {
+	public sg.com.para.intranet.services.model.Timesheet getTimesheet(
+		int timesheetId, java.lang.String actor) throws java.lang.Exception {
 		Object returnObj = null;
 
 		try {
 			returnObj = _invokableLocalService.invokeMethod(_methodName19,
 					_methodParameterTypes19,
 					new Object[] {
+						timesheetId,
+						
+					ClpSerializer.translateInput(actor)
+					});
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof java.lang.Exception) {
+				throw (java.lang.Exception)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+
+		return (sg.com.para.intranet.services.model.Timesheet)ClpSerializer.translateOutput(returnObj);
+	}
+
+	@Override
+	public java.util.List<sg.com.para.intranet.services.model.Timesheet> findTimesheetsByUser(
+		java.util.Date startDate, java.util.Date endDate,
+		java.lang.String userId, java.lang.String actor)
+		throws java.lang.Exception {
+		Object returnObj = null;
+
+		try {
+			returnObj = _invokableLocalService.invokeMethod(_methodName20,
+					_methodParameterTypes20,
+					new Object[] {
 						ClpSerializer.translateInput(startDate),
 						
 					ClpSerializer.translateInput(endDate),
 						
-					ClpSerializer.translateInput(userId)
+					ClpSerializer.translateInput(userId),
+						
+					ClpSerializer.translateInput(actor)
 					});
 		}
 		catch (Throwable t) {
@@ -751,4 +787,6 @@ public class TimesheetLocalServiceClp implements TimesheetLocalService {
 	private String[] _methodParameterTypes17;
 	private String _methodName19;
 	private String[] _methodParameterTypes19;
+	private String _methodName20;
+	private String[] _methodParameterTypes20;
 }

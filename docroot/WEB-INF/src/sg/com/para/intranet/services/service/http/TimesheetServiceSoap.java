@@ -63,9 +63,10 @@ import java.rmi.RemoteException;
  */
 public class TimesheetServiceSoap {
 	public static sg.com.para.intranet.services.model.TimesheetSoap getTimesheet(
-		int timesheetId) throws RemoteException {
+		int timesheetId, java.lang.String actor) throws RemoteException {
 		try {
-			sg.com.para.intranet.services.model.Timesheet returnValue = TimesheetServiceUtil.getTimesheet(timesheetId);
+			sg.com.para.intranet.services.model.Timesheet returnValue = TimesheetServiceUtil.getTimesheet(timesheetId,
+					actor);
 
 			return sg.com.para.intranet.services.model.TimesheetSoap.toSoapModel(returnValue);
 		}
@@ -78,11 +79,12 @@ public class TimesheetServiceSoap {
 
 	public static sg.com.para.intranet.services.model.TimesheetSoap[] findTimesheetsByUser(
 		java.util.Date startDate, java.util.Date endDate,
-		java.lang.String userId) throws RemoteException {
+		java.lang.String userId, java.lang.String actor)
+		throws RemoteException {
 		try {
 			java.util.List<sg.com.para.intranet.services.model.Timesheet> returnValue =
 				TimesheetServiceUtil.findTimesheetsByUser(startDate, endDate,
-					userId);
+					userId, actor);
 
 			return sg.com.para.intranet.services.model.TimesheetSoap.toSoapModels(returnValue);
 		}
@@ -97,11 +99,12 @@ public class TimesheetServiceSoap {
 		java.lang.String employeeScreenName, double regular, double overtime,
 		double sick, double vacation, double holiday, double unpaid,
 		double other, java.lang.String remarks, java.lang.String status,
-		java.lang.String projectCode) throws RemoteException {
+		java.lang.String projectCode, java.lang.String actor)
+		throws RemoteException {
 		try {
 			sg.com.para.intranet.services.model.Timesheet returnValue = TimesheetServiceUtil.createTimeSheet(employeeScreenName,
 					regular, overtime, sick, vacation, holiday, unpaid, other,
-					remarks, status, projectCode);
+					remarks, status, projectCode, actor);
 
 			return sg.com.para.intranet.services.model.TimesheetSoap.toSoapModel(returnValue);
 		}
@@ -116,14 +119,77 @@ public class TimesheetServiceSoap {
 		int timesheetId, java.lang.String employeeScreenName, double regular,
 		double overtime, double sick, double vacation, double holiday,
 		double unpaid, double other, java.lang.String remarks,
-		java.lang.String status, java.lang.String projectCode)
-		throws RemoteException {
+		java.lang.String status, java.lang.String projectCode,
+		java.lang.String actor) throws RemoteException {
 		try {
 			sg.com.para.intranet.services.model.Timesheet returnValue = TimesheetServiceUtil.updateTimeSheet(timesheetId,
 					employeeScreenName, regular, overtime, sick, vacation,
-					holiday, unpaid, other, remarks, status, projectCode);
+					holiday, unpaid, other, remarks, status, projectCode, actor);
 
 			return sg.com.para.intranet.services.model.TimesheetSoap.toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static void approveTimeSheet(int timesheetId, java.lang.String actor)
+		throws RemoteException {
+		try {
+			TimesheetServiceUtil.approveTimeSheet(timesheetId, actor);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static void rejectTimeSheet(int timesheetId,
+		java.lang.String comment, java.lang.String actor)
+		throws RemoteException {
+		try {
+			TimesheetServiceUtil.rejectTimeSheet(timesheetId, comment, actor);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static void submitMonth(int year, int month,
+		java.lang.String userId, java.lang.String actor)
+		throws RemoteException {
+		try {
+			TimesheetServiceUtil.submitMonth(year, month, userId, actor);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static void rejectMonth(int year, int month,
+		java.lang.String comment, java.lang.String actor)
+		throws RemoteException {
+		try {
+			TimesheetServiceUtil.rejectMonth(year, month, comment, actor);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static void c(int year, int month, java.lang.String userId,
+		java.lang.String actor) throws RemoteException {
+		try {
+			TimesheetServiceUtil.c(year, month, userId, actor);
 		}
 		catch (Exception e) {
 			_log.error(e, e);

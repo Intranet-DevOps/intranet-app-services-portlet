@@ -19,7 +19,7 @@ import java.util.Date;
 import java.util.List;
 
 import sg.com.para.intranet.services.model.Timesheet;
-import sg.com.para.intranet.services.model.impl.TimesheetImpl;
+import sg.com.para.intranet.services.model.bean.TimesheetBean;
 import sg.com.para.intranet.services.service.base.TimesheetLocalServiceBaseImpl;
 import sg.com.para.intranet.services.util.DateUtils;
 
@@ -27,6 +27,8 @@ import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.OrderFactoryUtil;
 import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 
 /**
  * The implementation of the timesheet local service.
@@ -48,7 +50,11 @@ import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
  * @see sg.com.para.intranet.services.service.TimesheetLocalServiceUtil
  */
 public class TimesheetLocalServiceImpl extends TimesheetLocalServiceBaseImpl {
+
+	private static Log _log = LogFactoryUtil.getLog(TimesheetLocalServiceImpl.class);
+
 	/*
+	 * 
 	 * NOTE FOR DEVELOPERS:
 	 * 
 	 * Never reference this interface directly. Always use {@link
@@ -56,31 +62,38 @@ public class TimesheetLocalServiceImpl extends TimesheetLocalServiceBaseImpl {
 	 * access the timesheet local service.
 	 */
 
-	public Timesheet getTimesheet(int timesheetId) throws Exception {
+	public Timesheet getTimesheet(int timesheetId, String actor) throws Exception {
 		return timesheetPersistence.findByPrimaryKey(timesheetId);
 	}
 
 	private Timesheet isTimesheetPresent(Date date, List<Timesheet> timesheets) {
 		for (Timesheet timesheet : timesheets) {
-			if (DateUtils.isSameDate(date, timesheet.getLogDate())) {
-				return timesheet;
+			if (timesheet.getLogDate() != null) {
+				if (DateUtils.isSameDate(date, timesheet.getLogDate())) {
+					return timesheet;
+				}
 			}
 		}
 		return null;
 	}
 
-	public List<Timesheet> findTimesheetsByUser(Date startDate, Date endDate, String userId) throws Exception {
-		DynamicQuery dynaQuery = DynamicQueryFactoryUtil.forClass(Timesheet.class)
+	public List<Timesheet> findTimesheetsByUser(Date startDate, Date endDate, String userId, String actor)
+			throws Exception {
+ 
+		DynamicQuery dynaQuery = DynamicQueryFactoryUtil.forClass(Timesheet.class, getClass().getClassLoader())
 				.add(PropertyFactoryUtil.forName("employeeScreenName").eq(userId))
 				.addOrder(OrderFactoryUtil.asc("logDate"));
+
 		List<Timesheet> timesheets = timesheetPersistence.findWithDynamicQuery(dynaQuery);
+		_log.info("find with dynamic query [timesheets: " + timesheets + "]");
 		List<Timesheet> timesheetsRet = new ArrayList<Timesheet>();
 		int currentTime = (int) new Date().getTime();
 		while (startDate.before(endDate)) {
 			Timesheet existingTimesheet = isTimesheetPresent(startDate, timesheets);
+			_log.info("isTimesheetPresent [" + startDate + "]:  " + existingTimesheet);
 			if (existingTimesheet == null) {
 				currentTime++;
-				existingTimesheet = new TimesheetImpl();
+				existingTimesheet = new TimesheetBean();
 				existingTimesheet.setTimesheetId(currentTime);
 				existingTimesheet.setEmployeeScreenName(userId);
 				existingTimesheet.setLogDate(startDate);

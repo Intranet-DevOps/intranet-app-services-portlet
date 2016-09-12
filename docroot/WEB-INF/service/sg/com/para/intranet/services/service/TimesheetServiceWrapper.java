@@ -58,15 +58,17 @@ public class TimesheetServiceWrapper implements TimesheetService,
 
 	@Override
 	public sg.com.para.intranet.services.model.Timesheet getTimesheet(
-		int timesheetId) throws java.lang.Exception {
-		return _timesheetService.getTimesheet(timesheetId);
+		int timesheetId, java.lang.String actor) throws java.lang.Exception {
+		return _timesheetService.getTimesheet(timesheetId, actor);
 	}
 
 	@Override
 	public java.util.List<sg.com.para.intranet.services.model.Timesheet> findTimesheetsByUser(
 		java.util.Date startDate, java.util.Date endDate,
-		java.lang.String userId) throws java.lang.Exception {
-		return _timesheetService.findTimesheetsByUser(startDate, endDate, userId);
+		java.lang.String userId, java.lang.String actor)
+		throws java.lang.Exception {
+		return _timesheetService.findTimesheetsByUser(startDate, endDate,
+			userId, actor);
 	}
 
 	@Override
@@ -74,10 +76,11 @@ public class TimesheetServiceWrapper implements TimesheetService,
 		java.lang.String employeeScreenName, double regular, double overtime,
 		double sick, double vacation, double holiday, double unpaid,
 		double other, java.lang.String remarks, java.lang.String status,
-		java.lang.String projectCode) throws java.lang.Exception {
+		java.lang.String projectCode, java.lang.String actor)
+		throws java.lang.Exception {
 		return _timesheetService.createTimeSheet(employeeScreenName, regular,
 			overtime, sick, vacation, holiday, unpaid, other, remarks, status,
-			projectCode);
+			projectCode, actor);
 	}
 
 	@Override
@@ -85,11 +88,41 @@ public class TimesheetServiceWrapper implements TimesheetService,
 		int timesheetId, java.lang.String employeeScreenName, double regular,
 		double overtime, double sick, double vacation, double holiday,
 		double unpaid, double other, java.lang.String remarks,
-		java.lang.String status, java.lang.String projectCode)
-		throws java.lang.Exception {
+		java.lang.String status, java.lang.String projectCode,
+		java.lang.String actor) throws java.lang.Exception {
 		return _timesheetService.updateTimeSheet(timesheetId,
 			employeeScreenName, regular, overtime, sick, vacation, holiday,
-			unpaid, other, remarks, status, projectCode);
+			unpaid, other, remarks, status, projectCode, actor);
+	}
+
+	@Override
+	public void approveTimeSheet(int timesheetId, java.lang.String actor)
+		throws java.lang.Exception {
+		_timesheetService.approveTimeSheet(timesheetId, actor);
+	}
+
+	@Override
+	public void rejectTimeSheet(int timesheetId, java.lang.String comment,
+		java.lang.String actor) throws java.lang.Exception {
+		_timesheetService.rejectTimeSheet(timesheetId, comment, actor);
+	}
+
+	@Override
+	public void submitMonth(int year, int month, java.lang.String userId,
+		java.lang.String actor) throws java.lang.Exception {
+		_timesheetService.submitMonth(year, month, userId, actor);
+	}
+
+	@Override
+	public void rejectMonth(int year, int month, java.lang.String comment,
+		java.lang.String actor) throws java.lang.Exception {
+		_timesheetService.rejectMonth(year, month, comment, actor);
+	}
+
+	@Override
+	public void c(int year, int month, java.lang.String userId,
+		java.lang.String actor) throws java.lang.Exception {
+		_timesheetService.c(year, month, userId, actor);
 	}
 
 	/**

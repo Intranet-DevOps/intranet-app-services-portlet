@@ -64,36 +64,68 @@ public class TimesheetServiceUtil {
 	}
 
 	public static sg.com.para.intranet.services.model.Timesheet getTimesheet(
-		int timesheetId) throws java.lang.Exception {
-		return getService().getTimesheet(timesheetId);
+		int timesheetId, java.lang.String actor) throws java.lang.Exception {
+		return getService().getTimesheet(timesheetId, actor);
 	}
 
 	public static java.util.List<sg.com.para.intranet.services.model.Timesheet> findTimesheetsByUser(
 		java.util.Date startDate, java.util.Date endDate,
-		java.lang.String userId) throws java.lang.Exception {
-		return getService().findTimesheetsByUser(startDate, endDate, userId);
+		java.lang.String userId, java.lang.String actor)
+		throws java.lang.Exception {
+		return getService()
+				   .findTimesheetsByUser(startDate, endDate, userId, actor);
 	}
 
 	public static sg.com.para.intranet.services.model.Timesheet createTimeSheet(
 		java.lang.String employeeScreenName, double regular, double overtime,
 		double sick, double vacation, double holiday, double unpaid,
 		double other, java.lang.String remarks, java.lang.String status,
-		java.lang.String projectCode) throws java.lang.Exception {
+		java.lang.String projectCode, java.lang.String actor)
+		throws java.lang.Exception {
 		return getService()
 				   .createTimeSheet(employeeScreenName, regular, overtime,
-			sick, vacation, holiday, unpaid, other, remarks, status, projectCode);
+			sick, vacation, holiday, unpaid, other, remarks, status,
+			projectCode, actor);
 	}
 
 	public static sg.com.para.intranet.services.model.Timesheet updateTimeSheet(
 		int timesheetId, java.lang.String employeeScreenName, double regular,
 		double overtime, double sick, double vacation, double holiday,
 		double unpaid, double other, java.lang.String remarks,
-		java.lang.String status, java.lang.String projectCode)
-		throws java.lang.Exception {
+		java.lang.String status, java.lang.String projectCode,
+		java.lang.String actor) throws java.lang.Exception {
 		return getService()
 				   .updateTimeSheet(timesheetId, employeeScreenName, regular,
 			overtime, sick, vacation, holiday, unpaid, other, remarks, status,
-			projectCode);
+			projectCode, actor);
+	}
+
+	public static void approveTimeSheet(int timesheetId, java.lang.String actor)
+		throws java.lang.Exception {
+		getService().approveTimeSheet(timesheetId, actor);
+	}
+
+	public static void rejectTimeSheet(int timesheetId,
+		java.lang.String comment, java.lang.String actor)
+		throws java.lang.Exception {
+		getService().rejectTimeSheet(timesheetId, comment, actor);
+	}
+
+	public static void submitMonth(int year, int month,
+		java.lang.String userId, java.lang.String actor)
+		throws java.lang.Exception {
+		getService().submitMonth(year, month, userId, actor);
+	}
+
+	public static void rejectMonth(int year, int month,
+		java.lang.String comment, java.lang.String actor)
+		throws java.lang.Exception {
+		getService().rejectMonth(year, month, comment, actor);
+	}
+
+	public static void c(int year, int month, java.lang.String userId,
+		java.lang.String actor) throws java.lang.Exception {
+		getService().c(year, month, userId, actor);
 	}
 
 	public static void clearService() {

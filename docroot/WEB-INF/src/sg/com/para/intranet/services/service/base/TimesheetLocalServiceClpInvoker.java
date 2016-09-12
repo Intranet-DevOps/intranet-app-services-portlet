@@ -116,12 +116,13 @@ public class TimesheetLocalServiceClpInvoker {
 
 		_methodName58 = "getTimesheet";
 
-		_methodParameterTypes58 = new String[] { "int" };
+		_methodParameterTypes58 = new String[] { "int", "java.lang.String" };
 
 		_methodName60 = "findTimesheetsByUser";
 
 		_methodParameterTypes60 = new String[] {
-				"java.util.Date", "java.util.Date", "java.lang.String"
+				"java.util.Date", "java.util.Date", "java.lang.String",
+				"java.lang.String"
 			};
 	}
 
@@ -228,13 +229,15 @@ public class TimesheetLocalServiceClpInvoker {
 
 		if (_methodName58.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes58, parameterTypes)) {
-			return TimesheetLocalServiceUtil.getTimesheet(((Integer)arguments[0]).intValue());
+			return TimesheetLocalServiceUtil.getTimesheet(((Integer)arguments[0]).intValue(),
+				(java.lang.String)arguments[1]);
 		}
 
 		if (_methodName60.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes60, parameterTypes)) {
 			return TimesheetLocalServiceUtil.findTimesheetsByUser((java.util.Date)arguments[0],
-				(java.util.Date)arguments[1], (java.lang.String)arguments[2]);
+				(java.util.Date)arguments[1], (java.lang.String)arguments[2],
+				(java.lang.String)arguments[3]);
 		}
 
 		throw new UnsupportedOperationException();
