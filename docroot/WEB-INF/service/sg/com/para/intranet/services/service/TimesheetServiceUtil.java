@@ -123,9 +123,10 @@ public class TimesheetServiceUtil {
 		getService().rejectMonth(year, month, comment, actor);
 	}
 
-	public static void c(int year, int month, java.lang.String userId,
-		java.lang.String actor) throws java.lang.Exception {
-		getService().c(year, month, userId, actor);
+	public static void approveMonth(int year, int month,
+		java.lang.String userId, java.lang.String actor)
+		throws java.lang.Exception {
+		getService().approveMonth(year, month, userId, actor);
 	}
 
 	public static void clearService() {

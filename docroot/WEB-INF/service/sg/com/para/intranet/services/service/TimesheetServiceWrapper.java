@@ -120,9 +120,9 @@ public class TimesheetServiceWrapper implements TimesheetService,
 	}
 
 	@Override
-	public void c(int year, int month, java.lang.String userId,
+	public void approveMonth(int year, int month, java.lang.String userId,
 		java.lang.String actor) throws java.lang.Exception {
-		_timesheetService.c(year, month, userId, actor);
+		_timesheetService.approveMonth(year, month, userId, actor);
 	}
 
 	/**

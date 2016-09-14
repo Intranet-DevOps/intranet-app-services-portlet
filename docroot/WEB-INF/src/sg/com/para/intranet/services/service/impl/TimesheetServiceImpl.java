@@ -138,7 +138,7 @@ public class TimesheetServiceImpl extends TimesheetServiceBaseImpl {
 				+ comment + "]");
 	}
 
-	public void c(int year, int month, String userId, String actor) throws Exception {
-		_log.info("comment [year: " + year + ", month: " + month + ", by approver: " + actor + "]");
+	public void approveMonth(int year, int month, String userId, String actor) throws Exception {
+		_log.info("approveMonth [year: " + year + ", month: " + month + ", userId: " + userId + "]");
 	}
 }

@@ -81,7 +81,7 @@ public class TimesheetServiceClp implements TimesheetService {
 				"int", "int", "java.lang.String", "java.lang.String"
 			};
 
-		_methodName11 = "c";
+		_methodName11 = "approveMonth";
 
 		_methodParameterTypes11 = new String[] {
 				"int", "int", "java.lang.String", "java.lang.String"
@@ -449,7 +449,7 @@ public class TimesheetServiceClp implements TimesheetService {
 	}
 
 	@Override
-	public void c(int year, int month, java.lang.String userId,
+	public void approveMonth(int year, int month, java.lang.String userId,
 		java.lang.String actor) throws java.lang.Exception {
 		try {
 			_invokableService.invokeMethod(_methodName11,

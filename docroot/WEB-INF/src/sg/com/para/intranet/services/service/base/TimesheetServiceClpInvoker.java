@@ -81,7 +81,7 @@ public class TimesheetServiceClpInvoker {
 				"int", "int", "java.lang.String", "java.lang.String"
 			};
 
-		_methodName50 = "c";
+		_methodName50 = "approveMonth";
 
 		_methodParameterTypes50 = new String[] {
 				"int", "int", "java.lang.String", "java.lang.String"
@@ -181,7 +181,7 @@ public class TimesheetServiceClpInvoker {
 
 		if (_methodName50.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
-			TimesheetServiceUtil.c(((Integer)arguments[0]).intValue(),
+			TimesheetServiceUtil.approveMonth(((Integer)arguments[0]).intValue(),
 				((Integer)arguments[1]).intValue(),
 				(java.lang.String)arguments[2], (java.lang.String)arguments[3]);
 

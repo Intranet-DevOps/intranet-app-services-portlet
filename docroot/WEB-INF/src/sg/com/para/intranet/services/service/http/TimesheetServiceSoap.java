@@ -186,10 +186,11 @@ public class TimesheetServiceSoap {
 		}
 	}
 
-	public static void c(int year, int month, java.lang.String userId,
-		java.lang.String actor) throws RemoteException {
+	public static void approveMonth(int year, int month,
+		java.lang.String userId, java.lang.String actor)
+		throws RemoteException {
 		try {
-			TimesheetServiceUtil.c(year, month, userId, actor);
+			TimesheetServiceUtil.approveMonth(year, month, userId, actor);
 		}
 		catch (Exception e) {
 			_log.error(e, e);
