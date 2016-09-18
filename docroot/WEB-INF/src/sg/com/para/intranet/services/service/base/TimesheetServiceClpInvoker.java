@@ -48,7 +48,8 @@ public class TimesheetServiceClpInvoker {
 		_methodParameterTypes44 = new String[] {
 				"java.lang.String", "double", "double", "double", "double",
 				"double", "double", "double", "java.lang.String",
-				"java.lang.String", "java.lang.String", "java.lang.String"
+				"java.lang.String", "java.lang.String", "long",
+				"java.lang.String"
 			};
 
 		_methodName45 = "updateTimeSheet";
@@ -56,34 +57,39 @@ public class TimesheetServiceClpInvoker {
 		_methodParameterTypes45 = new String[] {
 				"int", "java.lang.String", "double", "double", "double",
 				"double", "double", "double", "double", "java.lang.String",
-				"java.lang.String", "java.lang.String", "java.lang.String"
+				"java.lang.String", "java.lang.String", "long",
+				"java.lang.String"
 			};
 
-		_methodName46 = "approveTimeSheet";
+		_methodName46 = "deleteTimeSheet";
 
 		_methodParameterTypes46 = new String[] { "int", "java.lang.String" };
 
-		_methodName47 = "rejectTimeSheet";
+		_methodName47 = "approveTimeSheet";
 
-		_methodParameterTypes47 = new String[] {
+		_methodParameterTypes47 = new String[] { "int", "java.lang.String" };
+
+		_methodName48 = "rejectTimeSheet";
+
+		_methodParameterTypes48 = new String[] {
 				"int", "java.lang.String", "java.lang.String"
 			};
 
-		_methodName48 = "submitMonth";
-
-		_methodParameterTypes48 = new String[] {
-				"int", "int", "java.lang.String", "java.lang.String"
-			};
-
-		_methodName49 = "rejectMonth";
+		_methodName49 = "submitMonth";
 
 		_methodParameterTypes49 = new String[] {
 				"int", "int", "java.lang.String", "java.lang.String"
 			};
 
-		_methodName50 = "approveMonth";
+		_methodName50 = "rejectMonth";
 
 		_methodParameterTypes50 = new String[] {
+				"int", "int", "java.lang.String", "java.lang.String"
+			};
+
+		_methodName51 = "approveMonth";
+
+		_methodParameterTypes51 = new String[] {
 				"int", "int", "java.lang.String", "java.lang.String"
 			};
 	}
@@ -126,7 +132,9 @@ public class TimesheetServiceClpInvoker {
 				((Double)arguments[6]).doubleValue(),
 				((Double)arguments[7]).doubleValue(),
 				(java.lang.String)arguments[8], (java.lang.String)arguments[9],
-				(java.lang.String)arguments[10], (java.lang.String)arguments[11]);
+				(java.lang.String)arguments[10],
+				((Long)arguments[11]).longValue(),
+				(java.lang.String)arguments[12]);
 		}
 
 		if (_methodName45.equals(name) &&
@@ -142,12 +150,14 @@ public class TimesheetServiceClpInvoker {
 				((Double)arguments[8]).doubleValue(),
 				(java.lang.String)arguments[9],
 				(java.lang.String)arguments[10],
-				(java.lang.String)arguments[11], (java.lang.String)arguments[12]);
+				(java.lang.String)arguments[11],
+				((Long)arguments[12]).longValue(),
+				(java.lang.String)arguments[13]);
 		}
 
 		if (_methodName46.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes46, parameterTypes)) {
-			TimesheetServiceUtil.approveTimeSheet(((Integer)arguments[0]).intValue(),
+			TimesheetServiceUtil.deleteTimeSheet(((Integer)arguments[0]).intValue(),
 				(java.lang.String)arguments[1]);
 
 			return null;
@@ -155,24 +165,23 @@ public class TimesheetServiceClpInvoker {
 
 		if (_methodName47.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes47, parameterTypes)) {
-			TimesheetServiceUtil.rejectTimeSheet(((Integer)arguments[0]).intValue(),
-				(java.lang.String)arguments[1], (java.lang.String)arguments[2]);
+			TimesheetServiceUtil.approveTimeSheet(((Integer)arguments[0]).intValue(),
+				(java.lang.String)arguments[1]);
 
 			return null;
 		}
 
 		if (_methodName48.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes48, parameterTypes)) {
-			TimesheetServiceUtil.submitMonth(((Integer)arguments[0]).intValue(),
-				((Integer)arguments[1]).intValue(),
-				(java.lang.String)arguments[2], (java.lang.String)arguments[3]);
+			TimesheetServiceUtil.rejectTimeSheet(((Integer)arguments[0]).intValue(),
+				(java.lang.String)arguments[1], (java.lang.String)arguments[2]);
 
 			return null;
 		}
 
 		if (_methodName49.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes49, parameterTypes)) {
-			TimesheetServiceUtil.rejectMonth(((Integer)arguments[0]).intValue(),
+			TimesheetServiceUtil.submitMonth(((Integer)arguments[0]).intValue(),
 				((Integer)arguments[1]).intValue(),
 				(java.lang.String)arguments[2], (java.lang.String)arguments[3]);
 
@@ -181,6 +190,15 @@ public class TimesheetServiceClpInvoker {
 
 		if (_methodName50.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes50, parameterTypes)) {
+			TimesheetServiceUtil.rejectMonth(((Integer)arguments[0]).intValue(),
+				((Integer)arguments[1]).intValue(),
+				(java.lang.String)arguments[2], (java.lang.String)arguments[3]);
+
+			return null;
+		}
+
+		if (_methodName51.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes51, parameterTypes)) {
 			TimesheetServiceUtil.approveMonth(((Integer)arguments[0]).intValue(),
 				((Integer)arguments[1]).intValue(),
 				(java.lang.String)arguments[2], (java.lang.String)arguments[3]);
@@ -213,4 +231,6 @@ public class TimesheetServiceClpInvoker {
 	private String[] _methodParameterTypes49;
 	private String _methodName50;
 	private String[] _methodParameterTypes50;
+	private String _methodName51;
+	private String[] _methodParameterTypes51;
 }

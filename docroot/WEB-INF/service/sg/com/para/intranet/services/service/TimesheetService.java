@@ -78,15 +78,18 @@ public interface TimesheetService extends BaseService, InvokableService {
 		java.lang.String employeeScreenName, double regular, double overtime,
 		double sick, double vacation, double holiday, double unpaid,
 		double other, java.lang.String remarks, java.lang.String status,
-		java.lang.String projectCode, java.lang.String actor)
+		java.lang.String projectCode, long logDate, java.lang.String actor)
 		throws java.lang.Exception;
 
 	public sg.com.para.intranet.services.model.Timesheet updateTimeSheet(
 		int timesheetId, java.lang.String employeeScreenName, double regular,
 		double overtime, double sick, double vacation, double holiday,
 		double unpaid, double other, java.lang.String remarks,
-		java.lang.String status, java.lang.String projectCode,
+		java.lang.String status, java.lang.String projectCode, long logDate,
 		java.lang.String actor) throws java.lang.Exception;
+
+	public void deleteTimeSheet(int timesheetId, java.lang.String actor)
+		throws java.lang.Exception;
 
 	public void approveTimeSheet(int timesheetId, java.lang.String actor)
 		throws java.lang.Exception;

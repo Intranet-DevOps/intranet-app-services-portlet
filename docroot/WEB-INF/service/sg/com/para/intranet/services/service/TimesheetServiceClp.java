@@ -48,7 +48,8 @@ public class TimesheetServiceClp implements TimesheetService {
 		_methodParameterTypes5 = new String[] {
 				"java.lang.String", "double", "double", "double", "double",
 				"double", "double", "double", "java.lang.String",
-				"java.lang.String", "java.lang.String", "java.lang.String"
+				"java.lang.String", "java.lang.String", "long",
+				"java.lang.String"
 			};
 
 		_methodName6 = "updateTimeSheet";
@@ -56,34 +57,39 @@ public class TimesheetServiceClp implements TimesheetService {
 		_methodParameterTypes6 = new String[] {
 				"int", "java.lang.String", "double", "double", "double",
 				"double", "double", "double", "double", "java.lang.String",
-				"java.lang.String", "java.lang.String", "java.lang.String"
+				"java.lang.String", "java.lang.String", "long",
+				"java.lang.String"
 			};
 
-		_methodName7 = "approveTimeSheet";
+		_methodName7 = "deleteTimeSheet";
 
 		_methodParameterTypes7 = new String[] { "int", "java.lang.String" };
 
-		_methodName8 = "rejectTimeSheet";
+		_methodName8 = "approveTimeSheet";
 
-		_methodParameterTypes8 = new String[] {
+		_methodParameterTypes8 = new String[] { "int", "java.lang.String" };
+
+		_methodName9 = "rejectTimeSheet";
+
+		_methodParameterTypes9 = new String[] {
 				"int", "java.lang.String", "java.lang.String"
 			};
 
-		_methodName9 = "submitMonth";
-
-		_methodParameterTypes9 = new String[] {
-				"int", "int", "java.lang.String", "java.lang.String"
-			};
-
-		_methodName10 = "rejectMonth";
+		_methodName10 = "submitMonth";
 
 		_methodParameterTypes10 = new String[] {
 				"int", "int", "java.lang.String", "java.lang.String"
 			};
 
-		_methodName11 = "approveMonth";
+		_methodName11 = "rejectMonth";
 
 		_methodParameterTypes11 = new String[] {
+				"int", "int", "java.lang.String", "java.lang.String"
+			};
+
+		_methodName12 = "approveMonth";
+
+		_methodParameterTypes12 = new String[] {
 				"int", "int", "java.lang.String", "java.lang.String"
 			};
 	}
@@ -215,7 +221,7 @@ public class TimesheetServiceClp implements TimesheetService {
 		java.lang.String employeeScreenName, double regular, double overtime,
 		double sick, double vacation, double holiday, double unpaid,
 		double other, java.lang.String remarks, java.lang.String status,
-		java.lang.String projectCode, java.lang.String actor)
+		java.lang.String projectCode, long logDate, java.lang.String actor)
 		throws java.lang.Exception {
 		Object returnObj = null;
 
@@ -245,6 +251,8 @@ public class TimesheetServiceClp implements TimesheetService {
 						
 					ClpSerializer.translateInput(projectCode),
 						
+					logDate,
+						
 					ClpSerializer.translateInput(actor)
 					});
 		}
@@ -272,7 +280,7 @@ public class TimesheetServiceClp implements TimesheetService {
 		int timesheetId, java.lang.String employeeScreenName, double regular,
 		double overtime, double sick, double vacation, double holiday,
 		double unpaid, double other, java.lang.String remarks,
-		java.lang.String status, java.lang.String projectCode,
+		java.lang.String status, java.lang.String projectCode, long logDate,
 		java.lang.String actor) throws java.lang.Exception {
 		Object returnObj = null;
 
@@ -304,6 +312,8 @@ public class TimesheetServiceClp implements TimesheetService {
 						
 					ClpSerializer.translateInput(projectCode),
 						
+					logDate,
+						
 					ClpSerializer.translateInput(actor)
 					});
 		}
@@ -327,7 +337,7 @@ public class TimesheetServiceClp implements TimesheetService {
 	}
 
 	@Override
-	public void approveTimeSheet(int timesheetId, java.lang.String actor)
+	public void deleteTimeSheet(int timesheetId, java.lang.String actor)
 		throws java.lang.Exception {
 		try {
 			_invokableService.invokeMethod(_methodName7,
@@ -352,11 +362,36 @@ public class TimesheetServiceClp implements TimesheetService {
 	}
 
 	@Override
-	public void rejectTimeSheet(int timesheetId, java.lang.String comment,
-		java.lang.String actor) throws java.lang.Exception {
+	public void approveTimeSheet(int timesheetId, java.lang.String actor)
+		throws java.lang.Exception {
 		try {
 			_invokableService.invokeMethod(_methodName8,
 				_methodParameterTypes8,
+				new Object[] { timesheetId, ClpSerializer.translateInput(actor) });
+		}
+		catch (Throwable t) {
+			t = ClpSerializer.translateThrowable(t);
+
+			if (t instanceof java.lang.Exception) {
+				throw (java.lang.Exception)t;
+			}
+
+			if (t instanceof RuntimeException) {
+				throw (RuntimeException)t;
+			}
+			else {
+				throw new RuntimeException(t.getClass().getName() +
+					" is not a valid exception");
+			}
+		}
+	}
+
+	@Override
+	public void rejectTimeSheet(int timesheetId, java.lang.String comment,
+		java.lang.String actor) throws java.lang.Exception {
+		try {
+			_invokableService.invokeMethod(_methodName9,
+				_methodParameterTypes9,
 				new Object[] {
 					timesheetId,
 					
@@ -386,8 +421,8 @@ public class TimesheetServiceClp implements TimesheetService {
 	public void submitMonth(int year, int month, java.lang.String userId,
 		java.lang.String actor) throws java.lang.Exception {
 		try {
-			_invokableService.invokeMethod(_methodName9,
-				_methodParameterTypes9,
+			_invokableService.invokeMethod(_methodName10,
+				_methodParameterTypes10,
 				new Object[] {
 					year,
 					
@@ -419,8 +454,8 @@ public class TimesheetServiceClp implements TimesheetService {
 	public void rejectMonth(int year, int month, java.lang.String comment,
 		java.lang.String actor) throws java.lang.Exception {
 		try {
-			_invokableService.invokeMethod(_methodName10,
-				_methodParameterTypes10,
+			_invokableService.invokeMethod(_methodName11,
+				_methodParameterTypes11,
 				new Object[] {
 					year,
 					
@@ -452,8 +487,8 @@ public class TimesheetServiceClp implements TimesheetService {
 	public void approveMonth(int year, int month, java.lang.String userId,
 		java.lang.String actor) throws java.lang.Exception {
 		try {
-			_invokableService.invokeMethod(_methodName11,
-				_methodParameterTypes11,
+			_invokableService.invokeMethod(_methodName12,
+				_methodParameterTypes12,
 				new Object[] {
 					year,
 					
@@ -504,4 +539,6 @@ public class TimesheetServiceClp implements TimesheetService {
 	private String[] _methodParameterTypes10;
 	private String _methodName11;
 	private String[] _methodParameterTypes11;
+	private String _methodName12;
+	private String[] _methodParameterTypes12;
 }

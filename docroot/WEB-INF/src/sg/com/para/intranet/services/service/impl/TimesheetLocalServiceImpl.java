@@ -90,7 +90,6 @@ public class TimesheetLocalServiceImpl extends TimesheetLocalServiceBaseImpl {
 		int currentTime = (int) new Date().getTime();
 		while (startDate.before(endDate)) {
 			Timesheet existingTimesheet = isTimesheetPresent(startDate, timesheets);
-			_log.info("isTimesheetPresent [" + startDate + "]:  " + existingTimesheet);
 			if (existingTimesheet == null) {
 				currentTime++;
 				existingTimesheet = new TimesheetBean();

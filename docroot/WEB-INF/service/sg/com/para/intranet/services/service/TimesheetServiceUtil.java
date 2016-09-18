@@ -80,24 +80,29 @@ public class TimesheetServiceUtil {
 		java.lang.String employeeScreenName, double regular, double overtime,
 		double sick, double vacation, double holiday, double unpaid,
 		double other, java.lang.String remarks, java.lang.String status,
-		java.lang.String projectCode, java.lang.String actor)
+		java.lang.String projectCode, long logDate, java.lang.String actor)
 		throws java.lang.Exception {
 		return getService()
 				   .createTimeSheet(employeeScreenName, regular, overtime,
 			sick, vacation, holiday, unpaid, other, remarks, status,
-			projectCode, actor);
+			projectCode, logDate, actor);
 	}
 
 	public static sg.com.para.intranet.services.model.Timesheet updateTimeSheet(
 		int timesheetId, java.lang.String employeeScreenName, double regular,
 		double overtime, double sick, double vacation, double holiday,
 		double unpaid, double other, java.lang.String remarks,
-		java.lang.String status, java.lang.String projectCode,
+		java.lang.String status, java.lang.String projectCode, long logDate,
 		java.lang.String actor) throws java.lang.Exception {
 		return getService()
 				   .updateTimeSheet(timesheetId, employeeScreenName, regular,
 			overtime, sick, vacation, holiday, unpaid, other, remarks, status,
-			projectCode, actor);
+			projectCode, logDate, actor);
+	}
+
+	public static void deleteTimeSheet(int timesheetId, java.lang.String actor)
+		throws java.lang.Exception {
+		getService().deleteTimeSheet(timesheetId, actor);
 	}
 
 	public static void approveTimeSheet(int timesheetId, java.lang.String actor)

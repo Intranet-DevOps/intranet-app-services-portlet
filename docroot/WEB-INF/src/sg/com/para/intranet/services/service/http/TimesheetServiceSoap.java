@@ -99,12 +99,12 @@ public class TimesheetServiceSoap {
 		java.lang.String employeeScreenName, double regular, double overtime,
 		double sick, double vacation, double holiday, double unpaid,
 		double other, java.lang.String remarks, java.lang.String status,
-		java.lang.String projectCode, java.lang.String actor)
+		java.lang.String projectCode, long logDate, java.lang.String actor)
 		throws RemoteException {
 		try {
 			sg.com.para.intranet.services.model.Timesheet returnValue = TimesheetServiceUtil.createTimeSheet(employeeScreenName,
 					regular, overtime, sick, vacation, holiday, unpaid, other,
-					remarks, status, projectCode, actor);
+					remarks, status, projectCode, logDate, actor);
 
 			return sg.com.para.intranet.services.model.TimesheetSoap.toSoapModel(returnValue);
 		}
@@ -119,14 +119,27 @@ public class TimesheetServiceSoap {
 		int timesheetId, java.lang.String employeeScreenName, double regular,
 		double overtime, double sick, double vacation, double holiday,
 		double unpaid, double other, java.lang.String remarks,
-		java.lang.String status, java.lang.String projectCode,
+		java.lang.String status, java.lang.String projectCode, long logDate,
 		java.lang.String actor) throws RemoteException {
 		try {
 			sg.com.para.intranet.services.model.Timesheet returnValue = TimesheetServiceUtil.updateTimeSheet(timesheetId,
 					employeeScreenName, regular, overtime, sick, vacation,
-					holiday, unpaid, other, remarks, status, projectCode, actor);
+					holiday, unpaid, other, remarks, status, projectCode,
+					logDate, actor);
 
 			return sg.com.para.intranet.services.model.TimesheetSoap.toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static void deleteTimeSheet(int timesheetId, java.lang.String actor)
+		throws RemoteException {
+		try {
+			TimesheetServiceUtil.deleteTimeSheet(timesheetId, actor);
 		}
 		catch (Exception e) {
 			_log.error(e, e);

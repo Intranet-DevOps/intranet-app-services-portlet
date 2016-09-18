@@ -68,7 +68,7 @@ public class TimesheetServiceImpl extends TimesheetServiceBaseImpl {
 
 	public Timesheet createTimeSheet(String employeeScreenName, double regular, double overtime, double sick,
 			double vacation, double holiday, double unpaid, double other, String remarks, String status,
-			String projectCode, String actor) throws Exception {
+			String projectCode, long logDate, String actor) throws Exception {
 		Timesheet timesheet = timesheetLocalService.createTimesheet((int) CounterLocalServiceUtil
 				.increment(Timesheet.class.toString()));
 		timesheet.setEmployeeScreenName(employeeScreenName);
@@ -81,6 +81,7 @@ public class TimesheetServiceImpl extends TimesheetServiceBaseImpl {
 		timesheet.setUnpaid(unpaid);
 		timesheet.setOther(other);
 		timesheet.setRemarks(remarks);
+		timesheet.setLogDate(new Date(logDate));
 		timesheet.setStatus(status);
 		timesheet.setProjectCode(projectCode);
 
@@ -91,12 +92,16 @@ public class TimesheetServiceImpl extends TimesheetServiceBaseImpl {
 
 	public Timesheet updateTimeSheet(int timesheetId, String employeeScreenName, double regular, double overtime,
 			double sick, double vacation, double holiday, double unpaid, double other, String remarks, String status,
-			String projectCode, String actor) throws Exception {
+			String projectCode, long logDate, String actor) throws Exception {
 		_log.info("updateTimeSheet [timesheetId: " + timesheetId + ", employeeScreenName: " + employeeScreenName
 				+ ", regular " + regular + ", overtime: " + overtime + ", sick: " + sick + ", vacation: " + vacation
 				+ ", unpaid: " + unpaid + ", other: " + other + ", remarks: " + remarks + ", status: " + status
 				+ ", projectCode: " + projectCode + "]");
 		Timesheet timesheet = timesheetLocalService.fetchTimesheet(timesheetId);
+		if (timesheet == null) {
+			timesheet = timesheetLocalService.createTimesheet((int) CounterLocalServiceUtil.increment(Timesheet.class
+					.toString()));
+		}
 		timesheet.setEmployeeScreenName(employeeScreenName);
 		timesheet.setRegular(regular);
 		timesheet.setOvertime(overtime);
@@ -106,12 +111,18 @@ public class TimesheetServiceImpl extends TimesheetServiceBaseImpl {
 		timesheet.setUnpaid(unpaid);
 		timesheet.setOther(other);
 		timesheet.setRemarks(remarks);
+		timesheet.setLogDate(new Date(logDate));
 		timesheet.setStatus(status);
 		timesheet.setProjectCode(projectCode);
 
 		timesheet = timesheetLocalService.updateTimesheet(timesheet);
 
 		return timesheet;
+	}
+
+	public void deleteTimeSheet(int timesheetId, String actor) throws Exception {
+		_log.info("deleteTimeSheet [timesheetId: " + timesheetId + ", by approver: " + actor + "]");
+		timesheetLocalService.deleteTimesheet(timesheetId);
 	}
 
 	public void approveTimeSheet(int timesheetId, String actor) throws Exception {

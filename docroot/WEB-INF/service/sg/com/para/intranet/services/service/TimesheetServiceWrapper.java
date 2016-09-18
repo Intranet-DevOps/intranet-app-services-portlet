@@ -76,11 +76,11 @@ public class TimesheetServiceWrapper implements TimesheetService,
 		java.lang.String employeeScreenName, double regular, double overtime,
 		double sick, double vacation, double holiday, double unpaid,
 		double other, java.lang.String remarks, java.lang.String status,
-		java.lang.String projectCode, java.lang.String actor)
+		java.lang.String projectCode, long logDate, java.lang.String actor)
 		throws java.lang.Exception {
 		return _timesheetService.createTimeSheet(employeeScreenName, regular,
 			overtime, sick, vacation, holiday, unpaid, other, remarks, status,
-			projectCode, actor);
+			projectCode, logDate, actor);
 	}
 
 	@Override
@@ -88,11 +88,17 @@ public class TimesheetServiceWrapper implements TimesheetService,
 		int timesheetId, java.lang.String employeeScreenName, double regular,
 		double overtime, double sick, double vacation, double holiday,
 		double unpaid, double other, java.lang.String remarks,
-		java.lang.String status, java.lang.String projectCode,
+		java.lang.String status, java.lang.String projectCode, long logDate,
 		java.lang.String actor) throws java.lang.Exception {
 		return _timesheetService.updateTimeSheet(timesheetId,
 			employeeScreenName, regular, overtime, sick, vacation, holiday,
-			unpaid, other, remarks, status, projectCode, actor);
+			unpaid, other, remarks, status, projectCode, logDate, actor);
+	}
+
+	@Override
+	public void deleteTimeSheet(int timesheetId, java.lang.String actor)
+		throws java.lang.Exception {
+		_timesheetService.deleteTimeSheet(timesheetId, actor);
 	}
 
 	@Override
