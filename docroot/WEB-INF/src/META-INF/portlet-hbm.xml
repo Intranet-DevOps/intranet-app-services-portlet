@@ -6,6 +6,7 @@
 	<import class="sg.com.para.intranet.services.model.Expense" />
 	<import class="sg.com.para.intranet.services.model.Project" />
 	<import class="sg.com.para.intranet.services.model.Timesheet" />
+	<import class="sg.com.para.intranet.services.model.TimesheetDetails" />
 	<class name="sg.com.para.intranet.services.model.impl.EmployeeImpl" table="intranet_employee">
 		<cache usage="read-write" />
 		<id name="employeeId" type="int">
@@ -54,5 +55,15 @@
 		<property name="remarks" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="status" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="projectCode" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="sg.com.para.intranet.services.model.impl.TimesheetDetailsImpl" table="intranet_timesheet_details">
+		<cache usage="read-write" />
+		<id name="timesheetDetailsId" type="int">
+			<generator class="assigned" />
+		</id>
+		<property name="timesheetId" type="com.liferay.portal.dao.orm.hibernate.IntegerType" />
+		<property name="clockInTime" type="org.hibernate.type.TimestampType" />
+		<property name="clockOutTime" type="org.hibernate.type.TimestampType" />
+		<property name="remarks" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 	</class>
 </hibernate-mapping>

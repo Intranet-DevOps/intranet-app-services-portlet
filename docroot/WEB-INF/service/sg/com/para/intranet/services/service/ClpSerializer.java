@@ -29,6 +29,7 @@ import sg.com.para.intranet.services.model.EmployeeClp;
 import sg.com.para.intranet.services.model.ExpenseClp;
 import sg.com.para.intranet.services.model.ProjectClp;
 import sg.com.para.intranet.services.model.TimesheetClp;
+import sg.com.para.intranet.services.model.TimesheetDetailsClp;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -121,6 +122,10 @@ public class ClpSerializer {
 			return translateInputTimesheet(oldModel);
 		}
 
+		if (oldModelClassName.equals(TimesheetDetailsClp.class.getName())) {
+			return translateInputTimesheetDetails(oldModel);
+		}
+
 		return oldModel;
 	}
 
@@ -170,6 +175,16 @@ public class ClpSerializer {
 		TimesheetClp oldClpModel = (TimesheetClp)oldModel;
 
 		BaseModel<?> newModel = oldClpModel.getTimesheetRemoteModel();
+
+		newModel.setModelAttributes(oldClpModel.getModelAttributes());
+
+		return newModel;
+	}
+
+	public static Object translateInputTimesheetDetails(BaseModel<?> oldModel) {
+		TimesheetDetailsClp oldClpModel = (TimesheetDetailsClp)oldModel;
+
+		BaseModel<?> newModel = oldClpModel.getTimesheetDetailsRemoteModel();
 
 		newModel.setModelAttributes(oldClpModel.getModelAttributes());
 
@@ -341,6 +356,43 @@ public class ClpSerializer {
 			}
 		}
 
+		if (oldModelClassName.equals(
+					"sg.com.para.intranet.services.model.impl.TimesheetDetailsImpl")) {
+			return translateOutputTimesheetDetails(oldModel);
+		}
+		else if (oldModelClassName.endsWith("Clp")) {
+			try {
+				ClassLoader classLoader = ClpSerializer.class.getClassLoader();
+
+				Method getClpSerializerClassMethod = oldModelClass.getMethod(
+						"getClpSerializerClass");
+
+				Class<?> oldClpSerializerClass = (Class<?>)getClpSerializerClassMethod.invoke(oldModel);
+
+				Class<?> newClpSerializerClass = classLoader.loadClass(oldClpSerializerClass.getName());
+
+				Method translateOutputMethod = newClpSerializerClass.getMethod("translateOutput",
+						BaseModel.class);
+
+				Class<?> oldModelModelClass = oldModel.getModelClass();
+
+				Method getRemoteModelMethod = oldModelClass.getMethod("get" +
+						oldModelModelClass.getSimpleName() + "RemoteModel");
+
+				Object oldRemoteModel = getRemoteModelMethod.invoke(oldModel);
+
+				BaseModel<?> newModel = (BaseModel<?>)translateOutputMethod.invoke(null,
+						oldRemoteModel);
+
+				return newModel;
+			}
+			catch (Throwable t) {
+				if (_log.isInfoEnabled()) {
+					_log.info("Unable to translate " + oldModelClassName, t);
+				}
+			}
+		}
+
 		return oldModel;
 	}
 
@@ -441,6 +493,11 @@ public class ClpSerializer {
 			return new sg.com.para.intranet.services.NoSuchTimesheetException();
 		}
 
+		if (className.equals(
+					"sg.com.para.intranet.services.NoSuchTimesheetDetailsException")) {
+			return new sg.com.para.intranet.services.NoSuchTimesheetDetailsException();
+		}
+
 		return throwable;
 	}
 
@@ -480,6 +537,16 @@ public class ClpSerializer {
 		newModel.setModelAttributes(oldModel.getModelAttributes());
 
 		newModel.setTimesheetRemoteModel(oldModel);
+
+		return newModel;
+	}
+
+	public static Object translateOutputTimesheetDetails(BaseModel<?> oldModel) {
+		TimesheetDetailsClp newModel = new TimesheetDetailsClp();
+
+		newModel.setModelAttributes(oldModel.getModelAttributes());
+
+		newModel.setTimesheetDetailsRemoteModel(oldModel);
 
 		return newModel;
 	}

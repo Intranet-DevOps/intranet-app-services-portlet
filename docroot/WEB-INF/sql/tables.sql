@@ -47,3 +47,11 @@ create table intranet_timesheet (
 	status VARCHAR(75) null,
 	projectCode VARCHAR(75) null
 );
+
+create table intranet_timesheet_details (
+	timesheetDetailsId INTEGER not null primary key,
+	timesheetId INTEGER,
+	clockInTime DATE null,
+	clockOutTime DATE null,
+	remarks VARCHAR(75) null
+);

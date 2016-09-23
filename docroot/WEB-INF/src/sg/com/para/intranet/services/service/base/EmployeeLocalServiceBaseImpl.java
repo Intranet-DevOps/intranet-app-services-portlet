@@ -36,6 +36,7 @@ import sg.com.para.intranet.services.service.EmployeeLocalService;
 import sg.com.para.intranet.services.service.persistence.EmployeePersistence;
 import sg.com.para.intranet.services.service.persistence.ExpensePersistence;
 import sg.com.para.intranet.services.service.persistence.ProjectPersistence;
+import sg.com.para.intranet.services.service.persistence.TimesheetDetailsPersistence;
 import sg.com.para.intranet.services.service.persistence.TimesheetPersistence;
 
 import java.io.Serializable;
@@ -503,6 +504,63 @@ public abstract class EmployeeLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	/**
+	 * Returns the timesheet details local service.
+	 *
+	 * @return the timesheet details local service
+	 */
+	public sg.com.para.intranet.services.service.TimesheetDetailsLocalService getTimesheetDetailsLocalService() {
+		return timesheetDetailsLocalService;
+	}
+
+	/**
+	 * Sets the timesheet details local service.
+	 *
+	 * @param timesheetDetailsLocalService the timesheet details local service
+	 */
+	public void setTimesheetDetailsLocalService(
+		sg.com.para.intranet.services.service.TimesheetDetailsLocalService timesheetDetailsLocalService) {
+		this.timesheetDetailsLocalService = timesheetDetailsLocalService;
+	}
+
+	/**
+	 * Returns the timesheet details remote service.
+	 *
+	 * @return the timesheet details remote service
+	 */
+	public sg.com.para.intranet.services.service.TimesheetDetailsService getTimesheetDetailsService() {
+		return timesheetDetailsService;
+	}
+
+	/**
+	 * Sets the timesheet details remote service.
+	 *
+	 * @param timesheetDetailsService the timesheet details remote service
+	 */
+	public void setTimesheetDetailsService(
+		sg.com.para.intranet.services.service.TimesheetDetailsService timesheetDetailsService) {
+		this.timesheetDetailsService = timesheetDetailsService;
+	}
+
+	/**
+	 * Returns the timesheet details persistence.
+	 *
+	 * @return the timesheet details persistence
+	 */
+	public TimesheetDetailsPersistence getTimesheetDetailsPersistence() {
+		return timesheetDetailsPersistence;
+	}
+
+	/**
+	 * Sets the timesheet details persistence.
+	 *
+	 * @param timesheetDetailsPersistence the timesheet details persistence
+	 */
+	public void setTimesheetDetailsPersistence(
+		TimesheetDetailsPersistence timesheetDetailsPersistence) {
+		this.timesheetDetailsPersistence = timesheetDetailsPersistence;
+	}
+
+	/**
 	 * Returns the counter local service.
 	 *
 	 * @return the counter local service
@@ -702,6 +760,12 @@ public abstract class EmployeeLocalServiceBaseImpl extends BaseLocalServiceImpl
 	protected sg.com.para.intranet.services.service.TimesheetService timesheetService;
 	@BeanReference(type = TimesheetPersistence.class)
 	protected TimesheetPersistence timesheetPersistence;
+	@BeanReference(type = sg.com.para.intranet.services.service.TimesheetDetailsLocalService.class)
+	protected sg.com.para.intranet.services.service.TimesheetDetailsLocalService timesheetDetailsLocalService;
+	@BeanReference(type = sg.com.para.intranet.services.service.TimesheetDetailsService.class)
+	protected sg.com.para.intranet.services.service.TimesheetDetailsService timesheetDetailsService;
+	@BeanReference(type = TimesheetDetailsPersistence.class)
+	protected TimesheetDetailsPersistence timesheetDetailsPersistence;
 	@BeanReference(type = com.liferay.counter.service.CounterLocalService.class)
 	protected com.liferay.counter.service.CounterLocalService counterLocalService;
 	@BeanReference(type = com.liferay.portal.service.ResourceLocalService.class)

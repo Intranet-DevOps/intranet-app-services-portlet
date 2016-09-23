@@ -24,6 +24,8 @@ import sg.com.para.intranet.services.service.ExpenseLocalServiceUtil;
 import sg.com.para.intranet.services.service.ExpenseServiceUtil;
 import sg.com.para.intranet.services.service.ProjectLocalServiceUtil;
 import sg.com.para.intranet.services.service.ProjectServiceUtil;
+import sg.com.para.intranet.services.service.TimesheetDetailsLocalServiceUtil;
+import sg.com.para.intranet.services.service.TimesheetDetailsServiceUtil;
 import sg.com.para.intranet.services.service.TimesheetLocalServiceUtil;
 import sg.com.para.intranet.services.service.TimesheetServiceUtil;
 
@@ -54,6 +56,9 @@ public class ClpMessageListener extends BaseMessageListener {
 			TimesheetLocalServiceUtil.clearService();
 
 			TimesheetServiceUtil.clearService();
+			TimesheetDetailsLocalServiceUtil.clearService();
+
+			TimesheetDetailsServiceUtil.clearService();
 		}
 	}
 }

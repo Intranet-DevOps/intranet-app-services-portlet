@@ -2,44 +2,56 @@
 <!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_2_0.dtd">
 <service-builder package-path="sg.com.para.intranet.services">
 	<author>Fernando Karnagi</author>
-    <namespace>intranet</namespace>
-    <entity name="Employee" local-service="true" table="intranet_employee">
-        <column name="employeeId" type="int" primary="true"></column>
-        <column name="screenName" type="String"></column>
-        <column name="joinDate" type="Date"></column>
-        <column name="leaveDate" type="Date"></column>
-    </entity>
-    <entity name="Project" local-service="true" table="intranet_project">
-        <column name="projectId" type="int" primary="true"></column>
-        <column name="code" type="String"></column>
-        <column name="description" type="String"></column>
-    </entity>
-    <entity name="Timesheet" local-service="true" table="intranet_timesheet">
-        <column name="timesheetId" type="int" primary="true"></column>
-        <column name="employeeScreenName" type="String"></column>
-        <column name="logDate" type="Date"></column>
-        <column name="regular" type="double"></column> 
-        <column name="overtime" type="double"></column>
-        <column name="sick" type="double"></column>
-        <column name="vacation" type="double"></column>
-        <column name="holiday" type="double"></column>
-        <column name="unpaid" type="double"></column>
-        <column name="other" type="double"></column>
-        <column name="remarks" type="String"></column>
-        <column name="status" type="String"></column>
-        <column name="projectCode" type="String"></column>
-    </entity>
-    <entity name="Expense" local-service="true" table="intranet_expense">
-    	<column name="expenseId" type="int" primary="true"></column>
-        <column name="employeeScreenName" type="String"></column>
-        <column name="expenseDate" type="Date"></column>
-        <column name="submissionDate" type="Date"></column>
-        <column name="amount" type="double"></column>
-    	<column name="projectCode" type="String"></column>
-    	<column name="category" type="String"></column>
-    	<column name="status" type="String"></column>
-    	<column name="remarks" type="String"></column>
-    </entity>
+	<namespace>intranet</namespace>
+	<entity name="Employee" local-service="true" remote-service="true"
+		table="intranet_employee">
+		<column name="employeeId" type="int" primary="true"></column>
+		<column name="screenName" type="String"></column>
+		<column name="joinDate" type="Date"></column>
+		<column name="leaveDate" type="Date"></column>
+	</entity>
+	<entity name="Project" local-service="true" remote-service="true"
+		table="intranet_project">
+		<column name="projectId" type="int" primary="true"></column>
+		<column name="code" type="String"></column>
+		<column name="description" type="String"></column>
+	</entity>
+	<entity name="Timesheet" local-service="true" remote-service="true"
+		table="intranet_timesheet">
+		<column name="timesheetId" type="int" primary="true"></column>
+		<column name="employeeScreenName" type="String"></column>
+		<column name="logDate" type="Date"></column>
+		<column name="regular" type="double"></column>
+		<column name="overtime" type="double"></column>
+		<column name="sick" type="double"></column>
+		<column name="vacation" type="double"></column>
+		<column name="holiday" type="double"></column>
+		<column name="unpaid" type="double"></column>
+		<column name="other" type="double"></column>
+		<column name="remarks" type="String"></column>
+		<column name="status" type="String"></column>
+		<column name="projectCode" type="String"></column>
+	</entity>
+	<entity name="TimesheetDetails" local-service="true"
+		remote-service="true" table="intranet_timesheet_details">
+		<column name="timesheetDetailsId" type="int" primary="true"></column>
+		<column name="timesheetId" type="int"></column>
+		<column name="clockInTime" type="Date"></column>
+		<column name="clockOutTime" type="Date"></column>
+		<column name="remarks" type="String"></column>
+	</entity>
+	<entity name="Expense" local-service="true" remote-service="true"
+		table="intranet_expense">
+		<column name="expenseId" type="int" primary="true"></column>
+		<column name="employeeScreenName" type="String"></column>
+		<column name="expenseDate" type="Date"></column>
+		<column name="submissionDate" type="Date"></column>
+		<column name="amount" type="double"></column>
+		<column name="projectCode" type="String"></column>
+		<column name="category" type="String"></column>
+		<column name="status" type="String"></column>
+		<column name="remarks" type="String"></column>
+	</entity>
 
-	
+
 </service-builder>

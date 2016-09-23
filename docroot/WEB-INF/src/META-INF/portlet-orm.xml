@@ -76,6 +76,22 @@
 			<transient name="primaryKeyObj" />
 		</attributes>
 	</mapped-superclass>
+	<mapped-superclass class="sg.com.para.intranet.services.model.impl.TimesheetDetailsModelImpl">
+		<attributes>
+			<id name="timesheetDetailsId" />
+			<basic name="timesheetId" />
+			<basic name="clockInTime">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="clockOutTime">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="remarks" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
 	<entity class="sg.com.para.intranet.services.model.impl.EmployeeImpl" name="Employee">
 		<table name="intranet_employee" />
 		<attributes />
@@ -90,6 +106,10 @@
 	</entity>
 	<entity class="sg.com.para.intranet.services.model.impl.TimesheetImpl" name="Timesheet">
 		<table name="intranet_timesheet" />
+		<attributes />
+	</entity>
+	<entity class="sg.com.para.intranet.services.model.impl.TimesheetDetailsImpl" name="TimesheetDetails">
+		<table name="intranet_timesheet_details" />
 		<attributes />
 	</entity>
 </entity-mappings>
