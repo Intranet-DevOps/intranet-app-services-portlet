@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
+- * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
  * This library is free software; you can redistribute it and/or modify it under
  * the terms of the GNU Lesser General Public License as published by the Free
@@ -18,9 +18,14 @@ import java.util.Date;
 import java.util.List;
 
 import sg.com.para.intranet.services.model.Timesheet;
+import sg.com.para.intranet.services.model.TimesheetDetails;
 import sg.com.para.intranet.services.service.base.TimesheetServiceBaseImpl;
 
 import com.liferay.counter.service.CounterLocalServiceUtil;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.OrderFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
 
@@ -66,9 +71,51 @@ public class TimesheetServiceImpl extends TimesheetServiceBaseImpl {
 		return timesheetLocalService.findTimesheetsByUser(startDate, endDate, userId, actor);
 	}
 
+	public List<TimesheetDetails> getTimesheetDetails(long timesheetId, String actor) throws Exception {
+		_log.info("getTimesheetDetails [timesheetId: " + timesheetId + ", actor: " + actor);
+
+		DynamicQuery dynaQuery = DynamicQueryFactoryUtil.forClass(TimesheetDetails.class, getClass().getClassLoader())
+				.add(PropertyFactoryUtil.forName("timesheetId").eq(timesheetId))
+				.addOrder(OrderFactoryUtil.asc("clockInTime"));
+
+		List<TimesheetDetails> timesheetDetails = timesheetDetailsPersistence.findWithDynamicQuery(dynaQuery);
+		return timesheetDetails;
+	}
+
+	public TimesheetDetails createTimesheetDetails(long timesheetId, Date clockInTime, Date clockOutTime, String actor)
+			throws Exception {
+		_log.info("createTimesheetDetails [timesheetId: " + timesheetId + ", clockInTime: " + clockInTime
+				+ ", clockOutTime: " + clockOutTime + ", actor: " + actor);
+		TimesheetDetails timesheetDetails = timesheetDetailsLocalService
+				.createTimesheetDetails((int) CounterLocalServiceUtil.increment(TimesheetDetails.class.toString()));
+		timesheetDetails.setClockInTime(clockInTime);
+		timesheetDetails.setClockOutTime(clockOutTime);
+		timesheetDetailsPersistence.update(timesheetDetails);
+		return timesheetDetails;
+
+	}
+
+	public TimesheetDetails updateTimesheetDetails(long timesheetDetailsId, Date clockInTime, Date clockOutTime,
+			String actor) throws Exception {
+		_log.info("updateTimesheetDetails [timesheetDetailsId: " + timesheetDetailsId + ", clockInTime: " + clockInTime
+				+ ", clockOutTime: " + clockOutTime + ", actor: " + actor);
+		TimesheetDetails timesheetDetails = timesheetDetailsPersistence.fetchByPrimaryKey(timesheetDetailsId);
+		timesheetDetails.setClockInTime(clockInTime);
+		timesheetDetails.setClockOutTime(clockOutTime);
+		timesheetDetailsPersistence.update(timesheetDetails);
+		return timesheetDetails;
+
+	}
+
+	public void deleteTimesheetDetails(long timesheetDetailsId, String actor) throws Exception {
+		_log.info("deleteTimesheetDetails [timesheetDetailsId: " + timesheetDetailsId + ", actor: " + actor + "]");
+		timesheetDetailsPersistence.remove(timesheetDetailsId);
+	}
+
 	public Timesheet createTimeSheet(String employeeScreenName, double regular, double overtime, double sick,
 			double vacation, double holiday, double unpaid, double other, String remarks, String status,
 			String projectCode, long logDate, String actor) throws Exception {
+		_log.info("createTimeSheet");
 		Timesheet timesheet = timesheetLocalService.createTimesheet((int) CounterLocalServiceUtil
 				.increment(Timesheet.class.toString()));
 		timesheet.setEmployeeScreenName(employeeScreenName);
