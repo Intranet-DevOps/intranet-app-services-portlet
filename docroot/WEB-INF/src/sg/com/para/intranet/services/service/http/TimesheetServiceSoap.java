@@ -95,6 +95,68 @@ public class TimesheetServiceSoap {
 		}
 	}
 
+	public static sg.com.para.intranet.services.model.TimesheetDetailsSoap[] getTimesheetDetails(
+		long timesheetId, java.lang.String actor) throws RemoteException {
+		try {
+			java.util.List<sg.com.para.intranet.services.model.TimesheetDetails> returnValue =
+				TimesheetServiceUtil.getTimesheetDetails(timesheetId, actor);
+
+			return sg.com.para.intranet.services.model.TimesheetDetailsSoap.toSoapModels(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static sg.com.para.intranet.services.model.TimesheetDetailsSoap createTimesheetDetails(
+		long timesheetId, java.util.Date clockInTime,
+		java.util.Date clockOutTime, java.lang.String actor)
+		throws RemoteException {
+		try {
+			sg.com.para.intranet.services.model.TimesheetDetails returnValue = TimesheetServiceUtil.createTimesheetDetails(timesheetId,
+					clockInTime, clockOutTime, actor);
+
+			return sg.com.para.intranet.services.model.TimesheetDetailsSoap.toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static sg.com.para.intranet.services.model.TimesheetDetailsSoap updateTimesheetDetails(
+		long timesheetDetailsId, java.util.Date clockInTime,
+		java.util.Date clockOutTime, java.lang.String actor)
+		throws RemoteException {
+		try {
+			sg.com.para.intranet.services.model.TimesheetDetails returnValue = TimesheetServiceUtil.updateTimesheetDetails(timesheetDetailsId,
+					clockInTime, clockOutTime, actor);
+
+			return sg.com.para.intranet.services.model.TimesheetDetailsSoap.toSoapModel(returnValue);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static void deleteTimesheetDetails(long timesheetDetailsId,
+		java.lang.String actor) throws RemoteException {
+		try {
+			TimesheetServiceUtil.deleteTimesheetDetails(timesheetDetailsId,
+				actor);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
 	public static sg.com.para.intranet.services.model.TimesheetSoap createTimeSheet(
 		java.lang.String employeeScreenName, double regular, double overtime,
 		double sick, double vacation, double holiday, double unpaid,

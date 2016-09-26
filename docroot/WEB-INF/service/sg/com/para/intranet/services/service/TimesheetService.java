@@ -74,6 +74,23 @@ public interface TimesheetService extends BaseService, InvokableService {
 		java.lang.String userId, java.lang.String actor)
 		throws java.lang.Exception;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public java.util.List<sg.com.para.intranet.services.model.TimesheetDetails> getTimesheetDetails(
+		long timesheetId, java.lang.String actor) throws java.lang.Exception;
+
+	public sg.com.para.intranet.services.model.TimesheetDetails createTimesheetDetails(
+		long timesheetId, java.util.Date clockInTime,
+		java.util.Date clockOutTime, java.lang.String actor)
+		throws java.lang.Exception;
+
+	public sg.com.para.intranet.services.model.TimesheetDetails updateTimesheetDetails(
+		long timesheetDetailsId, java.util.Date clockInTime,
+		java.util.Date clockOutTime, java.lang.String actor)
+		throws java.lang.Exception;
+
+	public void deleteTimesheetDetails(long timesheetDetailsId,
+		java.lang.String actor) throws java.lang.Exception;
+
 	public sg.com.para.intranet.services.model.Timesheet createTimeSheet(
 		java.lang.String employeeScreenName, double regular, double overtime,
 		double sick, double vacation, double holiday, double unpaid,

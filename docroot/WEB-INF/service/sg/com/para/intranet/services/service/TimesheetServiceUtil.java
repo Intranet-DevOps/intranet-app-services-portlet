@@ -76,6 +76,34 @@ public class TimesheetServiceUtil {
 				   .findTimesheetsByUser(startDate, endDate, userId, actor);
 	}
 
+	public static java.util.List<sg.com.para.intranet.services.model.TimesheetDetails> getTimesheetDetails(
+		long timesheetId, java.lang.String actor) throws java.lang.Exception {
+		return getService().getTimesheetDetails(timesheetId, actor);
+	}
+
+	public static sg.com.para.intranet.services.model.TimesheetDetails createTimesheetDetails(
+		long timesheetId, java.util.Date clockInTime,
+		java.util.Date clockOutTime, java.lang.String actor)
+		throws java.lang.Exception {
+		return getService()
+				   .createTimesheetDetails(timesheetId, clockInTime,
+			clockOutTime, actor);
+	}
+
+	public static sg.com.para.intranet.services.model.TimesheetDetails updateTimesheetDetails(
+		long timesheetDetailsId, java.util.Date clockInTime,
+		java.util.Date clockOutTime, java.lang.String actor)
+		throws java.lang.Exception {
+		return getService()
+				   .updateTimesheetDetails(timesheetDetailsId, clockInTime,
+			clockOutTime, actor);
+	}
+
+	public static void deleteTimesheetDetails(long timesheetDetailsId,
+		java.lang.String actor) throws java.lang.Exception {
+		getService().deleteTimesheetDetails(timesheetDetailsId, actor);
+	}
+
 	public static sg.com.para.intranet.services.model.Timesheet createTimeSheet(
 		java.lang.String employeeScreenName, double regular, double overtime,
 		double sick, double vacation, double holiday, double unpaid,

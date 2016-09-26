@@ -72,6 +72,36 @@ public class TimesheetServiceWrapper implements TimesheetService,
 	}
 
 	@Override
+	public java.util.List<sg.com.para.intranet.services.model.TimesheetDetails> getTimesheetDetails(
+		long timesheetId, java.lang.String actor) throws java.lang.Exception {
+		return _timesheetService.getTimesheetDetails(timesheetId, actor);
+	}
+
+	@Override
+	public sg.com.para.intranet.services.model.TimesheetDetails createTimesheetDetails(
+		long timesheetId, java.util.Date clockInTime,
+		java.util.Date clockOutTime, java.lang.String actor)
+		throws java.lang.Exception {
+		return _timesheetService.createTimesheetDetails(timesheetId,
+			clockInTime, clockOutTime, actor);
+	}
+
+	@Override
+	public sg.com.para.intranet.services.model.TimesheetDetails updateTimesheetDetails(
+		long timesheetDetailsId, java.util.Date clockInTime,
+		java.util.Date clockOutTime, java.lang.String actor)
+		throws java.lang.Exception {
+		return _timesheetService.updateTimesheetDetails(timesheetDetailsId,
+			clockInTime, clockOutTime, actor);
+	}
+
+	@Override
+	public void deleteTimesheetDetails(long timesheetDetailsId,
+		java.lang.String actor) throws java.lang.Exception {
+		_timesheetService.deleteTimesheetDetails(timesheetDetailsId, actor);
+	}
+
+	@Override
 	public sg.com.para.intranet.services.model.Timesheet createTimeSheet(
 		java.lang.String employeeScreenName, double regular, double overtime,
 		double sick, double vacation, double holiday, double unpaid,
