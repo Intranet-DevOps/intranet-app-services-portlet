@@ -53,5 +53,6 @@ create table intranet_timesheet_details (
 	timesheetId INTEGER,
 	clockInTime DATE null,
 	clockOutTime DATE null,
-	remarks VARCHAR(75) null
+	remarks VARCHAR(75) null,
+	type_ VARCHAR(75) null
 );

@@ -44,5 +44,6 @@
 		<field name="clockInTime" type="Date" />
 		<field name="clockOutTime" type="Date" />
 		<field name="remarks" type="String" />
+		<field name="type" type="String" />
 	</model>
 </model-hints>

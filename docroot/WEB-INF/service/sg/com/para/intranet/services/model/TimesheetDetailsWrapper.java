@@ -55,6 +55,7 @@ public class TimesheetDetailsWrapper implements TimesheetDetails,
 		attributes.put("clockInTime", getClockInTime());
 		attributes.put("clockOutTime", getClockOutTime());
 		attributes.put("remarks", getRemarks());
+		attributes.put("type", getType());
 
 		return attributes;
 	}
@@ -90,6 +91,12 @@ public class TimesheetDetailsWrapper implements TimesheetDetails,
 
 		if (remarks != null) {
 			setRemarks(remarks);
+		}
+
+		String type = (String)attributes.get("type");
+
+		if (type != null) {
+			setType(type);
 		}
 	}
 
@@ -211,6 +218,26 @@ public class TimesheetDetailsWrapper implements TimesheetDetails,
 	@Override
 	public void setRemarks(java.lang.String remarks) {
 		_timesheetDetails.setRemarks(remarks);
+	}
+
+	/**
+	* Returns the type of this timesheet details.
+	*
+	* @return the type of this timesheet details
+	*/
+	@Override
+	public java.lang.String getType() {
+		return _timesheetDetails.getType();
+	}
+
+	/**
+	* Sets the type of this timesheet details.
+	*
+	* @param type the type of this timesheet details
+	*/
+	@Override
+	public void setType(java.lang.String type) {
+		_timesheetDetails.setType(type);
 	}
 
 	@Override

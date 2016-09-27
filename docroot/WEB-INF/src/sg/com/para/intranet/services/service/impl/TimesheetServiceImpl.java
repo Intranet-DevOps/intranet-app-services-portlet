@@ -82,26 +82,24 @@ public class TimesheetServiceImpl extends TimesheetServiceBaseImpl {
 		return timesheetDetails;
 	}
 
-	public TimesheetDetails createTimesheetDetails(long timesheetId, Date clockInTime, Date clockOutTime, String actor)
-			throws Exception {
-		_log.info("createTimesheetDetails [timesheetId: " + timesheetId + ", clockInTime: " + clockInTime
-				+ ", clockOutTime: " + clockOutTime + ", actor: " + actor);
+	public TimesheetDetails addTimesheetDetails(long timesheetId, Date logDate, Date clockInTime, Date clockOutTime,
+			String type, String remarks, String actor) throws Exception {
+		_log.info("addTimesheetDetails [timesheetId: " + timesheetId + ", logDate: " + logDate + ", clockInTime: "
+				+ clockInTime + ", clockOutTime: " + clockOutTime + ", type: " + type + ", actor: " + actor);
 		TimesheetDetails timesheetDetails = timesheetDetailsLocalService
 				.createTimesheetDetails((int) CounterLocalServiceUtil.increment(TimesheetDetails.class.toString()));
 		timesheetDetails.setClockInTime(clockInTime);
 		timesheetDetails.setClockOutTime(clockOutTime);
-		timesheetDetailsPersistence.update(timesheetDetails);
-		return timesheetDetails;
+		timesheetDetails.setRemarks(remarks);
+		timesheetDetails.setType(type);
 
-	}
+		Timesheet timesheet = timesheetLocalService.fetchTimesheet((int) timesheetId);
+		if (timesheet == null) {
+			timesheet = createTimeSheet(actor, 0d, 0d, 0d, 0d, 0d, 0d, 0d, "-", "NEW", "", logDate.getTime(), actor);
+		}
 
-	public TimesheetDetails updateTimesheetDetails(long timesheetDetailsId, Date clockInTime, Date clockOutTime,
-			String actor) throws Exception {
-		_log.info("updateTimesheetDetails [timesheetDetailsId: " + timesheetDetailsId + ", clockInTime: " + clockInTime
-				+ ", clockOutTime: " + clockOutTime + ", actor: " + actor);
-		TimesheetDetails timesheetDetails = timesheetDetailsPersistence.fetchByPrimaryKey(timesheetDetailsId);
-		timesheetDetails.setClockInTime(clockInTime);
-		timesheetDetails.setClockOutTime(clockOutTime);
+		timesheetDetails.setTimesheetId(timesheet.getTimesheetId());
+
 		timesheetDetailsPersistence.update(timesheetDetails);
 		return timesheetDetails;
 

@@ -78,14 +78,10 @@ public interface TimesheetService extends BaseService, InvokableService {
 	public java.util.List<sg.com.para.intranet.services.model.TimesheetDetails> getTimesheetDetails(
 		long timesheetId, java.lang.String actor) throws java.lang.Exception;
 
-	public sg.com.para.intranet.services.model.TimesheetDetails createTimesheetDetails(
-		long timesheetId, java.util.Date clockInTime,
-		java.util.Date clockOutTime, java.lang.String actor)
-		throws java.lang.Exception;
-
-	public sg.com.para.intranet.services.model.TimesheetDetails updateTimesheetDetails(
-		long timesheetDetailsId, java.util.Date clockInTime,
-		java.util.Date clockOutTime, java.lang.String actor)
+	public sg.com.para.intranet.services.model.TimesheetDetails addTimesheetDetails(
+		long timesheetId, java.util.Date logDate, java.util.Date clockInTime,
+		java.util.Date clockOutTime, java.lang.String type,
+		java.lang.String remarks, java.lang.String actor)
 		throws java.lang.Exception;
 
 	public void deleteTimesheetDetails(long timesheetDetailsId,

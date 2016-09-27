@@ -64,9 +64,10 @@ public class TimesheetDetailsModelImpl extends BaseModelImpl<TimesheetDetails>
 			{ "timesheetId", Types.INTEGER },
 			{ "clockInTime", Types.TIMESTAMP },
 			{ "clockOutTime", Types.TIMESTAMP },
-			{ "remarks", Types.VARCHAR }
+			{ "remarks", Types.VARCHAR },
+			{ "type_", Types.VARCHAR }
 		};
-	public static final String TABLE_SQL_CREATE = "create table intranet_timesheet_details (timesheetDetailsId INTEGER not null primary key,timesheetId INTEGER,clockInTime DATE null,clockOutTime DATE null,remarks VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table intranet_timesheet_details (timesheetDetailsId INTEGER not null primary key,timesheetId INTEGER,clockInTime DATE null,clockOutTime DATE null,remarks VARCHAR(75) null,type_ VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table intranet_timesheet_details";
 	public static final String ORDER_BY_JPQL = " ORDER BY timesheetDetails.timesheetDetailsId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY intranet_timesheet_details.timesheetDetailsId ASC";
@@ -99,6 +100,7 @@ public class TimesheetDetailsModelImpl extends BaseModelImpl<TimesheetDetails>
 		model.setClockInTime(soapModel.getClockInTime());
 		model.setClockOutTime(soapModel.getClockOutTime());
 		model.setRemarks(soapModel.getRemarks());
+		model.setType(soapModel.getType());
 
 		return model;
 	}
@@ -169,6 +171,7 @@ public class TimesheetDetailsModelImpl extends BaseModelImpl<TimesheetDetails>
 		attributes.put("clockInTime", getClockInTime());
 		attributes.put("clockOutTime", getClockOutTime());
 		attributes.put("remarks", getRemarks());
+		attributes.put("type", getType());
 
 		return attributes;
 	}
@@ -204,6 +207,12 @@ public class TimesheetDetailsModelImpl extends BaseModelImpl<TimesheetDetails>
 
 		if (remarks != null) {
 			setRemarks(remarks);
+		}
+
+		String type = (String)attributes.get("type");
+
+		if (type != null) {
+			setType(type);
 		}
 	}
 
@@ -267,6 +276,22 @@ public class TimesheetDetailsModelImpl extends BaseModelImpl<TimesheetDetails>
 		_remarks = remarks;
 	}
 
+	@JSON
+	@Override
+	public String getType() {
+		if (_type == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _type;
+		}
+	}
+
+	@Override
+	public void setType(String type) {
+		_type = type;
+	}
+
 	@Override
 	public TimesheetDetails toEscapedModel() {
 		if (_escapedModel == null) {
@@ -286,6 +311,7 @@ public class TimesheetDetailsModelImpl extends BaseModelImpl<TimesheetDetails>
 		timesheetDetailsImpl.setClockInTime(getClockInTime());
 		timesheetDetailsImpl.setClockOutTime(getClockOutTime());
 		timesheetDetailsImpl.setRemarks(getRemarks());
+		timesheetDetailsImpl.setType(getType());
 
 		timesheetDetailsImpl.resetOriginalValues();
 
@@ -372,12 +398,20 @@ public class TimesheetDetailsModelImpl extends BaseModelImpl<TimesheetDetails>
 			timesheetDetailsCacheModel.remarks = null;
 		}
 
+		timesheetDetailsCacheModel.type = getType();
+
+		String type = timesheetDetailsCacheModel.type;
+
+		if ((type != null) && (type.length() == 0)) {
+			timesheetDetailsCacheModel.type = null;
+		}
+
 		return timesheetDetailsCacheModel;
 	}
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(11);
+		StringBundler sb = new StringBundler(13);
 
 		sb.append("{timesheetDetailsId=");
 		sb.append(getTimesheetDetailsId());
@@ -389,6 +423,8 @@ public class TimesheetDetailsModelImpl extends BaseModelImpl<TimesheetDetails>
 		sb.append(getClockOutTime());
 		sb.append(", remarks=");
 		sb.append(getRemarks());
+		sb.append(", type=");
+		sb.append(getType());
 		sb.append("}");
 
 		return sb.toString();
@@ -396,7 +432,7 @@ public class TimesheetDetailsModelImpl extends BaseModelImpl<TimesheetDetails>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(19);
+		StringBundler sb = new StringBundler(22);
 
 		sb.append("<model><model-name>");
 		sb.append("sg.com.para.intranet.services.model.TimesheetDetails");
@@ -422,6 +458,10 @@ public class TimesheetDetailsModelImpl extends BaseModelImpl<TimesheetDetails>
 			"<column><column-name>remarks</column-name><column-value><![CDATA[");
 		sb.append(getRemarks());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>type</column-name><column-value><![CDATA[");
+		sb.append(getType());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -437,5 +477,6 @@ public class TimesheetDetailsModelImpl extends BaseModelImpl<TimesheetDetails>
 	private Date _clockInTime;
 	private Date _clockOutTime;
 	private String _remarks;
+	private String _type;
 	private TimesheetDetails _escapedModel;
 }

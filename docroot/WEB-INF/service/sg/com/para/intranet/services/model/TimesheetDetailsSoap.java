@@ -36,6 +36,7 @@ public class TimesheetDetailsSoap implements Serializable {
 		soapModel.setClockInTime(model.getClockInTime());
 		soapModel.setClockOutTime(model.getClockOutTime());
 		soapModel.setRemarks(model.getRemarks());
+		soapModel.setType(model.getType());
 
 		return soapModel;
 	}
@@ -130,9 +131,18 @@ public class TimesheetDetailsSoap implements Serializable {
 		_remarks = remarks;
 	}
 
+	public String getType() {
+		return _type;
+	}
+
+	public void setType(String type) {
+		_type = type;
+	}
+
 	private int _timesheetDetailsId;
 	private int _timesheetId;
 	private Date _clockInTime;
 	private Date _clockOutTime;
 	private String _remarks;
+	private String _type;
 }

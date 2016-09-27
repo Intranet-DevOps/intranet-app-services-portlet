@@ -79,6 +79,7 @@ public class TimesheetDetailsClp extends BaseModelImpl<TimesheetDetails>
 		attributes.put("clockInTime", getClockInTime());
 		attributes.put("clockOutTime", getClockOutTime());
 		attributes.put("remarks", getRemarks());
+		attributes.put("type", getType());
 
 		return attributes;
 	}
@@ -114,6 +115,12 @@ public class TimesheetDetailsClp extends BaseModelImpl<TimesheetDetails>
 
 		if (remarks != null) {
 			setRemarks(remarks);
+		}
+
+		String type = (String)attributes.get("type");
+
+		if (type != null) {
+			setType(type);
 		}
 	}
 
@@ -233,6 +240,29 @@ public class TimesheetDetailsClp extends BaseModelImpl<TimesheetDetails>
 		}
 	}
 
+	@Override
+	public String getType() {
+		return _type;
+	}
+
+	@Override
+	public void setType(String type) {
+		_type = type;
+
+		if (_timesheetDetailsRemoteModel != null) {
+			try {
+				Class<?> clazz = _timesheetDetailsRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setType", String.class);
+
+				method.invoke(_timesheetDetailsRemoteModel, type);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
 	public BaseModel<?> getTimesheetDetailsRemoteModel() {
 		return _timesheetDetailsRemoteModel;
 	}
@@ -309,6 +339,7 @@ public class TimesheetDetailsClp extends BaseModelImpl<TimesheetDetails>
 		clone.setClockInTime(getClockInTime());
 		clone.setClockOutTime(getClockOutTime());
 		clone.setRemarks(getRemarks());
+		clone.setType(getType());
 
 		return clone;
 	}
@@ -361,7 +392,7 @@ public class TimesheetDetailsClp extends BaseModelImpl<TimesheetDetails>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(11);
+		StringBundler sb = new StringBundler(13);
 
 		sb.append("{timesheetDetailsId=");
 		sb.append(getTimesheetDetailsId());
@@ -373,6 +404,8 @@ public class TimesheetDetailsClp extends BaseModelImpl<TimesheetDetails>
 		sb.append(getClockOutTime());
 		sb.append(", remarks=");
 		sb.append(getRemarks());
+		sb.append(", type=");
+		sb.append(getType());
 		sb.append("}");
 
 		return sb.toString();
@@ -380,7 +413,7 @@ public class TimesheetDetailsClp extends BaseModelImpl<TimesheetDetails>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(19);
+		StringBundler sb = new StringBundler(22);
 
 		sb.append("<model><model-name>");
 		sb.append("sg.com.para.intranet.services.model.TimesheetDetails");
@@ -406,6 +439,10 @@ public class TimesheetDetailsClp extends BaseModelImpl<TimesheetDetails>
 			"<column><column-name>remarks</column-name><column-value><![CDATA[");
 		sb.append(getRemarks());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>type</column-name><column-value><![CDATA[");
+		sb.append(getType());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -417,6 +454,7 @@ public class TimesheetDetailsClp extends BaseModelImpl<TimesheetDetails>
 	private Date _clockInTime;
 	private Date _clockOutTime;
 	private String _remarks;
+	private String _type;
 	private BaseModel<?> _timesheetDetailsRemoteModel;
 	private Class<?> _clpSerializerClass = sg.com.para.intranet.services.service.ClpSerializer.class;
 }

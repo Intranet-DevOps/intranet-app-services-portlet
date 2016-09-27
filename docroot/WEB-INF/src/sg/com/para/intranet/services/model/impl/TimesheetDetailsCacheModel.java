@@ -38,7 +38,7 @@ public class TimesheetDetailsCacheModel implements CacheModel<TimesheetDetails>,
 	Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(11);
+		StringBundler sb = new StringBundler(13);
 
 		sb.append("{timesheetDetailsId=");
 		sb.append(timesheetDetailsId);
@@ -50,6 +50,8 @@ public class TimesheetDetailsCacheModel implements CacheModel<TimesheetDetails>,
 		sb.append(clockOutTime);
 		sb.append(", remarks=");
 		sb.append(remarks);
+		sb.append(", type=");
+		sb.append(type);
 		sb.append("}");
 
 		return sb.toString();
@@ -83,6 +85,13 @@ public class TimesheetDetailsCacheModel implements CacheModel<TimesheetDetails>,
 			timesheetDetailsImpl.setRemarks(remarks);
 		}
 
+		if (type == null) {
+			timesheetDetailsImpl.setType(StringPool.BLANK);
+		}
+		else {
+			timesheetDetailsImpl.setType(type);
+		}
+
 		timesheetDetailsImpl.resetOriginalValues();
 
 		return timesheetDetailsImpl;
@@ -95,6 +104,7 @@ public class TimesheetDetailsCacheModel implements CacheModel<TimesheetDetails>,
 		clockInTime = objectInput.readLong();
 		clockOutTime = objectInput.readLong();
 		remarks = objectInput.readUTF();
+		type = objectInput.readUTF();
 	}
 
 	@Override
@@ -111,6 +121,13 @@ public class TimesheetDetailsCacheModel implements CacheModel<TimesheetDetails>,
 		else {
 			objectOutput.writeUTF(remarks);
 		}
+
+		if (type == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(type);
+		}
 	}
 
 	public int timesheetDetailsId;
@@ -118,4 +135,5 @@ public class TimesheetDetailsCacheModel implements CacheModel<TimesheetDetails>,
 	public long clockInTime;
 	public long clockOutTime;
 	public String remarks;
+	public String type;
 }

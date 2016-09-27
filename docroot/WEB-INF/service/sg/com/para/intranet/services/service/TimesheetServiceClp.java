@@ -47,69 +47,64 @@ public class TimesheetServiceClp implements TimesheetService {
 
 		_methodParameterTypes5 = new String[] { "long", "java.lang.String" };
 
-		_methodName6 = "createTimesheetDetails";
+		_methodName6 = "addTimesheetDetails";
 
 		_methodParameterTypes6 = new String[] {
-				"long", "java.util.Date", "java.util.Date", "java.lang.String"
+				"long", "java.util.Date", "java.util.Date", "java.util.Date",
+				"java.lang.String", "java.lang.String", "java.lang.String"
 			};
 
-		_methodName7 = "updateTimesheetDetails";
+		_methodName7 = "deleteTimesheetDetails";
 
-		_methodParameterTypes7 = new String[] {
-				"long", "java.util.Date", "java.util.Date", "java.lang.String"
-			};
+		_methodParameterTypes7 = new String[] { "long", "java.lang.String" };
 
-		_methodName8 = "deleteTimesheetDetails";
+		_methodName8 = "createTimeSheet";
 
-		_methodParameterTypes8 = new String[] { "long", "java.lang.String" };
-
-		_methodName9 = "createTimeSheet";
-
-		_methodParameterTypes9 = new String[] {
+		_methodParameterTypes8 = new String[] {
 				"java.lang.String", "double", "double", "double", "double",
 				"double", "double", "double", "java.lang.String",
 				"java.lang.String", "java.lang.String", "long",
 				"java.lang.String"
 			};
 
-		_methodName10 = "updateTimeSheet";
+		_methodName9 = "updateTimeSheet";
 
-		_methodParameterTypes10 = new String[] {
+		_methodParameterTypes9 = new String[] {
 				"int", "java.lang.String", "double", "double", "double",
 				"double", "double", "double", "double", "java.lang.String",
 				"java.lang.String", "java.lang.String", "long",
 				"java.lang.String"
 			};
 
-		_methodName11 = "deleteTimeSheet";
+		_methodName10 = "deleteTimeSheet";
+
+		_methodParameterTypes10 = new String[] { "int", "java.lang.String" };
+
+		_methodName11 = "approveTimeSheet";
 
 		_methodParameterTypes11 = new String[] { "int", "java.lang.String" };
 
-		_methodName12 = "approveTimeSheet";
+		_methodName12 = "rejectTimeSheet";
 
-		_methodParameterTypes12 = new String[] { "int", "java.lang.String" };
-
-		_methodName13 = "rejectTimeSheet";
-
-		_methodParameterTypes13 = new String[] {
+		_methodParameterTypes12 = new String[] {
 				"int", "java.lang.String", "java.lang.String"
 			};
 
-		_methodName14 = "submitMonth";
+		_methodName13 = "submitMonth";
+
+		_methodParameterTypes13 = new String[] {
+				"int", "int", "java.lang.String", "java.lang.String"
+			};
+
+		_methodName14 = "rejectMonth";
 
 		_methodParameterTypes14 = new String[] {
 				"int", "int", "java.lang.String", "java.lang.String"
 			};
 
-		_methodName15 = "rejectMonth";
+		_methodName15 = "approveMonth";
 
 		_methodParameterTypes15 = new String[] {
-				"int", "int", "java.lang.String", "java.lang.String"
-			};
-
-		_methodName16 = "approveMonth";
-
-		_methodParameterTypes16 = new String[] {
 				"int", "int", "java.lang.String", "java.lang.String"
 			};
 	}
@@ -270,9 +265,10 @@ public class TimesheetServiceClp implements TimesheetService {
 	}
 
 	@Override
-	public sg.com.para.intranet.services.model.TimesheetDetails createTimesheetDetails(
-		long timesheetId, java.util.Date clockInTime,
-		java.util.Date clockOutTime, java.lang.String actor)
+	public sg.com.para.intranet.services.model.TimesheetDetails addTimesheetDetails(
+		long timesheetId, java.util.Date logDate, java.util.Date clockInTime,
+		java.util.Date clockOutTime, java.lang.String type,
+		java.lang.String remarks, java.lang.String actor)
 		throws java.lang.Exception {
 		Object returnObj = null;
 
@@ -282,48 +278,15 @@ public class TimesheetServiceClp implements TimesheetService {
 					new Object[] {
 						timesheetId,
 						
-					ClpSerializer.translateInput(clockInTime),
-						
-					ClpSerializer.translateInput(clockOutTime),
-						
-					ClpSerializer.translateInput(actor)
-					});
-		}
-		catch (Throwable t) {
-			t = ClpSerializer.translateThrowable(t);
-
-			if (t instanceof java.lang.Exception) {
-				throw (java.lang.Exception)t;
-			}
-
-			if (t instanceof RuntimeException) {
-				throw (RuntimeException)t;
-			}
-			else {
-				throw new RuntimeException(t.getClass().getName() +
-					" is not a valid exception");
-			}
-		}
-
-		return (sg.com.para.intranet.services.model.TimesheetDetails)ClpSerializer.translateOutput(returnObj);
-	}
-
-	@Override
-	public sg.com.para.intranet.services.model.TimesheetDetails updateTimesheetDetails(
-		long timesheetDetailsId, java.util.Date clockInTime,
-		java.util.Date clockOutTime, java.lang.String actor)
-		throws java.lang.Exception {
-		Object returnObj = null;
-
-		try {
-			returnObj = _invokableService.invokeMethod(_methodName7,
-					_methodParameterTypes7,
-					new Object[] {
-						timesheetDetailsId,
+					ClpSerializer.translateInput(logDate),
 						
 					ClpSerializer.translateInput(clockInTime),
 						
 					ClpSerializer.translateInput(clockOutTime),
+						
+					ClpSerializer.translateInput(type),
+						
+					ClpSerializer.translateInput(remarks),
 						
 					ClpSerializer.translateInput(actor)
 					});
@@ -351,8 +314,8 @@ public class TimesheetServiceClp implements TimesheetService {
 	public void deleteTimesheetDetails(long timesheetDetailsId,
 		java.lang.String actor) throws java.lang.Exception {
 		try {
-			_invokableService.invokeMethod(_methodName8,
-				_methodParameterTypes8,
+			_invokableService.invokeMethod(_methodName7,
+				_methodParameterTypes7,
 				new Object[] {
 					timesheetDetailsId,
 					
@@ -386,8 +349,8 @@ public class TimesheetServiceClp implements TimesheetService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName9,
-					_methodParameterTypes9,
+			returnObj = _invokableService.invokeMethod(_methodName8,
+					_methodParameterTypes8,
 					new Object[] {
 						ClpSerializer.translateInput(employeeScreenName),
 						
@@ -445,8 +408,8 @@ public class TimesheetServiceClp implements TimesheetService {
 		Object returnObj = null;
 
 		try {
-			returnObj = _invokableService.invokeMethod(_methodName10,
-					_methodParameterTypes10,
+			returnObj = _invokableService.invokeMethod(_methodName9,
+					_methodParameterTypes9,
 					new Object[] {
 						timesheetId,
 						
@@ -500,8 +463,8 @@ public class TimesheetServiceClp implements TimesheetService {
 	public void deleteTimeSheet(int timesheetId, java.lang.String actor)
 		throws java.lang.Exception {
 		try {
-			_invokableService.invokeMethod(_methodName11,
-				_methodParameterTypes11,
+			_invokableService.invokeMethod(_methodName10,
+				_methodParameterTypes10,
 				new Object[] { timesheetId, ClpSerializer.translateInput(actor) });
 		}
 		catch (Throwable t) {
@@ -525,8 +488,8 @@ public class TimesheetServiceClp implements TimesheetService {
 	public void approveTimeSheet(int timesheetId, java.lang.String actor)
 		throws java.lang.Exception {
 		try {
-			_invokableService.invokeMethod(_methodName12,
-				_methodParameterTypes12,
+			_invokableService.invokeMethod(_methodName11,
+				_methodParameterTypes11,
 				new Object[] { timesheetId, ClpSerializer.translateInput(actor) });
 		}
 		catch (Throwable t) {
@@ -550,8 +513,8 @@ public class TimesheetServiceClp implements TimesheetService {
 	public void rejectTimeSheet(int timesheetId, java.lang.String comment,
 		java.lang.String actor) throws java.lang.Exception {
 		try {
-			_invokableService.invokeMethod(_methodName13,
-				_methodParameterTypes13,
+			_invokableService.invokeMethod(_methodName12,
+				_methodParameterTypes12,
 				new Object[] {
 					timesheetId,
 					
@@ -581,8 +544,8 @@ public class TimesheetServiceClp implements TimesheetService {
 	public void submitMonth(int year, int month, java.lang.String userId,
 		java.lang.String actor) throws java.lang.Exception {
 		try {
-			_invokableService.invokeMethod(_methodName14,
-				_methodParameterTypes14,
+			_invokableService.invokeMethod(_methodName13,
+				_methodParameterTypes13,
 				new Object[] {
 					year,
 					
@@ -614,8 +577,8 @@ public class TimesheetServiceClp implements TimesheetService {
 	public void rejectMonth(int year, int month, java.lang.String comment,
 		java.lang.String actor) throws java.lang.Exception {
 		try {
-			_invokableService.invokeMethod(_methodName15,
-				_methodParameterTypes15,
+			_invokableService.invokeMethod(_methodName14,
+				_methodParameterTypes14,
 				new Object[] {
 					year,
 					
@@ -647,8 +610,8 @@ public class TimesheetServiceClp implements TimesheetService {
 	public void approveMonth(int year, int month, java.lang.String userId,
 		java.lang.String actor) throws java.lang.Exception {
 		try {
-			_invokableService.invokeMethod(_methodName16,
-				_methodParameterTypes16,
+			_invokableService.invokeMethod(_methodName15,
+				_methodParameterTypes15,
 				new Object[] {
 					year,
 					
@@ -707,6 +670,4 @@ public class TimesheetServiceClp implements TimesheetService {
 	private String[] _methodParameterTypes14;
 	private String _methodName15;
 	private String[] _methodParameterTypes15;
-	private String _methodName16;
-	private String[] _methodParameterTypes16;
 }

@@ -130,6 +130,21 @@ public interface TimesheetDetailsModel extends BaseModel<TimesheetDetails> {
 	 */
 	public void setRemarks(String remarks);
 
+	/**
+	 * Returns the type of this timesheet details.
+	 *
+	 * @return the type of this timesheet details
+	 */
+	@AutoEscape
+	public String getType();
+
+	/**
+	 * Sets the type of this timesheet details.
+	 *
+	 * @param type the type of this timesheet details
+	 */
+	public void setType(String type);
+
 	@Override
 	public boolean isNew();
 

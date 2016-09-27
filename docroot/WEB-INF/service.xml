@@ -39,6 +39,7 @@
 		<column name="clockInTime" type="Date"></column>
 		<column name="clockOutTime" type="Date"></column>
 		<column name="remarks" type="String"></column>
+		<column name="type" type="String"></column>
 	</entity>
 	<entity name="Expense" local-service="true" remote-service="true"
 		table="intranet_expense">
