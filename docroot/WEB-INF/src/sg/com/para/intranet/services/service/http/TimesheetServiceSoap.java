@@ -111,8 +111,8 @@ public class TimesheetServiceSoap {
 	}
 
 	public static sg.com.para.intranet.services.model.TimesheetDetailsSoap addTimesheetDetails(
-		long timesheetId, java.util.Date logDate, java.util.Date clockInTime,
-		java.util.Date clockOutTime, java.lang.String type,
+		long timesheetId, java.util.Date logDate, java.lang.String clockInTime,
+		java.lang.String clockOutTime, java.lang.String type,
 		java.lang.String remarks, java.lang.String actor)
 		throws RemoteException {
 		try {

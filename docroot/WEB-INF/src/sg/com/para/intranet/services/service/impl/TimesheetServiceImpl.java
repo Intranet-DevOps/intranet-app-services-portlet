@@ -14,8 +14,11 @@
 
 package sg.com.para.intranet.services.service.impl;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 import sg.com.para.intranet.services.model.Timesheet;
 import sg.com.para.intranet.services.model.TimesheetDetails;
@@ -82,14 +85,25 @@ public class TimesheetServiceImpl extends TimesheetServiceBaseImpl {
 		return timesheetDetails;
 	}
 
-	public TimesheetDetails addTimesheetDetails(long timesheetId, Date logDate, Date clockInTime, Date clockOutTime,
-			String type, String remarks, String actor) throws Exception {
+	public TimesheetDetails addTimesheetDetails(long timesheetId, Date logDate, String clockInTime,
+			String clockOutTime, String type, String remarks, String actor) throws Exception {
 		_log.info("addTimesheetDetails [timesheetId: " + timesheetId + ", logDate: " + logDate + ", clockInTime: "
 				+ clockInTime + ", clockOutTime: " + clockOutTime + ", type: " + type + ", actor: " + actor);
+
+		Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("SGT"));
+		_log.info("Date1: " + cal.getTime());
+		cal.setTime(logDate);
+		_log.info("Date2: " + cal.getTime());
+		
+		SimpleDateFormat sdfFullTime = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+		SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd");
+		Date clockInTimeDt = sdfFullTime.parse(sdfDate.format(cal.getTime()) + " " + clockInTime);
+		Date clockOutTimeDt = sdfFullTime.parse(sdfDate.format(cal.getTime()) + " " + clockOutTime);
+
 		TimesheetDetails timesheetDetails = timesheetDetailsLocalService
 				.createTimesheetDetails((int) CounterLocalServiceUtil.increment(TimesheetDetails.class.toString()));
-		timesheetDetails.setClockInTime(clockInTime);
-		timesheetDetails.setClockOutTime(clockOutTime);
+		timesheetDetails.setClockInTime(clockInTimeDt);
+		timesheetDetails.setClockOutTime(clockOutTimeDt);
 		timesheetDetails.setRemarks(remarks);
 		timesheetDetails.setType(type);
 

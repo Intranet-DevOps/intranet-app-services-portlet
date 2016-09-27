@@ -50,7 +50,7 @@ public class TimesheetServiceClpInvoker {
 		_methodName51 = "addTimesheetDetails";
 
 		_methodParameterTypes51 = new String[] {
-				"long", "java.util.Date", "java.util.Date", "java.util.Date",
+				"long", "java.util.Date", "java.lang.String", "java.lang.String",
 				"java.lang.String", "java.lang.String", "java.lang.String"
 			};
 
@@ -145,8 +145,8 @@ public class TimesheetServiceClpInvoker {
 		if (_methodName51.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes51, parameterTypes)) {
 			return TimesheetServiceUtil.addTimesheetDetails(((Long)arguments[0]).longValue(),
-				(java.util.Date)arguments[1], (java.util.Date)arguments[2],
-				(java.util.Date)arguments[3], (java.lang.String)arguments[4],
+				(java.util.Date)arguments[1], (java.lang.String)arguments[2],
+				(java.lang.String)arguments[3], (java.lang.String)arguments[4],
 				(java.lang.String)arguments[5], (java.lang.String)arguments[6]);
 		}
 
