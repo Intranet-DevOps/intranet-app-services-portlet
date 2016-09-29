@@ -65,9 +65,10 @@ public class TimesheetDetailsModelImpl extends BaseModelImpl<TimesheetDetails>
 			{ "clockInTime", Types.TIMESTAMP },
 			{ "clockOutTime", Types.TIMESTAMP },
 			{ "remarks", Types.VARCHAR },
-			{ "type_", Types.VARCHAR }
+			{ "type_", Types.VARCHAR },
+			{ "fulldayOrTimeBased", Types.VARCHAR }
 		};
-	public static final String TABLE_SQL_CREATE = "create table intranet_timesheet_details (timesheetDetailsId INTEGER not null primary key,timesheetId INTEGER,clockInTime DATE null,clockOutTime DATE null,remarks VARCHAR(75) null,type_ VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table intranet_timesheet_details (timesheetDetailsId INTEGER not null primary key,timesheetId INTEGER,clockInTime DATE null,clockOutTime DATE null,remarks VARCHAR(75) null,type_ VARCHAR(75) null,fulldayOrTimeBased VARCHAR(75) null)";
 	public static final String TABLE_SQL_DROP = "drop table intranet_timesheet_details";
 	public static final String ORDER_BY_JPQL = " ORDER BY timesheetDetails.timesheetDetailsId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY intranet_timesheet_details.timesheetDetailsId ASC";
@@ -101,6 +102,7 @@ public class TimesheetDetailsModelImpl extends BaseModelImpl<TimesheetDetails>
 		model.setClockOutTime(soapModel.getClockOutTime());
 		model.setRemarks(soapModel.getRemarks());
 		model.setType(soapModel.getType());
+		model.setFulldayOrTimeBased(soapModel.getFulldayOrTimeBased());
 
 		return model;
 	}
@@ -172,6 +174,7 @@ public class TimesheetDetailsModelImpl extends BaseModelImpl<TimesheetDetails>
 		attributes.put("clockOutTime", getClockOutTime());
 		attributes.put("remarks", getRemarks());
 		attributes.put("type", getType());
+		attributes.put("fulldayOrTimeBased", getFulldayOrTimeBased());
 
 		return attributes;
 	}
@@ -213,6 +216,12 @@ public class TimesheetDetailsModelImpl extends BaseModelImpl<TimesheetDetails>
 
 		if (type != null) {
 			setType(type);
+		}
+
+		String fulldayOrTimeBased = (String)attributes.get("fulldayOrTimeBased");
+
+		if (fulldayOrTimeBased != null) {
+			setFulldayOrTimeBased(fulldayOrTimeBased);
 		}
 	}
 
@@ -292,6 +301,22 @@ public class TimesheetDetailsModelImpl extends BaseModelImpl<TimesheetDetails>
 		_type = type;
 	}
 
+	@JSON
+	@Override
+	public String getFulldayOrTimeBased() {
+		if (_fulldayOrTimeBased == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _fulldayOrTimeBased;
+		}
+	}
+
+	@Override
+	public void setFulldayOrTimeBased(String fulldayOrTimeBased) {
+		_fulldayOrTimeBased = fulldayOrTimeBased;
+	}
+
 	@Override
 	public TimesheetDetails toEscapedModel() {
 		if (_escapedModel == null) {
@@ -312,6 +337,7 @@ public class TimesheetDetailsModelImpl extends BaseModelImpl<TimesheetDetails>
 		timesheetDetailsImpl.setClockOutTime(getClockOutTime());
 		timesheetDetailsImpl.setRemarks(getRemarks());
 		timesheetDetailsImpl.setType(getType());
+		timesheetDetailsImpl.setFulldayOrTimeBased(getFulldayOrTimeBased());
 
 		timesheetDetailsImpl.resetOriginalValues();
 
@@ -406,12 +432,20 @@ public class TimesheetDetailsModelImpl extends BaseModelImpl<TimesheetDetails>
 			timesheetDetailsCacheModel.type = null;
 		}
 
+		timesheetDetailsCacheModel.fulldayOrTimeBased = getFulldayOrTimeBased();
+
+		String fulldayOrTimeBased = timesheetDetailsCacheModel.fulldayOrTimeBased;
+
+		if ((fulldayOrTimeBased != null) && (fulldayOrTimeBased.length() == 0)) {
+			timesheetDetailsCacheModel.fulldayOrTimeBased = null;
+		}
+
 		return timesheetDetailsCacheModel;
 	}
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(13);
+		StringBundler sb = new StringBundler(15);
 
 		sb.append("{timesheetDetailsId=");
 		sb.append(getTimesheetDetailsId());
@@ -425,6 +459,8 @@ public class TimesheetDetailsModelImpl extends BaseModelImpl<TimesheetDetails>
 		sb.append(getRemarks());
 		sb.append(", type=");
 		sb.append(getType());
+		sb.append(", fulldayOrTimeBased=");
+		sb.append(getFulldayOrTimeBased());
 		sb.append("}");
 
 		return sb.toString();
@@ -432,7 +468,7 @@ public class TimesheetDetailsModelImpl extends BaseModelImpl<TimesheetDetails>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(22);
+		StringBundler sb = new StringBundler(25);
 
 		sb.append("<model><model-name>");
 		sb.append("sg.com.para.intranet.services.model.TimesheetDetails");
@@ -462,6 +498,10 @@ public class TimesheetDetailsModelImpl extends BaseModelImpl<TimesheetDetails>
 			"<column><column-name>type</column-name><column-value><![CDATA[");
 		sb.append(getType());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>fulldayOrTimeBased</column-name><column-value><![CDATA[");
+		sb.append(getFulldayOrTimeBased());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -478,5 +518,6 @@ public class TimesheetDetailsModelImpl extends BaseModelImpl<TimesheetDetails>
 	private Date _clockOutTime;
 	private String _remarks;
 	private String _type;
+	private String _fulldayOrTimeBased;
 	private TimesheetDetails _escapedModel;
 }

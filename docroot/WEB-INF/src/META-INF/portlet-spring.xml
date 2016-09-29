@@ -1,6 +1,9 @@
 <?xml version="1.0"?>
 
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<bean id="sg.com.para.intranet.services.service.AttachmentLocalService" class="sg.com.para.intranet.services.service.impl.AttachmentLocalServiceImpl" />
+	<bean id="sg.com.para.intranet.services.service.AttachmentService" class="sg.com.para.intranet.services.service.impl.AttachmentServiceImpl" />
+	<bean id="sg.com.para.intranet.services.service.persistence.AttachmentPersistence" class="sg.com.para.intranet.services.service.persistence.AttachmentPersistenceImpl" parent="basePersistence" />
 	<bean id="sg.com.para.intranet.services.service.EmployeeLocalService" class="sg.com.para.intranet.services.service.impl.EmployeeLocalServiceImpl" />
 	<bean id="sg.com.para.intranet.services.service.EmployeeService" class="sg.com.para.intranet.services.service.impl.EmployeeServiceImpl" />
 	<bean id="sg.com.para.intranet.services.service.persistence.EmployeePersistence" class="sg.com.para.intranet.services.service.persistence.EmployeePersistenceImpl" parent="basePersistence" />

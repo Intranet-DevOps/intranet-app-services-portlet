@@ -31,6 +31,10 @@
 		<column name="remarks" type="String"></column>
 		<column name="status" type="String"></column>
 		<column name="projectCode" type="String"></column>
+		<column name="approvedBy" type="String"></column>
+		<column name="approvedDate" type="Date"></column>
+		<column name="processedBy" type="String"></column>
+		<column name="processedDate" type="Date"></column>
 	</entity>
 	<entity name="TimesheetDetails" local-service="true"
 		remote-service="true" table="intranet_timesheet_details">
@@ -40,6 +44,7 @@
 		<column name="clockOutTime" type="Date"></column>
 		<column name="remarks" type="String"></column>
 		<column name="type" type="String"></column>
+		<column name="fulldayOrTimeBased" type="String"></column>
 	</entity>
 	<entity name="Expense" local-service="true" remote-service="true"
 		table="intranet_expense">
@@ -53,6 +58,12 @@
 		<column name="status" type="String"></column>
 		<column name="remarks" type="String"></column>
 	</entity>
-
+	<entity name="Attachment" local-service="true" remote-service="true"
+		table="intranet_attachment">
+		<column name="attachmentId" type="int" primary="true"></column>
+		<column name="entityType" type="String"></column>
+		<column name="entityId" type="int"></column> 
+		<column name="attachmentText" type="String"></column> 
+	</entity>
 
 </service-builder>

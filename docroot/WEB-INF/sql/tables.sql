@@ -7,6 +7,13 @@ create table intranet_Timesheet (
 	projectId INTEGER
 );
 
+create table intranet_attachment (
+	attachmentId INTEGER not null primary key,
+	entityType VARCHAR(75) null,
+	entityId INTEGER,
+	attachmentText VARCHAR(75) null
+);
+
 create table intranet_employee (
 	employeeId INTEGER not null primary key,
 	screenName VARCHAR(75) null,
@@ -45,7 +52,11 @@ create table intranet_timesheet (
 	other DOUBLE,
 	remarks VARCHAR(75) null,
 	status VARCHAR(75) null,
-	projectCode VARCHAR(75) null
+	projectCode VARCHAR(75) null,
+	approvedBy VARCHAR(75) null,
+	approvedDate DATE null,
+	processedBy VARCHAR(75) null,
+	processedDate DATE null
 );
 
 create table intranet_timesheet_details (
@@ -54,5 +65,6 @@ create table intranet_timesheet_details (
 	clockInTime DATE null,
 	clockOutTime DATE null,
 	remarks VARCHAR(75) null,
-	type_ VARCHAR(75) null
+	type_ VARCHAR(75) null,
+	fulldayOrTimeBased VARCHAR(75) null
 );

@@ -332,6 +332,10 @@ public class TimesheetPersistenceImpl extends BasePersistenceImpl<Timesheet>
 		timesheetImpl.setRemarks(timesheet.getRemarks());
 		timesheetImpl.setStatus(timesheet.getStatus());
 		timesheetImpl.setProjectCode(timesheet.getProjectCode());
+		timesheetImpl.setApprovedBy(timesheet.getApprovedBy());
+		timesheetImpl.setApprovedDate(timesheet.getApprovedDate());
+		timesheetImpl.setProcessedBy(timesheet.getProcessedBy());
+		timesheetImpl.setProcessedDate(timesheet.getProcessedDate());
 
 		return timesheetImpl;
 	}

@@ -1,6 +1,12 @@
 <?xml version="1.0"?>
 
 <model-hints>
+	<model name="sg.com.para.intranet.services.model.Attachment">
+		<field name="attachmentId" type="int" />
+		<field name="entityType" type="String" />
+		<field name="entityId" type="int" />
+		<field name="attachmentText" type="String" />
+	</model>
 	<model name="sg.com.para.intranet.services.model.Employee">
 		<field name="employeeId" type="int" />
 		<field name="screenName" type="String" />
@@ -37,6 +43,10 @@
 		<field name="remarks" type="String" />
 		<field name="status" type="String" />
 		<field name="projectCode" type="String" />
+		<field name="approvedBy" type="String" />
+		<field name="approvedDate" type="Date" />
+		<field name="processedBy" type="String" />
+		<field name="processedDate" type="Date" />
 	</model>
 	<model name="sg.com.para.intranet.services.model.TimesheetDetails">
 		<field name="timesheetDetailsId" type="int" />
@@ -45,5 +55,6 @@
 		<field name="clockOutTime" type="Date" />
 		<field name="remarks" type="String" />
 		<field name="type" type="String" />
+		<field name="fulldayOrTimeBased" type="String" />
 	</model>
 </model-hints>

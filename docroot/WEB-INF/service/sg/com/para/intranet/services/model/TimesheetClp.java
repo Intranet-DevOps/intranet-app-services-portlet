@@ -86,6 +86,10 @@ public class TimesheetClp extends BaseModelImpl<Timesheet> implements Timesheet 
 		attributes.put("remarks", getRemarks());
 		attributes.put("status", getStatus());
 		attributes.put("projectCode", getProjectCode());
+		attributes.put("approvedBy", getApprovedBy());
+		attributes.put("approvedDate", getApprovedDate());
+		attributes.put("processedBy", getProcessedBy());
+		attributes.put("processedDate", getProcessedDate());
 
 		return attributes;
 	}
@@ -168,6 +172,30 @@ public class TimesheetClp extends BaseModelImpl<Timesheet> implements Timesheet 
 
 		if (projectCode != null) {
 			setProjectCode(projectCode);
+		}
+
+		String approvedBy = (String)attributes.get("approvedBy");
+
+		if (approvedBy != null) {
+			setApprovedBy(approvedBy);
+		}
+
+		Date approvedDate = (Date)attributes.get("approvedDate");
+
+		if (approvedDate != null) {
+			setApprovedDate(approvedDate);
+		}
+
+		String processedBy = (String)attributes.get("processedBy");
+
+		if (processedBy != null) {
+			setProcessedBy(processedBy);
+		}
+
+		Date processedDate = (Date)attributes.get("processedDate");
+
+		if (processedDate != null) {
+			setProcessedDate(processedDate);
 		}
 	}
 
@@ -471,6 +499,98 @@ public class TimesheetClp extends BaseModelImpl<Timesheet> implements Timesheet 
 		}
 	}
 
+	@Override
+	public String getApprovedBy() {
+		return _approvedBy;
+	}
+
+	@Override
+	public void setApprovedBy(String approvedBy) {
+		_approvedBy = approvedBy;
+
+		if (_timesheetRemoteModel != null) {
+			try {
+				Class<?> clazz = _timesheetRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setApprovedBy", String.class);
+
+				method.invoke(_timesheetRemoteModel, approvedBy);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public Date getApprovedDate() {
+		return _approvedDate;
+	}
+
+	@Override
+	public void setApprovedDate(Date approvedDate) {
+		_approvedDate = approvedDate;
+
+		if (_timesheetRemoteModel != null) {
+			try {
+				Class<?> clazz = _timesheetRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setApprovedDate", Date.class);
+
+				method.invoke(_timesheetRemoteModel, approvedDate);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public String getProcessedBy() {
+		return _processedBy;
+	}
+
+	@Override
+	public void setProcessedBy(String processedBy) {
+		_processedBy = processedBy;
+
+		if (_timesheetRemoteModel != null) {
+			try {
+				Class<?> clazz = _timesheetRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setProcessedBy", String.class);
+
+				method.invoke(_timesheetRemoteModel, processedBy);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
+	@Override
+	public Date getProcessedDate() {
+		return _processedDate;
+	}
+
+	@Override
+	public void setProcessedDate(Date processedDate) {
+		_processedDate = processedDate;
+
+		if (_timesheetRemoteModel != null) {
+			try {
+				Class<?> clazz = _timesheetRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setProcessedDate", Date.class);
+
+				method.invoke(_timesheetRemoteModel, processedDate);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
 	public BaseModel<?> getTimesheetRemoteModel() {
 		return _timesheetRemoteModel;
 	}
@@ -553,6 +673,10 @@ public class TimesheetClp extends BaseModelImpl<Timesheet> implements Timesheet 
 		clone.setRemarks(getRemarks());
 		clone.setStatus(getStatus());
 		clone.setProjectCode(getProjectCode());
+		clone.setApprovedBy(getApprovedBy());
+		clone.setApprovedDate(getApprovedDate());
+		clone.setProcessedBy(getProcessedBy());
+		clone.setProcessedDate(getProcessedDate());
 
 		return clone;
 	}
@@ -605,7 +729,7 @@ public class TimesheetClp extends BaseModelImpl<Timesheet> implements Timesheet 
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(27);
+		StringBundler sb = new StringBundler(35);
 
 		sb.append("{timesheetId=");
 		sb.append(getTimesheetId());
@@ -633,6 +757,14 @@ public class TimesheetClp extends BaseModelImpl<Timesheet> implements Timesheet 
 		sb.append(getStatus());
 		sb.append(", projectCode=");
 		sb.append(getProjectCode());
+		sb.append(", approvedBy=");
+		sb.append(getApprovedBy());
+		sb.append(", approvedDate=");
+		sb.append(getApprovedDate());
+		sb.append(", processedBy=");
+		sb.append(getProcessedBy());
+		sb.append(", processedDate=");
+		sb.append(getProcessedDate());
 		sb.append("}");
 
 		return sb.toString();
@@ -640,7 +772,7 @@ public class TimesheetClp extends BaseModelImpl<Timesheet> implements Timesheet 
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(43);
+		StringBundler sb = new StringBundler(55);
 
 		sb.append("<model><model-name>");
 		sb.append("sg.com.para.intranet.services.model.Timesheet");
@@ -698,6 +830,22 @@ public class TimesheetClp extends BaseModelImpl<Timesheet> implements Timesheet 
 			"<column><column-name>projectCode</column-name><column-value><![CDATA[");
 		sb.append(getProjectCode());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>approvedBy</column-name><column-value><![CDATA[");
+		sb.append(getApprovedBy());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>approvedDate</column-name><column-value><![CDATA[");
+		sb.append(getApprovedDate());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>processedBy</column-name><column-value><![CDATA[");
+		sb.append(getProcessedBy());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>processedDate</column-name><column-value><![CDATA[");
+		sb.append(getProcessedDate());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -717,6 +865,10 @@ public class TimesheetClp extends BaseModelImpl<Timesheet> implements Timesheet 
 	private String _remarks;
 	private String _status;
 	private String _projectCode;
+	private String _approvedBy;
+	private Date _approvedDate;
+	private String _processedBy;
+	private Date _processedDate;
 	private BaseModel<?> _timesheetRemoteModel;
 	private Class<?> _clpSerializerClass = sg.com.para.intranet.services.service.ClpSerializer.class;
 }

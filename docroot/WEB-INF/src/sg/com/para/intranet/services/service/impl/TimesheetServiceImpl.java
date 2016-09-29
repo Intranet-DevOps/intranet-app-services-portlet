@@ -90,15 +90,10 @@ public class TimesheetServiceImpl extends TimesheetServiceBaseImpl {
 		_log.info("addTimesheetDetails [timesheetId: " + timesheetId + ", logDate: " + logDate + ", clockInTime: "
 				+ clockInTime + ", clockOutTime: " + clockOutTime + ", type: " + type + ", actor: " + actor);
 
-		Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("SGT"));
-		_log.info("Date1: " + cal.getTime());
-		cal.setTime(logDate);
-		_log.info("Date2: " + cal.getTime());
-		
 		SimpleDateFormat sdfFullTime = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd");
-		Date clockInTimeDt = sdfFullTime.parse(sdfDate.format(cal.getTime()) + " " + clockInTime);
-		Date clockOutTimeDt = sdfFullTime.parse(sdfDate.format(cal.getTime()) + " " + clockOutTime);
+		Date clockInTimeDt = sdfFullTime.parse(sdfDate.format(logDate) + " " + clockInTime);
+		Date clockOutTimeDt = sdfFullTime.parse(sdfDate.format(logDate) + " " + clockOutTime);
 
 		TimesheetDetails timesheetDetails = timesheetDetailsLocalService
 				.createTimesheetDetails((int) CounterLocalServiceUtil.increment(TimesheetDetails.class.toString()));

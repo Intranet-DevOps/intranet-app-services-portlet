@@ -24,6 +24,7 @@ import com.liferay.portal.service.persistence.UserPersistence;
 
 import sg.com.para.intranet.services.model.TimesheetDetails;
 import sg.com.para.intranet.services.service.TimesheetDetailsService;
+import sg.com.para.intranet.services.service.persistence.AttachmentPersistence;
 import sg.com.para.intranet.services.service.persistence.EmployeePersistence;
 import sg.com.para.intranet.services.service.persistence.ExpensePersistence;
 import sg.com.para.intranet.services.service.persistence.ProjectPersistence;
@@ -51,6 +52,63 @@ public abstract class TimesheetDetailsServiceBaseImpl extends BaseServiceImpl
 	 *
 	 * Never modify or reference this class directly. Always use {@link sg.com.para.intranet.services.service.TimesheetDetailsServiceUtil} to access the timesheet details remote service.
 	 */
+
+	/**
+	 * Returns the attachment local service.
+	 *
+	 * @return the attachment local service
+	 */
+	public sg.com.para.intranet.services.service.AttachmentLocalService getAttachmentLocalService() {
+		return attachmentLocalService;
+	}
+
+	/**
+	 * Sets the attachment local service.
+	 *
+	 * @param attachmentLocalService the attachment local service
+	 */
+	public void setAttachmentLocalService(
+		sg.com.para.intranet.services.service.AttachmentLocalService attachmentLocalService) {
+		this.attachmentLocalService = attachmentLocalService;
+	}
+
+	/**
+	 * Returns the attachment remote service.
+	 *
+	 * @return the attachment remote service
+	 */
+	public sg.com.para.intranet.services.service.AttachmentService getAttachmentService() {
+		return attachmentService;
+	}
+
+	/**
+	 * Sets the attachment remote service.
+	 *
+	 * @param attachmentService the attachment remote service
+	 */
+	public void setAttachmentService(
+		sg.com.para.intranet.services.service.AttachmentService attachmentService) {
+		this.attachmentService = attachmentService;
+	}
+
+	/**
+	 * Returns the attachment persistence.
+	 *
+	 * @return the attachment persistence
+	 */
+	public AttachmentPersistence getAttachmentPersistence() {
+		return attachmentPersistence;
+	}
+
+	/**
+	 * Sets the attachment persistence.
+	 *
+	 * @param attachmentPersistence the attachment persistence
+	 */
+	public void setAttachmentPersistence(
+		AttachmentPersistence attachmentPersistence) {
+		this.attachmentPersistence = attachmentPersistence;
+	}
 
 	/**
 	 * Returns the employee local service.
@@ -505,6 +563,12 @@ public abstract class TimesheetDetailsServiceBaseImpl extends BaseServiceImpl
 		}
 	}
 
+	@BeanReference(type = sg.com.para.intranet.services.service.AttachmentLocalService.class)
+	protected sg.com.para.intranet.services.service.AttachmentLocalService attachmentLocalService;
+	@BeanReference(type = sg.com.para.intranet.services.service.AttachmentService.class)
+	protected sg.com.para.intranet.services.service.AttachmentService attachmentService;
+	@BeanReference(type = AttachmentPersistence.class)
+	protected AttachmentPersistence attachmentPersistence;
 	@BeanReference(type = sg.com.para.intranet.services.service.EmployeeLocalService.class)
 	protected sg.com.para.intranet.services.service.EmployeeLocalService employeeLocalService;
 	@BeanReference(type = sg.com.para.intranet.services.service.EmployeeService.class)

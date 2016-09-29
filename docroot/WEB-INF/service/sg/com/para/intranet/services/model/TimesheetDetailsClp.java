@@ -80,6 +80,7 @@ public class TimesheetDetailsClp extends BaseModelImpl<TimesheetDetails>
 		attributes.put("clockOutTime", getClockOutTime());
 		attributes.put("remarks", getRemarks());
 		attributes.put("type", getType());
+		attributes.put("fulldayOrTimeBased", getFulldayOrTimeBased());
 
 		return attributes;
 	}
@@ -121,6 +122,12 @@ public class TimesheetDetailsClp extends BaseModelImpl<TimesheetDetails>
 
 		if (type != null) {
 			setType(type);
+		}
+
+		String fulldayOrTimeBased = (String)attributes.get("fulldayOrTimeBased");
+
+		if (fulldayOrTimeBased != null) {
+			setFulldayOrTimeBased(fulldayOrTimeBased);
 		}
 	}
 
@@ -263,6 +270,30 @@ public class TimesheetDetailsClp extends BaseModelImpl<TimesheetDetails>
 		}
 	}
 
+	@Override
+	public String getFulldayOrTimeBased() {
+		return _fulldayOrTimeBased;
+	}
+
+	@Override
+	public void setFulldayOrTimeBased(String fulldayOrTimeBased) {
+		_fulldayOrTimeBased = fulldayOrTimeBased;
+
+		if (_timesheetDetailsRemoteModel != null) {
+			try {
+				Class<?> clazz = _timesheetDetailsRemoteModel.getClass();
+
+				Method method = clazz.getMethod("setFulldayOrTimeBased",
+						String.class);
+
+				method.invoke(_timesheetDetailsRemoteModel, fulldayOrTimeBased);
+			}
+			catch (Exception e) {
+				throw new UnsupportedOperationException(e);
+			}
+		}
+	}
+
 	public BaseModel<?> getTimesheetDetailsRemoteModel() {
 		return _timesheetDetailsRemoteModel;
 	}
@@ -340,6 +371,7 @@ public class TimesheetDetailsClp extends BaseModelImpl<TimesheetDetails>
 		clone.setClockOutTime(getClockOutTime());
 		clone.setRemarks(getRemarks());
 		clone.setType(getType());
+		clone.setFulldayOrTimeBased(getFulldayOrTimeBased());
 
 		return clone;
 	}
@@ -392,7 +424,7 @@ public class TimesheetDetailsClp extends BaseModelImpl<TimesheetDetails>
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(13);
+		StringBundler sb = new StringBundler(15);
 
 		sb.append("{timesheetDetailsId=");
 		sb.append(getTimesheetDetailsId());
@@ -406,6 +438,8 @@ public class TimesheetDetailsClp extends BaseModelImpl<TimesheetDetails>
 		sb.append(getRemarks());
 		sb.append(", type=");
 		sb.append(getType());
+		sb.append(", fulldayOrTimeBased=");
+		sb.append(getFulldayOrTimeBased());
 		sb.append("}");
 
 		return sb.toString();
@@ -413,7 +447,7 @@ public class TimesheetDetailsClp extends BaseModelImpl<TimesheetDetails>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(22);
+		StringBundler sb = new StringBundler(25);
 
 		sb.append("<model><model-name>");
 		sb.append("sg.com.para.intranet.services.model.TimesheetDetails");
@@ -443,6 +477,10 @@ public class TimesheetDetailsClp extends BaseModelImpl<TimesheetDetails>
 			"<column><column-name>type</column-name><column-value><![CDATA[");
 		sb.append(getType());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>fulldayOrTimeBased</column-name><column-value><![CDATA[");
+		sb.append(getFulldayOrTimeBased());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -455,6 +493,7 @@ public class TimesheetDetailsClp extends BaseModelImpl<TimesheetDetails>
 	private Date _clockOutTime;
 	private String _remarks;
 	private String _type;
+	private String _fulldayOrTimeBased;
 	private BaseModel<?> _timesheetDetailsRemoteModel;
 	private Class<?> _clpSerializerClass = sg.com.para.intranet.services.service.ClpSerializer.class;
 }

@@ -17,6 +17,8 @@ package sg.com.para.intranet.services.service.messaging;
 import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Message;
 
+import sg.com.para.intranet.services.service.AttachmentLocalServiceUtil;
+import sg.com.para.intranet.services.service.AttachmentServiceUtil;
 import sg.com.para.intranet.services.service.ClpSerializer;
 import sg.com.para.intranet.services.service.EmployeeLocalServiceUtil;
 import sg.com.para.intranet.services.service.EmployeeServiceUtil;
@@ -44,6 +46,9 @@ public class ClpMessageListener extends BaseMessageListener {
 
 		if (command.equals("undeploy") &&
 				servletContextName.equals(getServletContextName())) {
+			AttachmentLocalServiceUtil.clearService();
+
+			AttachmentServiceUtil.clearService();
 			EmployeeLocalServiceUtil.clearService();
 
 			EmployeeServiceUtil.clearService();

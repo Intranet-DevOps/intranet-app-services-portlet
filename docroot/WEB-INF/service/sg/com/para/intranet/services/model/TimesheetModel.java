@@ -245,6 +245,64 @@ public interface TimesheetModel extends BaseModel<Timesheet> {
 	 */
 	public void setProjectCode(String projectCode);
 
+	/**
+	 * Returns the approved by of this timesheet.
+	 *
+	 * @return the approved by of this timesheet
+	 */
+	@AutoEscape
+	public String getApprovedBy();
+
+	/**
+	 * Sets the approved by of this timesheet.
+	 *
+	 * @param approvedBy the approved by of this timesheet
+	 */
+	public void setApprovedBy(String approvedBy);
+
+	/**
+	 * Returns the approved date of this timesheet.
+	 *
+	 * @return the approved date of this timesheet
+	 */
+	public Date getApprovedDate();
+
+	/**
+	 * Sets the approved date of this timesheet.
+	 *
+	 * @param approvedDate the approved date of this timesheet
+	 */
+	public void setApprovedDate(Date approvedDate);
+
+	/**
+	 * Returns the processed by of this timesheet.
+	 *
+	 * @return the processed by of this timesheet
+	 */
+	@AutoEscape
+	public String getProcessedBy();
+
+	/**
+	 * Sets the processed by of this timesheet.
+	 *
+	 * @param processedBy the processed by of this timesheet
+	 */
+	public void setProcessedBy(String processedBy);
+
+	/**
+	 * Returns the processed date of this timesheet.
+	 *
+	 * @return the processed date of this timesheet
+	 */
+	public Date getProcessedDate();
+
+	/**
+	 * Sets the processed date of this timesheet.
+	 *
+	 * @param processedDate the processed date of this timesheet
+	 */
+	public void setProcessedDate(Date processedDate);
+
 	@Override
 	public boolean isNew();
 

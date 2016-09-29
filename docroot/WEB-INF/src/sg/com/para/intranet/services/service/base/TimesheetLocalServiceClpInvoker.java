@@ -106,21 +106,21 @@ public class TimesheetLocalServiceClpInvoker {
 				"sg.com.para.intranet.services.model.Timesheet"
 			};
 
-		_methodName58 = "getBeanIdentifier";
+		_methodName64 = "getBeanIdentifier";
 
-		_methodParameterTypes58 = new String[] {  };
+		_methodParameterTypes64 = new String[] {  };
 
-		_methodName59 = "setBeanIdentifier";
+		_methodName65 = "setBeanIdentifier";
 
-		_methodParameterTypes59 = new String[] { "java.lang.String" };
+		_methodParameterTypes65 = new String[] { "java.lang.String" };
 
-		_methodName64 = "getTimesheet";
+		_methodName70 = "getTimesheet";
 
-		_methodParameterTypes64 = new String[] { "int", "java.lang.String" };
+		_methodParameterTypes70 = new String[] { "int", "java.lang.String" };
 
-		_methodName66 = "findTimesheetsByUser";
+		_methodName72 = "findTimesheetsByUser";
 
-		_methodParameterTypes66 = new String[] {
+		_methodParameterTypes72 = new String[] {
 				"java.util.Date", "java.util.Date", "java.lang.String",
 				"java.lang.String"
 			};
@@ -215,26 +215,26 @@ public class TimesheetLocalServiceClpInvoker {
 			return TimesheetLocalServiceUtil.updateTimesheet((sg.com.para.intranet.services.model.Timesheet)arguments[0]);
 		}
 
-		if (_methodName58.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes58, parameterTypes)) {
+		if (_methodName64.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes64, parameterTypes)) {
 			return TimesheetLocalServiceUtil.getBeanIdentifier();
 		}
 
-		if (_methodName59.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes59, parameterTypes)) {
+		if (_methodName65.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes65, parameterTypes)) {
 			TimesheetLocalServiceUtil.setBeanIdentifier((java.lang.String)arguments[0]);
 
 			return null;
 		}
 
-		if (_methodName64.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes64, parameterTypes)) {
+		if (_methodName70.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes70, parameterTypes)) {
 			return TimesheetLocalServiceUtil.getTimesheet(((Integer)arguments[0]).intValue(),
 				(java.lang.String)arguments[1]);
 		}
 
-		if (_methodName66.equals(name) &&
-				Arrays.deepEquals(_methodParameterTypes66, parameterTypes)) {
+		if (_methodName72.equals(name) &&
+				Arrays.deepEquals(_methodParameterTypes72, parameterTypes)) {
 			return TimesheetLocalServiceUtil.findTimesheetsByUser((java.util.Date)arguments[0],
 				(java.util.Date)arguments[1], (java.lang.String)arguments[2],
 				(java.lang.String)arguments[3]);
@@ -275,12 +275,12 @@ public class TimesheetLocalServiceClpInvoker {
 	private String[] _methodParameterTypes14;
 	private String _methodName15;
 	private String[] _methodParameterTypes15;
-	private String _methodName58;
-	private String[] _methodParameterTypes58;
-	private String _methodName59;
-	private String[] _methodParameterTypes59;
 	private String _methodName64;
 	private String[] _methodParameterTypes64;
-	private String _methodName66;
-	private String[] _methodParameterTypes66;
+	private String _methodName65;
+	private String[] _methodParameterTypes65;
+	private String _methodName70;
+	private String[] _methodParameterTypes70;
+	private String _methodName72;
+	private String[] _methodParameterTypes72;
 }

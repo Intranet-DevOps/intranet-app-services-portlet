@@ -72,9 +72,13 @@ public class TimesheetModelImpl extends BaseModelImpl<Timesheet>
 			{ "other", Types.DOUBLE },
 			{ "remarks", Types.VARCHAR },
 			{ "status", Types.VARCHAR },
-			{ "projectCode", Types.VARCHAR }
+			{ "projectCode", Types.VARCHAR },
+			{ "approvedBy", Types.VARCHAR },
+			{ "approvedDate", Types.TIMESTAMP },
+			{ "processedBy", Types.VARCHAR },
+			{ "processedDate", Types.TIMESTAMP }
 		};
-	public static final String TABLE_SQL_CREATE = "create table intranet_timesheet (timesheetId INTEGER not null primary key,employeeScreenName VARCHAR(75) null,logDate DATE null,regular DOUBLE,overtime DOUBLE,sick DOUBLE,vacation DOUBLE,holiday DOUBLE,unpaid DOUBLE,other DOUBLE,remarks VARCHAR(75) null,status VARCHAR(75) null,projectCode VARCHAR(75) null)";
+	public static final String TABLE_SQL_CREATE = "create table intranet_timesheet (timesheetId INTEGER not null primary key,employeeScreenName VARCHAR(75) null,logDate DATE null,regular DOUBLE,overtime DOUBLE,sick DOUBLE,vacation DOUBLE,holiday DOUBLE,unpaid DOUBLE,other DOUBLE,remarks VARCHAR(75) null,status VARCHAR(75) null,projectCode VARCHAR(75) null,approvedBy VARCHAR(75) null,approvedDate DATE null,processedBy VARCHAR(75) null,processedDate DATE null)";
 	public static final String TABLE_SQL_DROP = "drop table intranet_timesheet";
 	public static final String ORDER_BY_JPQL = " ORDER BY timesheet.timesheetId ASC";
 	public static final String ORDER_BY_SQL = " ORDER BY intranet_timesheet.timesheetId ASC";
@@ -115,6 +119,10 @@ public class TimesheetModelImpl extends BaseModelImpl<Timesheet>
 		model.setRemarks(soapModel.getRemarks());
 		model.setStatus(soapModel.getStatus());
 		model.setProjectCode(soapModel.getProjectCode());
+		model.setApprovedBy(soapModel.getApprovedBy());
+		model.setApprovedDate(soapModel.getApprovedDate());
+		model.setProcessedBy(soapModel.getProcessedBy());
+		model.setProcessedDate(soapModel.getProcessedDate());
 
 		return model;
 	}
@@ -192,6 +200,10 @@ public class TimesheetModelImpl extends BaseModelImpl<Timesheet>
 		attributes.put("remarks", getRemarks());
 		attributes.put("status", getStatus());
 		attributes.put("projectCode", getProjectCode());
+		attributes.put("approvedBy", getApprovedBy());
+		attributes.put("approvedDate", getApprovedDate());
+		attributes.put("processedBy", getProcessedBy());
+		attributes.put("processedDate", getProcessedDate());
 
 		return attributes;
 	}
@@ -274,6 +286,30 @@ public class TimesheetModelImpl extends BaseModelImpl<Timesheet>
 
 		if (projectCode != null) {
 			setProjectCode(projectCode);
+		}
+
+		String approvedBy = (String)attributes.get("approvedBy");
+
+		if (approvedBy != null) {
+			setApprovedBy(approvedBy);
+		}
+
+		Date approvedDate = (Date)attributes.get("approvedDate");
+
+		if (approvedDate != null) {
+			setApprovedDate(approvedDate);
+		}
+
+		String processedBy = (String)attributes.get("processedBy");
+
+		if (processedBy != null) {
+			setProcessedBy(processedBy);
+		}
+
+		Date processedDate = (Date)attributes.get("processedDate");
+
+		if (processedDate != null) {
+			setProcessedDate(processedDate);
 		}
 	}
 
@@ -440,6 +476,60 @@ public class TimesheetModelImpl extends BaseModelImpl<Timesheet>
 		_projectCode = projectCode;
 	}
 
+	@JSON
+	@Override
+	public String getApprovedBy() {
+		if (_approvedBy == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _approvedBy;
+		}
+	}
+
+	@Override
+	public void setApprovedBy(String approvedBy) {
+		_approvedBy = approvedBy;
+	}
+
+	@JSON
+	@Override
+	public Date getApprovedDate() {
+		return _approvedDate;
+	}
+
+	@Override
+	public void setApprovedDate(Date approvedDate) {
+		_approvedDate = approvedDate;
+	}
+
+	@JSON
+	@Override
+	public String getProcessedBy() {
+		if (_processedBy == null) {
+			return StringPool.BLANK;
+		}
+		else {
+			return _processedBy;
+		}
+	}
+
+	@Override
+	public void setProcessedBy(String processedBy) {
+		_processedBy = processedBy;
+	}
+
+	@JSON
+	@Override
+	public Date getProcessedDate() {
+		return _processedDate;
+	}
+
+	@Override
+	public void setProcessedDate(Date processedDate) {
+		_processedDate = processedDate;
+	}
+
 	@Override
 	public Timesheet toEscapedModel() {
 		if (_escapedModel == null) {
@@ -467,6 +557,10 @@ public class TimesheetModelImpl extends BaseModelImpl<Timesheet>
 		timesheetImpl.setRemarks(getRemarks());
 		timesheetImpl.setStatus(getStatus());
 		timesheetImpl.setProjectCode(getProjectCode());
+		timesheetImpl.setApprovedBy(getApprovedBy());
+		timesheetImpl.setApprovedDate(getApprovedDate());
+		timesheetImpl.setProcessedBy(getProcessedBy());
+		timesheetImpl.setProcessedDate(getProcessedDate());
 
 		timesheetImpl.resetOriginalValues();
 
@@ -580,12 +674,46 @@ public class TimesheetModelImpl extends BaseModelImpl<Timesheet>
 			timesheetCacheModel.projectCode = null;
 		}
 
+		timesheetCacheModel.approvedBy = getApprovedBy();
+
+		String approvedBy = timesheetCacheModel.approvedBy;
+
+		if ((approvedBy != null) && (approvedBy.length() == 0)) {
+			timesheetCacheModel.approvedBy = null;
+		}
+
+		Date approvedDate = getApprovedDate();
+
+		if (approvedDate != null) {
+			timesheetCacheModel.approvedDate = approvedDate.getTime();
+		}
+		else {
+			timesheetCacheModel.approvedDate = Long.MIN_VALUE;
+		}
+
+		timesheetCacheModel.processedBy = getProcessedBy();
+
+		String processedBy = timesheetCacheModel.processedBy;
+
+		if ((processedBy != null) && (processedBy.length() == 0)) {
+			timesheetCacheModel.processedBy = null;
+		}
+
+		Date processedDate = getProcessedDate();
+
+		if (processedDate != null) {
+			timesheetCacheModel.processedDate = processedDate.getTime();
+		}
+		else {
+			timesheetCacheModel.processedDate = Long.MIN_VALUE;
+		}
+
 		return timesheetCacheModel;
 	}
 
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(27);
+		StringBundler sb = new StringBundler(35);
 
 		sb.append("{timesheetId=");
 		sb.append(getTimesheetId());
@@ -613,6 +741,14 @@ public class TimesheetModelImpl extends BaseModelImpl<Timesheet>
 		sb.append(getStatus());
 		sb.append(", projectCode=");
 		sb.append(getProjectCode());
+		sb.append(", approvedBy=");
+		sb.append(getApprovedBy());
+		sb.append(", approvedDate=");
+		sb.append(getApprovedDate());
+		sb.append(", processedBy=");
+		sb.append(getProcessedBy());
+		sb.append(", processedDate=");
+		sb.append(getProcessedDate());
 		sb.append("}");
 
 		return sb.toString();
@@ -620,7 +756,7 @@ public class TimesheetModelImpl extends BaseModelImpl<Timesheet>
 
 	@Override
 	public String toXmlString() {
-		StringBundler sb = new StringBundler(43);
+		StringBundler sb = new StringBundler(55);
 
 		sb.append("<model><model-name>");
 		sb.append("sg.com.para.intranet.services.model.Timesheet");
@@ -678,6 +814,22 @@ public class TimesheetModelImpl extends BaseModelImpl<Timesheet>
 			"<column><column-name>projectCode</column-name><column-value><![CDATA[");
 		sb.append(getProjectCode());
 		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>approvedBy</column-name><column-value><![CDATA[");
+		sb.append(getApprovedBy());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>approvedDate</column-name><column-value><![CDATA[");
+		sb.append(getApprovedDate());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>processedBy</column-name><column-value><![CDATA[");
+		sb.append(getProcessedBy());
+		sb.append("]]></column-value></column>");
+		sb.append(
+			"<column><column-name>processedDate</column-name><column-value><![CDATA[");
+		sb.append(getProcessedDate());
+		sb.append("]]></column-value></column>");
 
 		sb.append("</model>");
 
@@ -701,5 +853,9 @@ public class TimesheetModelImpl extends BaseModelImpl<Timesheet>
 	private String _remarks;
 	private String _status;
 	private String _projectCode;
+	private String _approvedBy;
+	private Date _approvedDate;
+	private String _processedBy;
+	private Date _processedDate;
 	private Timesheet _escapedModel;
 }

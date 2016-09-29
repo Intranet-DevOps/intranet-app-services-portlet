@@ -7,6 +7,17 @@
 			<access>PROPERTY</access>
 		</persistence-unit-defaults>
 	</persistence-unit-metadata>
+	<mapped-superclass class="sg.com.para.intranet.services.model.impl.AttachmentModelImpl">
+		<attributes>
+			<id name="attachmentId" />
+			<basic name="entityType" />
+			<basic name="entityId" />
+			<basic name="attachmentText" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
 	<mapped-superclass class="sg.com.para.intranet.services.model.impl.EmployeeModelImpl">
 		<attributes>
 			<id name="employeeId" />
@@ -71,6 +82,14 @@
 			<basic name="remarks" />
 			<basic name="status" />
 			<basic name="projectCode" />
+			<basic name="approvedBy" />
+			<basic name="approvedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="processedBy" />
+			<basic name="processedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
@@ -90,11 +109,16 @@
 			<basic name="type">
 				<column name="TYPE_" />
 			</basic>
+			<basic name="fulldayOrTimeBased" />
 			<transient name="modelAttributes" />
 			<transient name="primaryKey" />
 			<transient name="primaryKeyObj" />
 		</attributes>
 	</mapped-superclass>
+	<entity class="sg.com.para.intranet.services.model.impl.AttachmentImpl" name="Attachment">
+		<table name="intranet_attachment" />
+		<attributes />
+	</entity>
 	<entity class="sg.com.para.intranet.services.model.impl.EmployeeImpl" name="Employee">
 		<table name="intranet_employee" />
 		<attributes />

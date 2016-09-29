@@ -44,6 +44,10 @@ public class TimesheetSoap implements Serializable {
 		soapModel.setRemarks(model.getRemarks());
 		soapModel.setStatus(model.getStatus());
 		soapModel.setProjectCode(model.getProjectCode());
+		soapModel.setApprovedBy(model.getApprovedBy());
+		soapModel.setApprovedDate(model.getApprovedDate());
+		soapModel.setProcessedBy(model.getProcessedBy());
+		soapModel.setProcessedDate(model.getProcessedDate());
 
 		return soapModel;
 	}
@@ -200,6 +204,38 @@ public class TimesheetSoap implements Serializable {
 		_projectCode = projectCode;
 	}
 
+	public String getApprovedBy() {
+		return _approvedBy;
+	}
+
+	public void setApprovedBy(String approvedBy) {
+		_approvedBy = approvedBy;
+	}
+
+	public Date getApprovedDate() {
+		return _approvedDate;
+	}
+
+	public void setApprovedDate(Date approvedDate) {
+		_approvedDate = approvedDate;
+	}
+
+	public String getProcessedBy() {
+		return _processedBy;
+	}
+
+	public void setProcessedBy(String processedBy) {
+		_processedBy = processedBy;
+	}
+
+	public Date getProcessedDate() {
+		return _processedDate;
+	}
+
+	public void setProcessedDate(Date processedDate) {
+		_processedDate = processedDate;
+	}
+
 	private int _timesheetId;
 	private String _employeeScreenName;
 	private Date _logDate;
@@ -213,4 +249,8 @@ public class TimesheetSoap implements Serializable {
 	private String _remarks;
 	private String _status;
 	private String _projectCode;
+	private String _approvedBy;
+	private Date _approvedDate;
+	private String _processedBy;
+	private Date _processedDate;
 }

@@ -333,6 +333,7 @@ public class TimesheetDetailsPersistenceImpl extends BasePersistenceImpl<Timeshe
 		timesheetDetailsImpl.setClockOutTime(timesheetDetails.getClockOutTime());
 		timesheetDetailsImpl.setRemarks(timesheetDetails.getRemarks());
 		timesheetDetailsImpl.setType(timesheetDetails.getType());
+		timesheetDetailsImpl.setFulldayOrTimeBased(timesheetDetails.getFulldayOrTimeBased());
 
 		return timesheetDetailsImpl;
 	}

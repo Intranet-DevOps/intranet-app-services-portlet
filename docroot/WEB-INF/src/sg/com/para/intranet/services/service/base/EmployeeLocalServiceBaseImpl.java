@@ -33,6 +33,7 @@ import com.liferay.portal.service.persistence.UserPersistence;
 
 import sg.com.para.intranet.services.model.Employee;
 import sg.com.para.intranet.services.service.EmployeeLocalService;
+import sg.com.para.intranet.services.service.persistence.AttachmentPersistence;
 import sg.com.para.intranet.services.service.persistence.EmployeePersistence;
 import sg.com.para.intranet.services.service.persistence.ExpensePersistence;
 import sg.com.para.intranet.services.service.persistence.ProjectPersistence;
@@ -276,6 +277,63 @@ public abstract class EmployeeLocalServiceBaseImpl extends BaseLocalServiceImpl
 	@Override
 	public Employee updateEmployee(Employee employee) throws SystemException {
 		return employeePersistence.update(employee);
+	}
+
+	/**
+	 * Returns the attachment local service.
+	 *
+	 * @return the attachment local service
+	 */
+	public sg.com.para.intranet.services.service.AttachmentLocalService getAttachmentLocalService() {
+		return attachmentLocalService;
+	}
+
+	/**
+	 * Sets the attachment local service.
+	 *
+	 * @param attachmentLocalService the attachment local service
+	 */
+	public void setAttachmentLocalService(
+		sg.com.para.intranet.services.service.AttachmentLocalService attachmentLocalService) {
+		this.attachmentLocalService = attachmentLocalService;
+	}
+
+	/**
+	 * Returns the attachment remote service.
+	 *
+	 * @return the attachment remote service
+	 */
+	public sg.com.para.intranet.services.service.AttachmentService getAttachmentService() {
+		return attachmentService;
+	}
+
+	/**
+	 * Sets the attachment remote service.
+	 *
+	 * @param attachmentService the attachment remote service
+	 */
+	public void setAttachmentService(
+		sg.com.para.intranet.services.service.AttachmentService attachmentService) {
+		this.attachmentService = attachmentService;
+	}
+
+	/**
+	 * Returns the attachment persistence.
+	 *
+	 * @return the attachment persistence
+	 */
+	public AttachmentPersistence getAttachmentPersistence() {
+		return attachmentPersistence;
+	}
+
+	/**
+	 * Sets the attachment persistence.
+	 *
+	 * @param attachmentPersistence the attachment persistence
+	 */
+	public void setAttachmentPersistence(
+		AttachmentPersistence attachmentPersistence) {
+		this.attachmentPersistence = attachmentPersistence;
 	}
 
 	/**
@@ -736,6 +794,12 @@ public abstract class EmployeeLocalServiceBaseImpl extends BaseLocalServiceImpl
 		}
 	}
 
+	@BeanReference(type = sg.com.para.intranet.services.service.AttachmentLocalService.class)
+	protected sg.com.para.intranet.services.service.AttachmentLocalService attachmentLocalService;
+	@BeanReference(type = sg.com.para.intranet.services.service.AttachmentService.class)
+	protected sg.com.para.intranet.services.service.AttachmentService attachmentService;
+	@BeanReference(type = AttachmentPersistence.class)
+	protected AttachmentPersistence attachmentPersistence;
 	@BeanReference(type = sg.com.para.intranet.services.service.EmployeeLocalService.class)
 	protected sg.com.para.intranet.services.service.EmployeeLocalService employeeLocalService;
 	@BeanReference(type = sg.com.para.intranet.services.service.EmployeeService.class)

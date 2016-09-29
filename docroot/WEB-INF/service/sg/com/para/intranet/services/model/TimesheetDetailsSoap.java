@@ -37,6 +37,7 @@ public class TimesheetDetailsSoap implements Serializable {
 		soapModel.setClockOutTime(model.getClockOutTime());
 		soapModel.setRemarks(model.getRemarks());
 		soapModel.setType(model.getType());
+		soapModel.setFulldayOrTimeBased(model.getFulldayOrTimeBased());
 
 		return soapModel;
 	}
@@ -139,10 +140,19 @@ public class TimesheetDetailsSoap implements Serializable {
 		_type = type;
 	}
 
+	public String getFulldayOrTimeBased() {
+		return _fulldayOrTimeBased;
+	}
+
+	public void setFulldayOrTimeBased(String fulldayOrTimeBased) {
+		_fulldayOrTimeBased = fulldayOrTimeBased;
+	}
+
 	private int _timesheetDetailsId;
 	private int _timesheetId;
 	private Date _clockInTime;
 	private Date _clockOutTime;
 	private String _remarks;
 	private String _type;
+	private String _fulldayOrTimeBased;
 }

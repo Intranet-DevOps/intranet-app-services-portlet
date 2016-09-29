@@ -62,6 +62,10 @@ public class TimesheetWrapper implements Timesheet, ModelWrapper<Timesheet> {
 		attributes.put("remarks", getRemarks());
 		attributes.put("status", getStatus());
 		attributes.put("projectCode", getProjectCode());
+		attributes.put("approvedBy", getApprovedBy());
+		attributes.put("approvedDate", getApprovedDate());
+		attributes.put("processedBy", getProcessedBy());
+		attributes.put("processedDate", getProcessedDate());
 
 		return attributes;
 	}
@@ -144,6 +148,30 @@ public class TimesheetWrapper implements Timesheet, ModelWrapper<Timesheet> {
 
 		if (projectCode != null) {
 			setProjectCode(projectCode);
+		}
+
+		String approvedBy = (String)attributes.get("approvedBy");
+
+		if (approvedBy != null) {
+			setApprovedBy(approvedBy);
+		}
+
+		Date approvedDate = (Date)attributes.get("approvedDate");
+
+		if (approvedDate != null) {
+			setApprovedDate(approvedDate);
+		}
+
+		String processedBy = (String)attributes.get("processedBy");
+
+		if (processedBy != null) {
+			setProcessedBy(processedBy);
+		}
+
+		Date processedDate = (Date)attributes.get("processedDate");
+
+		if (processedDate != null) {
+			setProcessedDate(processedDate);
 		}
 	}
 
@@ -425,6 +453,86 @@ public class TimesheetWrapper implements Timesheet, ModelWrapper<Timesheet> {
 	@Override
 	public void setProjectCode(java.lang.String projectCode) {
 		_timesheet.setProjectCode(projectCode);
+	}
+
+	/**
+	* Returns the approved by of this timesheet.
+	*
+	* @return the approved by of this timesheet
+	*/
+	@Override
+	public java.lang.String getApprovedBy() {
+		return _timesheet.getApprovedBy();
+	}
+
+	/**
+	* Sets the approved by of this timesheet.
+	*
+	* @param approvedBy the approved by of this timesheet
+	*/
+	@Override
+	public void setApprovedBy(java.lang.String approvedBy) {
+		_timesheet.setApprovedBy(approvedBy);
+	}
+
+	/**
+	* Returns the approved date of this timesheet.
+	*
+	* @return the approved date of this timesheet
+	*/
+	@Override
+	public java.util.Date getApprovedDate() {
+		return _timesheet.getApprovedDate();
+	}
+
+	/**
+	* Sets the approved date of this timesheet.
+	*
+	* @param approvedDate the approved date of this timesheet
+	*/
+	@Override
+	public void setApprovedDate(java.util.Date approvedDate) {
+		_timesheet.setApprovedDate(approvedDate);
+	}
+
+	/**
+	* Returns the processed by of this timesheet.
+	*
+	* @return the processed by of this timesheet
+	*/
+	@Override
+	public java.lang.String getProcessedBy() {
+		return _timesheet.getProcessedBy();
+	}
+
+	/**
+	* Sets the processed by of this timesheet.
+	*
+	* @param processedBy the processed by of this timesheet
+	*/
+	@Override
+	public void setProcessedBy(java.lang.String processedBy) {
+		_timesheet.setProcessedBy(processedBy);
+	}
+
+	/**
+	* Returns the processed date of this timesheet.
+	*
+	* @return the processed date of this timesheet
+	*/
+	@Override
+	public java.util.Date getProcessedDate() {
+		return _timesheet.getProcessedDate();
+	}
+
+	/**
+	* Sets the processed date of this timesheet.
+	*
+	* @param processedDate the processed date of this timesheet
+	*/
+	@Override
+	public void setProcessedDate(java.util.Date processedDate) {
+		_timesheet.setProcessedDate(processedDate);
 	}
 
 	@Override

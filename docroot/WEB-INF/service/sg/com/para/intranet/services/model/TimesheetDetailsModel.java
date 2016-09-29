@@ -145,6 +145,21 @@ public interface TimesheetDetailsModel extends BaseModel<TimesheetDetails> {
 	 */
 	public void setType(String type);
 
+	/**
+	 * Returns the fullday or time based of this timesheet details.
+	 *
+	 * @return the fullday or time based of this timesheet details
+	 */
+	@AutoEscape
+	public String getFulldayOrTimeBased();
+
+	/**
+	 * Sets the fullday or time based of this timesheet details.
+	 *
+	 * @param fulldayOrTimeBased the fullday or time based of this timesheet details
+	 */
+	public void setFulldayOrTimeBased(String fulldayOrTimeBased);
+
 	@Override
 	public boolean isNew();
 

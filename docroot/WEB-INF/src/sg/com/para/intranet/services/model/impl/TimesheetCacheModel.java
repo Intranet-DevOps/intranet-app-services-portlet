@@ -38,7 +38,7 @@ public class TimesheetCacheModel implements CacheModel<Timesheet>,
 	Externalizable {
 	@Override
 	public String toString() {
-		StringBundler sb = new StringBundler(27);
+		StringBundler sb = new StringBundler(35);
 
 		sb.append("{timesheetId=");
 		sb.append(timesheetId);
@@ -66,6 +66,14 @@ public class TimesheetCacheModel implements CacheModel<Timesheet>,
 		sb.append(status);
 		sb.append(", projectCode=");
 		sb.append(projectCode);
+		sb.append(", approvedBy=");
+		sb.append(approvedBy);
+		sb.append(", approvedDate=");
+		sb.append(approvedDate);
+		sb.append(", processedBy=");
+		sb.append(processedBy);
+		sb.append(", processedDate=");
+		sb.append(processedDate);
 		sb.append("}");
 
 		return sb.toString();
@@ -120,6 +128,34 @@ public class TimesheetCacheModel implements CacheModel<Timesheet>,
 			timesheetImpl.setProjectCode(projectCode);
 		}
 
+		if (approvedBy == null) {
+			timesheetImpl.setApprovedBy(StringPool.BLANK);
+		}
+		else {
+			timesheetImpl.setApprovedBy(approvedBy);
+		}
+
+		if (approvedDate == Long.MIN_VALUE) {
+			timesheetImpl.setApprovedDate(null);
+		}
+		else {
+			timesheetImpl.setApprovedDate(new Date(approvedDate));
+		}
+
+		if (processedBy == null) {
+			timesheetImpl.setProcessedBy(StringPool.BLANK);
+		}
+		else {
+			timesheetImpl.setProcessedBy(processedBy);
+		}
+
+		if (processedDate == Long.MIN_VALUE) {
+			timesheetImpl.setProcessedDate(null);
+		}
+		else {
+			timesheetImpl.setProcessedDate(new Date(processedDate));
+		}
+
 		timesheetImpl.resetOriginalValues();
 
 		return timesheetImpl;
@@ -140,6 +176,10 @@ public class TimesheetCacheModel implements CacheModel<Timesheet>,
 		remarks = objectInput.readUTF();
 		status = objectInput.readUTF();
 		projectCode = objectInput.readUTF();
+		approvedBy = objectInput.readUTF();
+		approvedDate = objectInput.readLong();
+		processedBy = objectInput.readUTF();
+		processedDate = objectInput.readLong();
 	}
 
 	@Override
@@ -183,6 +223,24 @@ public class TimesheetCacheModel implements CacheModel<Timesheet>,
 		else {
 			objectOutput.writeUTF(projectCode);
 		}
+
+		if (approvedBy == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(approvedBy);
+		}
+
+		objectOutput.writeLong(approvedDate);
+
+		if (processedBy == null) {
+			objectOutput.writeUTF(StringPool.BLANK);
+		}
+		else {
+			objectOutput.writeUTF(processedBy);
+		}
+
+		objectOutput.writeLong(processedDate);
 	}
 
 	public int timesheetId;
@@ -198,4 +256,8 @@ public class TimesheetCacheModel implements CacheModel<Timesheet>,
 	public String remarks;
 	public String status;
 	public String projectCode;
+	public String approvedBy;
+	public long approvedDate;
+	public String processedBy;
+	public long processedDate;
 }

@@ -56,6 +56,7 @@ public class TimesheetDetailsWrapper implements TimesheetDetails,
 		attributes.put("clockOutTime", getClockOutTime());
 		attributes.put("remarks", getRemarks());
 		attributes.put("type", getType());
+		attributes.put("fulldayOrTimeBased", getFulldayOrTimeBased());
 
 		return attributes;
 	}
@@ -97,6 +98,12 @@ public class TimesheetDetailsWrapper implements TimesheetDetails,
 
 		if (type != null) {
 			setType(type);
+		}
+
+		String fulldayOrTimeBased = (String)attributes.get("fulldayOrTimeBased");
+
+		if (fulldayOrTimeBased != null) {
+			setFulldayOrTimeBased(fulldayOrTimeBased);
 		}
 	}
 
@@ -238,6 +245,26 @@ public class TimesheetDetailsWrapper implements TimesheetDetails,
 	@Override
 	public void setType(java.lang.String type) {
 		_timesheetDetails.setType(type);
+	}
+
+	/**
+	* Returns the fullday or time based of this timesheet details.
+	*
+	* @return the fullday or time based of this timesheet details
+	*/
+	@Override
+	public java.lang.String getFulldayOrTimeBased() {
+		return _timesheetDetails.getFulldayOrTimeBased();
+	}
+
+	/**
+	* Sets the fullday or time based of this timesheet details.
+	*
+	* @param fulldayOrTimeBased the fullday or time based of this timesheet details
+	*/
+	@Override
+	public void setFulldayOrTimeBased(java.lang.String fulldayOrTimeBased) {
+		_timesheetDetails.setFulldayOrTimeBased(fulldayOrTimeBased);
 	}
 
 	@Override
