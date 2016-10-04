@@ -73,22 +73,22 @@ public class TimesheetServiceWrapper implements TimesheetService,
 
 	@Override
 	public java.util.List<sg.com.para.intranet.services.model.TimesheetDetails> getTimesheetDetails(
-		long timesheetId, java.lang.String actor) throws java.lang.Exception {
+		int timesheetId, java.lang.String actor) throws java.lang.Exception {
 		return _timesheetService.getTimesheetDetails(timesheetId, actor);
 	}
 
 	@Override
 	public sg.com.para.intranet.services.model.TimesheetDetails addTimesheetDetails(
-		long timesheetId, java.util.Date logDate, java.lang.String clockInTime,
+		int timesheetId, java.util.Date logDate, java.lang.String clockInTime,
 		java.lang.String clockOutTime, java.lang.String type,
-		java.lang.String remarks, java.lang.String actor)
-		throws java.lang.Exception {
+		java.lang.String remarks, java.lang.String fulldayOrTimeBased,
+		java.lang.String actor) throws java.lang.Exception {
 		return _timesheetService.addTimesheetDetails(timesheetId, logDate,
-			clockInTime, clockOutTime, type, remarks, actor);
+			clockInTime, clockOutTime, type, remarks, fulldayOrTimeBased, actor);
 	}
 
 	@Override
-	public void deleteTimesheetDetails(long timesheetDetailsId,
+	public void deleteTimesheetDetails(int timesheetDetailsId,
 		java.lang.String actor) throws java.lang.Exception {
 		_timesheetService.deleteTimesheetDetails(timesheetDetailsId, actor);
 	}

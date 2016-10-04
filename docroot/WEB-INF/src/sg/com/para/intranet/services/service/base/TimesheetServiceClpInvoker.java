@@ -45,18 +45,19 @@ public class TimesheetServiceClpInvoker {
 
 		_methodName56 = "getTimesheetDetails";
 
-		_methodParameterTypes56 = new String[] { "long", "java.lang.String" };
+		_methodParameterTypes56 = new String[] { "int", "java.lang.String" };
 
 		_methodName57 = "addTimesheetDetails";
 
 		_methodParameterTypes57 = new String[] {
-				"long", "java.util.Date", "java.lang.String", "java.lang.String",
-				"java.lang.String", "java.lang.String", "java.lang.String"
+				"int", "java.util.Date", "java.lang.String", "java.lang.String",
+				"java.lang.String", "java.lang.String", "java.lang.String",
+				"java.lang.String"
 			};
 
 		_methodName58 = "deleteTimesheetDetails";
 
-		_methodParameterTypes58 = new String[] { "long", "java.lang.String" };
+		_methodParameterTypes58 = new String[] { "int", "java.lang.String" };
 
 		_methodName59 = "createTimeSheet";
 
@@ -138,21 +139,22 @@ public class TimesheetServiceClpInvoker {
 
 		if (_methodName56.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes56, parameterTypes)) {
-			return TimesheetServiceUtil.getTimesheetDetails(((Long)arguments[0]).longValue(),
+			return TimesheetServiceUtil.getTimesheetDetails(((Integer)arguments[0]).intValue(),
 				(java.lang.String)arguments[1]);
 		}
 
 		if (_methodName57.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes57, parameterTypes)) {
-			return TimesheetServiceUtil.addTimesheetDetails(((Long)arguments[0]).longValue(),
+			return TimesheetServiceUtil.addTimesheetDetails(((Integer)arguments[0]).intValue(),
 				(java.util.Date)arguments[1], (java.lang.String)arguments[2],
 				(java.lang.String)arguments[3], (java.lang.String)arguments[4],
-				(java.lang.String)arguments[5], (java.lang.String)arguments[6]);
+				(java.lang.String)arguments[5], (java.lang.String)arguments[6],
+				(java.lang.String)arguments[7]);
 		}
 
 		if (_methodName58.equals(name) &&
 				Arrays.deepEquals(_methodParameterTypes58, parameterTypes)) {
-			TimesheetServiceUtil.deleteTimesheetDetails(((Long)arguments[0]).longValue(),
+			TimesheetServiceUtil.deleteTimesheetDetails(((Integer)arguments[0]).intValue(),
 				(java.lang.String)arguments[1]);
 
 			return null;

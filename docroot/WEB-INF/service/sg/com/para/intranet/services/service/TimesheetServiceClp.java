@@ -45,18 +45,19 @@ public class TimesheetServiceClp implements TimesheetService {
 
 		_methodName5 = "getTimesheetDetails";
 
-		_methodParameterTypes5 = new String[] { "long", "java.lang.String" };
+		_methodParameterTypes5 = new String[] { "int", "java.lang.String" };
 
 		_methodName6 = "addTimesheetDetails";
 
 		_methodParameterTypes6 = new String[] {
-				"long", "java.util.Date", "java.lang.String", "java.lang.String",
-				"java.lang.String", "java.lang.String", "java.lang.String"
+				"int", "java.util.Date", "java.lang.String", "java.lang.String",
+				"java.lang.String", "java.lang.String", "java.lang.String",
+				"java.lang.String"
 			};
 
 		_methodName7 = "deleteTimesheetDetails";
 
-		_methodParameterTypes7 = new String[] { "long", "java.lang.String" };
+		_methodParameterTypes7 = new String[] { "int", "java.lang.String" };
 
 		_methodName8 = "createTimeSheet";
 
@@ -233,7 +234,7 @@ public class TimesheetServiceClp implements TimesheetService {
 
 	@Override
 	public java.util.List<sg.com.para.intranet.services.model.TimesheetDetails> getTimesheetDetails(
-		long timesheetId, java.lang.String actor) throws java.lang.Exception {
+		int timesheetId, java.lang.String actor) throws java.lang.Exception {
 		Object returnObj = null;
 
 		try {
@@ -266,10 +267,10 @@ public class TimesheetServiceClp implements TimesheetService {
 
 	@Override
 	public sg.com.para.intranet.services.model.TimesheetDetails addTimesheetDetails(
-		long timesheetId, java.util.Date logDate, java.lang.String clockInTime,
+		int timesheetId, java.util.Date logDate, java.lang.String clockInTime,
 		java.lang.String clockOutTime, java.lang.String type,
-		java.lang.String remarks, java.lang.String actor)
-		throws java.lang.Exception {
+		java.lang.String remarks, java.lang.String fulldayOrTimeBased,
+		java.lang.String actor) throws java.lang.Exception {
 		Object returnObj = null;
 
 		try {
@@ -287,6 +288,8 @@ public class TimesheetServiceClp implements TimesheetService {
 					ClpSerializer.translateInput(type),
 						
 					ClpSerializer.translateInput(remarks),
+						
+					ClpSerializer.translateInput(fulldayOrTimeBased),
 						
 					ClpSerializer.translateInput(actor)
 					});
@@ -311,7 +314,7 @@ public class TimesheetServiceClp implements TimesheetService {
 	}
 
 	@Override
-	public void deleteTimesheetDetails(long timesheetDetailsId,
+	public void deleteTimesheetDetails(int timesheetDetailsId,
 		java.lang.String actor) throws java.lang.Exception {
 		try {
 			_invokableService.invokeMethod(_methodName7,

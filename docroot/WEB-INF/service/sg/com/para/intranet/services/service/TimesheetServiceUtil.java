@@ -77,21 +77,21 @@ public class TimesheetServiceUtil {
 	}
 
 	public static java.util.List<sg.com.para.intranet.services.model.TimesheetDetails> getTimesheetDetails(
-		long timesheetId, java.lang.String actor) throws java.lang.Exception {
+		int timesheetId, java.lang.String actor) throws java.lang.Exception {
 		return getService().getTimesheetDetails(timesheetId, actor);
 	}
 
 	public static sg.com.para.intranet.services.model.TimesheetDetails addTimesheetDetails(
-		long timesheetId, java.util.Date logDate, java.lang.String clockInTime,
+		int timesheetId, java.util.Date logDate, java.lang.String clockInTime,
 		java.lang.String clockOutTime, java.lang.String type,
-		java.lang.String remarks, java.lang.String actor)
-		throws java.lang.Exception {
+		java.lang.String remarks, java.lang.String fulldayOrTimeBased,
+		java.lang.String actor) throws java.lang.Exception {
 		return getService()
 				   .addTimesheetDetails(timesheetId, logDate, clockInTime,
-			clockOutTime, type, remarks, actor);
+			clockOutTime, type, remarks, fulldayOrTimeBased, actor);
 	}
 
-	public static void deleteTimesheetDetails(long timesheetDetailsId,
+	public static void deleteTimesheetDetails(int timesheetDetailsId,
 		java.lang.String actor) throws java.lang.Exception {
 		getService().deleteTimesheetDetails(timesheetDetailsId, actor);
 	}

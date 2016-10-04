@@ -96,7 +96,7 @@ public class TimesheetServiceSoap {
 	}
 
 	public static sg.com.para.intranet.services.model.TimesheetDetailsSoap[] getTimesheetDetails(
-		long timesheetId, java.lang.String actor) throws RemoteException {
+		int timesheetId, java.lang.String actor) throws RemoteException {
 		try {
 			java.util.List<sg.com.para.intranet.services.model.TimesheetDetails> returnValue =
 				TimesheetServiceUtil.getTimesheetDetails(timesheetId, actor);
@@ -111,13 +111,14 @@ public class TimesheetServiceSoap {
 	}
 
 	public static sg.com.para.intranet.services.model.TimesheetDetailsSoap addTimesheetDetails(
-		long timesheetId, java.util.Date logDate, java.lang.String clockInTime,
+		int timesheetId, java.util.Date logDate, java.lang.String clockInTime,
 		java.lang.String clockOutTime, java.lang.String type,
-		java.lang.String remarks, java.lang.String actor)
-		throws RemoteException {
+		java.lang.String remarks, java.lang.String fulldayOrTimeBased,
+		java.lang.String actor) throws RemoteException {
 		try {
 			sg.com.para.intranet.services.model.TimesheetDetails returnValue = TimesheetServiceUtil.addTimesheetDetails(timesheetId,
-					logDate, clockInTime, clockOutTime, type, remarks, actor);
+					logDate, clockInTime, clockOutTime, type, remarks,
+					fulldayOrTimeBased, actor);
 
 			return sg.com.para.intranet.services.model.TimesheetDetailsSoap.toSoapModel(returnValue);
 		}
@@ -128,7 +129,7 @@ public class TimesheetServiceSoap {
 		}
 	}
 
-	public static void deleteTimesheetDetails(long timesheetDetailsId,
+	public static void deleteTimesheetDetails(int timesheetDetailsId,
 		java.lang.String actor) throws RemoteException {
 		try {
 			TimesheetServiceUtil.deleteTimesheetDetails(timesheetDetailsId,

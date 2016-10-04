@@ -15,10 +15,8 @@
 package sg.com.para.intranet.services.service.impl;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.TimeZone;
 
 import sg.com.para.intranet.services.model.Timesheet;
 import sg.com.para.intranet.services.model.TimesheetDetails;
@@ -74,7 +72,7 @@ public class TimesheetServiceImpl extends TimesheetServiceBaseImpl {
 		return timesheetLocalService.findTimesheetsByUser(startDate, endDate, userId, actor);
 	}
 
-	public List<TimesheetDetails> getTimesheetDetails(long timesheetId, String actor) throws Exception {
+	public List<TimesheetDetails> getTimesheetDetails(int timesheetId, String actor) throws Exception {
 		_log.info("getTimesheetDetails [timesheetId: " + timesheetId + ", actor: " + actor);
 
 		DynamicQuery dynaQuery = DynamicQueryFactoryUtil.forClass(TimesheetDetails.class, getClass().getClassLoader())
@@ -85,10 +83,11 @@ public class TimesheetServiceImpl extends TimesheetServiceBaseImpl {
 		return timesheetDetails;
 	}
 
-	public TimesheetDetails addTimesheetDetails(long timesheetId, Date logDate, String clockInTime,
-			String clockOutTime, String type, String remarks, String actor) throws Exception {
+	public TimesheetDetails addTimesheetDetails(int timesheetId, Date logDate, String clockInTime,
+			String clockOutTime, String type, String remarks, String fulldayOrTimeBased, String actor) throws Exception {
 		_log.info("addTimesheetDetails [timesheetId: " + timesheetId + ", logDate: " + logDate + ", clockInTime: "
-				+ clockInTime + ", clockOutTime: " + clockOutTime + ", type: " + type + ", actor: " + actor);
+				+ clockInTime + ", clockOutTime: " + clockOutTime + ", fulldayOrTimeBased: " + fulldayOrTimeBased
+				+ ", type: " + type + ", actor: " + actor);
 
 		SimpleDateFormat sdfFullTime = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 		SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd");
@@ -100,6 +99,7 @@ public class TimesheetServiceImpl extends TimesheetServiceBaseImpl {
 		timesheetDetails.setClockInTime(clockInTimeDt);
 		timesheetDetails.setClockOutTime(clockOutTimeDt);
 		timesheetDetails.setRemarks(remarks);
+		timesheetDetails.setFulldayOrTimeBased(fulldayOrTimeBased);
 		timesheetDetails.setType(type);
 
 		Timesheet timesheet = timesheetLocalService.fetchTimesheet((int) timesheetId);
@@ -114,7 +114,7 @@ public class TimesheetServiceImpl extends TimesheetServiceBaseImpl {
 
 	}
 
-	public void deleteTimesheetDetails(long timesheetDetailsId, String actor) throws Exception {
+	public void deleteTimesheetDetails(int timesheetDetailsId, String actor) throws Exception {
 		_log.info("deleteTimesheetDetails [timesheetDetailsId: " + timesheetDetailsId + ", actor: " + actor + "]");
 		timesheetDetailsPersistence.remove(timesheetDetailsId);
 	}
